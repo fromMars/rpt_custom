@@ -1,0 +1,27 @@
+<!--intro-->
+<table border=0 width=100% cellspacing=3 bordercolor="%COLOR_TITLEBORDER%" cellpadding=3>
+<tr valign="middle" align="center">
+%IF{%DB_USER%!"USER70",%IF{%DB_USER%!"USER83",%IF{%DB_USER%!"USER84",%IF{%DB_USER%!"USER30",,<!--},<!--},<!--},<!--}
+  %IF{%SMALLLOGO%,<td><IMG SRC="%SMALLLOGO%" %IF{%LOGO_WIDTH%,WIDTH="%LOGO_WIDTH%",} %IF{%LOGO_HEIGHT%,HEIGHT="%LOGO_HEIGHT%",} %IF{%EVAL{%LOGO_ALIGN%=1},ALIGN="left",} %IF{%EVAL{%LOGO_ALIGN%=2},ALIGN="right",} %IF{%EVAL{%LOGO_ALIGN%=3},ALIGN="lower",} %IF{%EVAL{%LOGO_ALIGN%=4},ALIGN="upper",}><BR></td>,}
+  <td>
+    <h1>%COMPANY%</h1><br>
+    %STREET% - %ZIP% %PLACE%<br>
+    %IF{%PHONE%,<JOPPS id=1>Phone :</JOPPS> %PHONE%<br>,}
+    %IF{%FAX%,<JOPPS id=2>Fax :</JOPPS> %FAX%<br>,}
+    %IF{%EMAIL%,<JOPPS id=3>E-mail:</JOPPS> <A HREF="MAILTO:%EMAIL%">%EMAIL%</A><br>,%IF{%GLOBAL_EMAIL%,<JOPPS id=3>E-mail:</JOPPS> <A HREF="MAILTO:%GLOBAL_EMAIL%">%GLOBAL_EMAIL%</A><br>,}}
+  </td>
+%IF{%DB_USER%!"USER70",%IF{%DB_USER%!"USER83",%IF{%DB_USER%!"USER84",%IF{%DB_USER%!"USER30",,-->},-->},-->},-->}
+
+
+
+%IF{%DB_USER%="USER70",<td><img src="zsstar_logo.bmp"  %IF{%LOGO_WIDTH%,WIDTH="%LOGO_WIDTH%",} %IF{%LOGO_HEIGHT%,HEIGHT="%LOGO_HEIGHT%",} %IF{%EVAL{%LOGO_ALIGN%=1},ALIGN="left",} %IF{%EVAL{%LOGO_ALIGN%=2},ALIGN="right",} %IF{%EVAL{%LOGO_ALIGN%=3},ALIGN="lower",} %IF{%EVAL{%LOGO_ALIGN%=4},ALIGN="upper",}></img></td><td><table border=0> <tr><td>&nbsp;</td><td colspan=2 align="right"><h1>中山市星光金属门窗制造有限公司</h1></td></tr><tr><td>&nbsp;</td><td align="right">地址：</td><td>广东省中山市东区孙文东路459号</td></tr><tr><td>&nbsp;</td><td align="right">电话：</td><td>86-0760-88234562</td></tr><tr><td>&nbsp;</td><td align="right">FAX：</td><td>86-0760-88306385</td></tr><tr><td>&nbsp;</td><td align="right">E-Mail：</td><td>starspangle@163com</td></tr></table></td>,}
+
+%IF{%DB_USER%="USER83",<td><img src="anpu_logo.bmp"  %IF{%LOGO_WIDTH%,WIDTH="%LOGO_WIDTH%",} %IF{%LOGO_HEIGHT%,HEIGHT="%LOGO_HEIGHT%",} %IF{%EVAL{%LOGO_ALIGN%=1},ALIGN="left",} %IF{%EVAL{%LOGO_ALIGN%=2},ALIGN="right",} %IF{%EVAL{%LOGO_ALIGN%=3},ALIGN="lower",} %IF{%EVAL{%LOGO_ALIGN%=4},ALIGN="upper",}></img></td><td><table border=0> <tr><td>&nbsp;</td><td colspan=2 align="right"><h1>ANPU安普门窗</h1></td></tr><tr><td>&nbsp;</td><td align="right">地址：</td><td>南京市江宁区谷里镇兴谷路2号</td></tr><tr><td>&nbsp;</td><td align="right">电话：</td><td>025-58303661</td></tr><tr><td>&nbsp;</td><td align="right">传真：</td><td>025-58303662</td></tr><tr><td>&nbsp;</td><td align="right">网址：</td><td>www.njanpu.cn</td></tr><tr><td>&nbsp;</td><td align="right">微信：</td><td>15240244497</td></tr></table></td>,}
+
+%IF{%DB_USER%="USER30",<td><img src="watjoy_icon.bmp"  %IF{%LOGO_WIDTH%,WIDTH="%LOGO_WIDTH%",} %IF{%LOGO_HEIGHT%,HEIGHT="%LOGO_HEIGHT%",} %IF{%EVAL{%LOGO_ALIGN%=1},ALIGN="left",} %IF{%EVAL{%LOGO_ALIGN%=2},ALIGN="right",} %IF{%EVAL{%LOGO_ALIGN%=3},ALIGN="lower",} %IF{%EVAL{%LOGO_ALIGN%=4},ALIGN="upper",}></img></td><td><table border=0> <tr><td>&nbsp;</td><td colspan=2 align="right"><h1>北京万享建材有限公司</h1></td></tr><tr><td>&nbsp;</td><td align="right">产地：</td><td>中国&nbsp;北京</td></tr><tr><td>&nbsp;</td><td align="right">服务热线：</td><td>400-000-3380</td></tr><tr><td>&nbsp;</td><!--td align="right">传真：</td><td></td></tr><tr><td>&nbsp;</td--><td align="right">网址：</td><td>www.watjoy.com</td></tr><tr><td>&nbsp;</td><!--td align="right">微信：</td><td>15240244497</td--></tr></table></td>,}
+
+
+</tr>
+</table>
+<br>
+

@@ -1,0 +1,73 @@
+<!--estimation_detail_b_frame-->
+<!--Estimatie footer----------------------------------------------------------->
+
+<!--%% detail ----------------------------------------------------------------->
+<tr valign="top" align="left">
+  <td>%IF{@%DB_COST_DESC%,%DSP_COST_DESC%,&nbsp;}</td>
+  <td align="right">%IF{@%DB_COST_TIME%,%IF{%EVAL{@%DB_COST_RATIO%=1},<b>,<i>}%DSP_COST_TIME% #
+                                        %IF{%EVAL{@%DB_COST_RATIO%=1},</b>,</i>},&nbsp;}</td>
+  <td align="right">%DSP_COST_PRICE%</td>
+  <td align="right">%IF{%ESTIMATION_DETAIL_PRICES%,%DSP_COST_CFSCRAP%,%DSP_COST_CFGROSS%}</td>
+  <td align="right">%IF{%ESTIMATION_DETAIL_PRICES%,%DSP_COST_CFTRADE%,%DSP_COST_CFNETTO%}</td>
+  <td align="right">%IF{%ESTIMATION_DETAIL_PRICES%,%DSP_COST_CFCOLOR%,%DSP_COST_CFRATIO%}</td>
+  <td align="right">%IF{%ESTIMATION_DETAIL_PRICES%,%DSP_COST_CFEXTRA%,%DSP_COST_CFCOST%}</td>
+  <td align="right">%IF{@%DB_COST_CFMARGIN%,%DSP_COST_CFMARGIN%,&nbsp;}</td>
+  <td align="right">%DSP_COST_CFTOTAL%</td>
+  <td align="right">%DSP_COST_CFOFFER%</td>
+</tr>
+
+<!--%% break header-->
+<BR>
+<table border=0 width=100% %M_TABLEPARAM%>
+<tr valign="bottom" align="left">
+  <th bgcolor=%COLOR_TABLEHEAD% colspan=10>
+    %IF{%ESTIMATION_DETAIL_OUTLINES%,<table border=0 width=100%>,}
+    %IF{%ESTIMATION_DETAIL_OUTLINES%,<tr valign="top" align="left">,}
+      %IF{%ESTIMATION_DETAIL_OUTLINES%,<th width=80%>,}
+        <JOPPS id=12001>报价*用于 :</JOPPS> # 
+        %IF{%EVAL{%ASSEMBLYCOUNT%>1},<font color="%COLOR_ANNOTATE%">%ASSEMBLYCOUNT%x</font> , %ASSEMBLYCOUNT%x }#
+        %DSP_COST_ID% #
+        %IF{%GLOBAL_LOSS%=%C_FIXED_LOSS%,<JOPPS id=12011>(固定损耗)</JOPPS>,#
+        %IF{%GLOBAL_LOSS%=%C_ABSOLUTE_LOSS%,<JOPPS id=12012>(绝对损耗)</JOPPS>,#
+        <JOPPS id=12013>(真实损耗)</JOPPS>}}
+      %IF{%ESTIMATION_DETAIL_OUTLINES%,</th>,}
+    %IF{%ESTIMATION_DETAIL_OUTLINES%,</tr>,}
+    %IF{%ESTIMATION_DETAIL_OUTLINES%,</table>,}
+    %IF{%ESTIMATION_DETAIL_OUTLINES%,<table border=0 width=100%>,}
+    %IF{%ESTIMATION_DETAIL_OUTLINES%,<tr valign="center">,}
+      %IF{%ESTIMATION_DETAIL_OUTLINES%,<td align="center" width=80%>%IF{%ESTIMATION_DETAIL_DETAILS%,%DSP_INFOFRAME%,&nbsp;}</td>,}
+      %IF{%ESTIMATION_DETAIL_OUTLINES%,<td align="center" width=20%><a href="EDITOR:%FRAMEATOM%">%DSP_DRAWCOSTFRAME%%IF{%ESTIMATION_DETAIL_SCALE%,<br>%DSP_SCALE%,}</a></td>,}
+    %IF{%ESTIMATION_DETAIL_OUTLINES%,</tr>,}
+    %IF{%ESTIMATION_DETAIL_OUTLINES%,</table>,}
+  </th>
+</tr><tr valign="bottom" align="left">
+  <th width=15% bgcolor=%COLOR_TABLEHEAD%><JOPPS id=12002>名称</JOPPS></th>
+  <th width= 5% bgcolor=%COLOR_TABLEHEAD% align="right"><JOPPS id=12003>数量</JOPPS></th>
+  <th width=10% bgcolor=%COLOR_TABLEHEAD% align="right"><JOPPS id=12004>基础价</JOPPS></th>
+  <th width=10% bgcolor=%COLOR_TABLEHEAD% align="right"><JOPPS id=12005>损耗</JOPPS></th>
+  <th width=10% bgcolor=%COLOR_TABLEHEAD% align="right"><JOPPS id=12006>折扣</JOPPS></th>
+  <th width=10% bgcolor=%COLOR_TABLEHEAD% align="right"><JOPPS id=12007>颜色系数</JOPPS></th>
+  <th width=10% bgcolor=%COLOR_TABLEHEAD% align="right"><JOPPS id=12019>管理费</JOPPS></th>
+  <th width=10% bgcolor=%COLOR_TABLEHEAD% align="right"><JOPPS id=12008>利润</JOPPS></th>
+  <th width=10% bgcolor=%COLOR_TABLEHEAD% align="right"><JOPPS id=12018>税前价</JOPPS></th>
+  <th width=10% bgcolor=%COLOR_TABLEHEAD% align="right"><JOPPS id=12009>含税价</JOPPS></th>
+</tr>
+
+<!--%% break footer-->
+<tr valign="top" align="left">
+  <th bgcolor=%COLOR_TABLEHEAD%><JOPPS id=12010>合计</JOPPS></th>
+  <th bgcolor=%COLOR_TABLEHEAD% align="right">%IF{@1,%DSP_COST_TIME_SUM%,&nbsp;}</th>
+  <th bgcolor=%COLOR_TABLEHEAD% align="right">%DSP_COST_PRICE_SUM%</th>
+  <th bgcolor=%COLOR_TABLEHEAD% align="right">%IF{%ESTIMATION_DETAIL_PRICES%,%DSP_COST_SCRAP_SUM%,%DSP_COST_GROSS_SUM%}</th>
+  <th bgcolor=%COLOR_TABLEHEAD% align="right">%IF{%ESTIMATION_DETAIL_PRICES%,%DSP_COST_TRADE_SUM%,%DSP_COST_NETTO_SUM%}</th>
+  <th bgcolor=%COLOR_TABLEHEAD% align="right">%IF{%ESTIMATION_DETAIL_PRICES%,%DSP_COST_COLOR_SUM%,%DSP_COST_RATIO_SUM%}</th>
+  <th bgcolor=%COLOR_TABLEHEAD% align="right">%IF{%ESTIMATION_DETAIL_PRICES%,%DSP_COST_EXTRA_SUM%,%DSP_COST_COST_SUM%}</th>
+  <th bgcolor=%COLOR_TABLEHEAD% align="right">%IF{@8,%DSP_COST_MARGIN_SUM%,&nbsp;}</th>
+  <th bgcolor=%COLOR_TABLEHEAD% align="right">%DSP_COST_TOTAL_SUM%</th>
+  <th bgcolor=%COLOR_TABLEHEAD% align="right">%DSP_COST_OFFER_SUM%</th>
+</tr>
+</table>
+
+<!--%% detail footer ---------------------------------------------------------->
+
+<!--%%------------------------------------------------------------------------->

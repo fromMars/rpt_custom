@@ -1,0 +1,35 @@
+<!--offer_outlines_b_assembly-->
+<!--Offerte schetsen----------------------------------------------------------->
+%IF{%EVAL{(%ASSEMBLYCNT% \\ %OFFER_OUTLINES_COLUMNS%) && (%ASSEMBLYCNT% || !%HEADER_ENABLED%)},,</tr>}
+%IF{%EVAL{%ASSEMBLYCNT% \\ %OFFER_OUTLINES_COLUMNS%},,<tr>}
+  <td width="%EVAL{100 // %OFFER_OUTLINES_COLUMNS%}%%" valign="top">
+    <table border=0 width=100%>
+    <tr valign="top">
+      <td valign="top" width=%EVAL{if(%OFFER_OUTLINES_COLUMNS% > %OFFER_OUTLINES_POSITION%,"100","90")}%>
+        <table border=0 width=100% %M_TABLEPARAM_NOCOLORS%>
+
+<!--%% detail ----------------------------------------------------------------->
+        <tr valign="top">
+          <td width=10% align="right">%IF{@%DB_OFFER_CFPIECES%,%DSP_OFFER_CFPIECES%,&nbsp;}</td>
+          <td width=15% align="left">%DSP_RES_ID%</td>
+          <td width=75%>%IF{@%DB_OFFER_DESC%,%DSP_OFFER_DESC%,&nbsp;}</td>
+        </tr>
+
+<!--%% detail footer ---------------------------------------------------------->
+        </table>
+      </td>
+    %IF{%EVAL{%OFFER_OUTLINES_COLUMNS% > %OFFER_OUTLINES_POSITION%},</tr><tr valign="top">,}
+      <td align="center"><a href="EDITOR:%ASSEMBLYATOM%">%DSP_DRAWOFFEROUTLINESASSEMBLY%%IF{%OFFER_OUTLINES_SCALE%,<br>%DSP_SCALE%,}</a></td>
+    </tr>
+    </table>
+%IF{%ANNEX_ENABLED%,,</td>}
+%IF{%ANNEX_ENABLED%,,#
+    %IF{%EVAL{(%ASSEMBLYTOT% > 0) && (%ASSEMBLYCNT% = %ASSEMBLYTOT%-1) && (%ASSEMBLYTOT% \\ %OFFER_OUTLINES_COLUMNS% != 0)},#
+        <td colspan="%EVAL{%OFFER_OUTLINES_COLUMNS% - %ASSEMBLYCNT%\\%OFFER_OUTLINES_COLUMNS% - 1}"#
+        width="%EVAL{(%OFFER_OUTLINES_COLUMNS% - %ASSEMBLYCNT%\\%OFFER_OUTLINES_COLUMNS% - 1)*(100 // %OFFER_OUTLINES_COLUMNS%)}%%">#
+        &nbsp;#
+        </td>,#
+       }#
+   }
+
+<!--%%------------------------------------------------------------------------->

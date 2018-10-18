@@ -1,0 +1,61 @@
+<!--estimation_summary_b_project-->
+<!--Estimatie overzicht-------------------------------------------------------->
+
+<!--%% detail ----------------------------------------------------------------->
+<tr valign="top" align="left">
+  <td>%IF{@%DB_COST_DESC%,%DSP_COST_DESC%,&nbsp;}</td>
+  <td align="right">%IF{@%DB_COST_TIME%,%IF{%EVAL{@%DB_COST_RATIO%=1},<b>,<i>}%DSP_COST_TIME% #
+                                        %IF{%EVAL{@%DB_COST_RATIO%=1},</b>,</i>},&nbsp;}</td>
+  <td align="right">%DSP_COST_PRICE%</td>
+  <td align="right">%IF{%ESTIMATION_SUMMARY_PRICES%,%DSP_COST_CFSCRAP%,%DSP_COST_CFGROSS%}<br>%DSP_COST_CFLOSS%</td>
+  <td align="right">%IF{%ESTIMATION_SUMMARY_PRICES%,%DSP_COST_CFTRADE%,%DSP_COST_CFNETTO%}<br>%DSP_COST_CFDISCOUNT%</td>
+  <td align="right">%IF{%ESTIMATION_SUMMARY_PRICES%,%DSP_COST_CFCOLOR%,%DSP_COST_CFRATIO%}<br>%DSP_COST_CFFACTOR%</td>
+  <td align="right">%IF{%ESTIMATION_SUMMARY_PRICES%,%DSP_COST_CFEXTRA%,%DSP_COST_CFCOST%}<br>%DSP_COST_CFCHARGE%</td>
+  <td align="right">%IF{@%DB_COST_CFMARGIN%,%DSP_COST_CFMARGIN%,&nbsp;}<br>%DSP_COST_CFPROFIT%</td>
+  <td align="right">%DSP_COST_CFTOTAL%<br>%DSP_COST_CFREFUND%</td>
+  <td align="right">%DSP_COST_CFOFFER%<br>%DSP_COST_CFRATE%</td>
+</tr>
+
+<!--%% break header-->
+<BR>
+<table border=0 width=100% %M_TABLEPARAM%>
+<tr valign="bottom" align="left">
+  <th bgcolor=%COLOR_TABLEHEAD% colspan=10>
+    %IF{%BATCHMODE%,<JOPPS id=13001>报价 * 批 :</JOPPS>,#
+                    <JOPPS id=13014>报价 * 工程 :</JOPPS>} %DSP_COST_BATCH% #
+    %IF{%GLOBAL_LOSS%=%C_FIXED_LOSS%,<JOPPS id=13011>(fixed loss)</JOPPS>,#
+    %IF{%GLOBAL_LOSS%=%C_ABSOLUTE_LOSS%,<JOPPS id=13012>(absolute loss)</JOPPS>,#
+    <JOPPS id=13013>(real loss)</JOPPS>}}
+  </th>
+</tr><tr valign="bottom" align="left">
+  <th width=15% bgcolor=%COLOR_TABLEHEAD%><JOPPS id=13002>概要</JOPPS></th>
+  <th width= 5% bgcolor=%COLOR_TABLEHEAD% align="right"><JOPPS id=13003>工时或面积</JOPPS></th>
+  <th width=10% bgcolor=%COLOR_TABLEHEAD% align="right"><JOPPS id=13004>基础价</JOPPS></th>
+  <th width=10% bgcolor=%COLOR_TABLEHEAD% align="right"><JOPPS id=13005>损耗</JOPPS></th>
+  <th width=10% bgcolor=%COLOR_TABLEHEAD% align="right"><JOPPS id=13006>折扣</JOPPS></th>
+  <th width=10% bgcolor=%COLOR_TABLEHEAD% align="right"><JOPPS id=13007>颜色系数</JOPPS></th>
+  <th width=10% bgcolor=%COLOR_TABLEHEAD% align="right"><JOPPS id=13016>管理费</JOPPS></th>
+  <th width=10% bgcolor=%COLOR_TABLEHEAD% align="right"><JOPPS id=13008>利润</JOPPS></th>
+  <th width=10% bgcolor=%COLOR_TABLEHEAD% align="right"><JOPPS id=13015>税前价</JOPPS></th>
+  <th width=10% bgcolor=%COLOR_TABLEHEAD% align="right"><JOPPS id=13009>含税价</JOPPS></th>
+</tr>
+
+<!--%% break footer-->
+<tr valign="top" align="left">
+  <th bgcolor=%COLOR_TABLEHEAD%><JOPPS id=13010>总计</JOPPS></th>
+  <!--th bgcolor=%COLOR_TABLEHEAD% align="right">%IF{@1,%DSP_COST_TIME_SUM%,&nbsp;}</th-->
+  <th bgcolor=%COLOR_TABLEHEAD% align="right">&nbsp;</th>
+  <th bgcolor=%COLOR_TABLEHEAD% align="right">%DSP_COST_PRICE_SUM%</th>
+  <th bgcolor=%COLOR_TABLEHEAD% align="right">%IF{%ESTIMATION_SUMMARY_PRICES%,%DSP_COST_SCRAP_SUM%,%DSP_COST_GROSS_SUM%}<br></b>%DSP_RES_GROSS_SUM%<b></th>
+  <th bgcolor=%COLOR_TABLEHEAD% align="right">%IF{%ESTIMATION_SUMMARY_PRICES%,%DSP_COST_TRADE_SUM%,%DSP_COST_NETTO_SUM%}<br></b>%DSP_RES_NETTO_SUM%<b></th> 
+  <th bgcolor=%COLOR_TABLEHEAD% align="right">%IF{%ESTIMATION_SUMMARY_PRICES%,%DSP_COST_COLOR_SUM%,%DSP_COST_RATIO_SUM%}<br></b>%DSP_RES_RATIO_SUM%<b></th>
+  <th bgcolor=%COLOR_TABLEHEAD% align="right">%IF{%ESTIMATION_SUMMARY_PRICES%,%DSP_COST_EXTRA_SUM%,%DSP_COST_COST_SUM%}<br></b>%DSP_RES_COST_SUM%<b></th>
+  <th bgcolor=%COLOR_TABLEHEAD% align="right">%IF{@8,%DSP_COST_MARGIN_SUM%,&nbsp;}<br></b>%DSP_RES_MARGIN_SUM%<b></th>
+  <th bgcolor=%COLOR_TABLEHEAD% align="right">%DSP_COST_TOTAL_SUM%<br></b>%DSP_RES_TOTAL_SUM%<b></th>
+  <th bgcolor=%COLOR_TABLEHEAD% align="right">%DSP_COST_OFFER_SUM%<br>%DSP_RES_OFFER_SUM%</th>
+</tr>
+</table>
+
+<!--%% detail footer ---------------------------------------------------------->
+
+<!--%%------------------------------------------------------------------------->

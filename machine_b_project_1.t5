@@ -1,0 +1,22 @@
+%% detail
+WORK:@%DB_MOPS_OFFSET%,#
+     "@%DB_MOPS_CODE%",#
+     "@%DB_MOPS_DESC%"
+%% break header 1
+%% break footer 1
+%% break header 2
+CUT:@%DB_PIECE_COUNT%,#
+    @%DB_PIECE_OPTREPNO%,#
+    @%DB_PIECE_LOUTPUT%,#
+    @%DB_PIECE_ANGLEB%,#
+    @%DB_PIECE_ANGLEE%,#
+    "@%DB_PIECE_SYSTEM%",#
+    "@%DB_PIECE_PROFILE%",#
+    "@%DB_PIECE_VARIETY%",#
+    @%DB_PIECE_WIDTH%,#
+    @%DB_PIECE_THICKNESS%,#
+    "@%DB_PIECE_ID_PRJ%",#
+    "@%DB_PIECE_PROFILEDESC%"
+%% break footer 2
+%% detail footer
+%%

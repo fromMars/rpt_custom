@@ -1,0 +1,9 @@
+<!--delivery_note_b_project-->
+<!--Levernota------------------------------------------------------------------>
+<br>
+<table width="100%" %M_TABLEPARAM_NOCOLORS% border=0>
+%IF{%EVAL{GetParam("DELIVERY_NOTE_EXTRAS")},,#
+<tr>#
+  <th colspan="%DELIVERY_NOTE_COLUMNS%" align="left" %M_COLOR_TABLEHEAD_NOCOLORS%>#
+    <JOPPS id=20001>Delivery note</JOPPS> %IF{%HEADER_ENABLED%,,%PROJECT% %PROJECTDESC%}#
+  </th>}

@@ -1,0 +1,21 @@
+<!--frame_per_page_b_frame_drw-->
+<!--Deel/blad: schets---------------------------------------------------------->
+<br>
+<table border=0 width=100% cellpadding=5>
+<tr align="left">
+  <td bgcolor="%COLOR_ALTBACK%"><h3>
+    %IF{%BATCHMODE%,,窗号:</JOPPS> %ASSEMBLY% &nbsp;数量:&nbsp;%ASSEMBLYCOUNT% }
+    %IF{%BATCHMODE%,,<JOPPS id=7002>, }
+    <JOPPS id=7003>部分</JOPPS> %IF{%BATCHMODE%,%FORMAT{"BATCHFRAMEORDER:%PROJECT%;%ASSEMBLY%;%FRAME%",[EXTERNAL]},%FRAME%}
+    &nbsp;
+  </h3></td>
+</tr>
+</table>
+%IF{%FRAME_PER_PAGE_OUTLINES%,<table width=100% border=0>#
+<tr valign="top">#
+  <td><a href="EDITOR:%FRAMEATOM%">%DSP_DRAWFRAME%%IF{%FRAME_PER_PAGE_SCALE%,<br>%DSP_SCALE%,}</a></td>#
+  %IF{%FRAME_PER_PAGE_INFOBELOW%,,<td width=60%><br>%DSP_INFOFRAME%</td>}#
+</tr>#
+</table>#
+%IF{%FRAME_PER_PAGE_INFOBELOW%,<table border=0 width=60%><tr><td>%DSP_INFOFRAME%</td></tr></table>,},#
+<table border=0 width=60%><tr><td><br>%DSP_INFOFRAME%</td></tr></table>}

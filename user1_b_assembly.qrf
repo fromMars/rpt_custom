@@ -1,0 +1,264 @@
+;Estimation detail -> Excel
+
+defines
+;needed by JoPPS.QIF
+  NO_COLORS=0
+
+include JoPPS.QIF
+include Cost.QIF
+include Part.QIF
+include Piece.QIF
+include Glass.QIF
+include Attrib.QIF
+include Charge.QIF
+
+
+defines
+  DB_COST_ID         =CFLABEL
+  DB_RES_COST        =CFCOST
+  DB_RES_DESC        =CFDESC
+  DB_RES_PRICE       =CFPRICE
+  DB_RES_TIME        =CFTIME
+  DB_RES_QUOTA       =CFQUOTA
+  DB_RES_RATIO       =CFRATIO  
+
+  C_OPERATIONS       =-1
+
+  C_FIXED_LOSS       =0
+  C_ABSOLUTE_LOSS    =1
+  C_REAL_LOSS        =2
+
+  Z_WEIGHT_EXTRA_RATE =(1+0)
+
+
+fields
+  DSP_COST_ID      ="@%DB_COST_ID%"            DISPLAY AS LEFT(90)
+  DSP_RES_COST     = @%DB_RES_COST%            DISPLAY AS %FD_PRICE%
+  DSP_RES_DESC     = @%DB_RES_DESC%            DISPLAY AS %FD_DESC%
+  DSP_RES_PRICE    = @%DB_RES_PRICE%           DISPLAY AS %FD_TOTPRICE%
+  DSP_RES_TIME     = @%DB_RES_TIME%            DISPLAY AS %FD_TOTTIME%
+  
+
+;retrieve prices assembly level
+report
+  select   	%DB_PIECE_ARTICLE%,
+		%DB_PIECE_LOSSTYPE%,
+           	sum(%DB_PIECE_PRICE%) as %DB_PIECE_PRICE%,
+	   	sum(%DB_PIECE_WEIGHT%)*%Z_WEIGHT_EXTRA_RATE% as %DB_PIECE_WEIGHT%,
+		min(%DB_PIECE_SUPPLIER%) as %DB_PIECE_SUPPLIER%,
+		min(%DB_PIECE_ASSEMBLY%) as %DB_PIECE_ASSEMBLY%,
+		min(%DB_PIECE_SYSTEM%) as %DB_PIECE_SYSTEM%
+  from     %TBL_PIECE%
+  where    %DB_PIECE_PROJECT%  = "%PROJECT_TEXT%"
+  and      %DB_PIECE_ASSEMBLY% = "%ASSEMBLY_TEXT%"
+  and      %DB_PIECE_ARTICLE% != %C_OPERATIONS%
+  and		%DB_PIECE_ARTICLE% not in (0,90,16,17)
+  and		%DB_PIECE_PRICE% <> 0
+  group by %DB_PIECE_ARTICLE%,%DB_PIECE_LOSSTYPE%
+  having   count(*) > 0
+
+using %REPORTNAME%_B_ASSEMBLY_0.%REPORTTYPE%%IF{%REPORTTYPE%=J,,%LANGUAGE%}
+
+
+next
+report
+  select   	%DB_PIECE_ARTICLE%,
+		%DB_PIECE_LOSSTYPE%,
+           	sum(%DB_PIECE_PRICE%) as %DB_PIECE_PRICE%,
+	   	sum(%DB_PIECE_WEIGHT%)*%Z_WEIGHT_EXTRA_RATE% as %DB_PIECE_WEIGHT%,
+		min(%DB_PIECE_SUPPLIER%) as %DB_PIECE_SUPPLIER%,
+		min(%DB_PIECE_ASSEMBLY%) as %DB_PIECE_ASSEMBLY%,
+		min(%DB_PIECE_SYSTEM%) as %DB_PIECE_SYSTEM%
+  from     %TBL_PIECE%
+  where    %DB_PIECE_PROJECT%  = "%PROJECT_TEXT%"
+  and      %DB_PIECE_ASSEMBLY% = "%ASSEMBLY_TEXT%"
+  and      %DB_PIECE_ARTICLE% != %C_OPERATIONS%
+  and		%DB_PIECE_ARTICLE% in (16,17)
+  and		%DB_PIECE_PRICE% <> 0
+  group by %DB_PIECE_ARTICLE%,%DB_PIECE_LOSSTYPE%
+  having   count(*) > 0
+
+using %REPORTNAME%_B_ASSEMBLY_0_A.%REPORTTYPE%%IF{%REPORTTYPE%=J,,%LANGUAGE%}
+
+
+next
+report
+    select  sum(ce.%DB_CHARGE_QUANTITY%) as %DB_CHARGE_QUANTITY%,
+            sum(ce.%DB_CHARGE_PRICE%) as %DB_CHARGE_PRICE%,
+            ce.%DB_CHARGE_ARTICLE%,
+            ct.%DB_COST_LOSSTYPE%,
+	    ce.%DB_CHARGE_ASSEMBLY%
+    from    %TBL_CHARGE% ce, %TBL_COST% ct
+    where   ce.%DB_CHARGE_PROJECT%="%PROJECT_TEXT%"
+    and     (ce.%DB_CHARGE_ASSEMBLY%="%ASSEMBLY_TEXT%" or ce.%DB_CHARGE_ASSEMBLY%="")
+    and     ce.%DB_CHARGE_PROJECT%=%DB_COST_PROJECT%
+    and     ce.%DB_CHARGE_ASSEMBLY%=ct.%DB_COST_ASSEMBLY%
+    and     ce.%DB_CHARGE_ARTICLE%=ct.%DB_COST_ARTICLE%
+    group by ce.%DB_CHARGE_ASSEMBLY%,ce.%DB_CHARGE_ARTICLE%,ct.%DB_COST_LOSSTYPE%
+    having count(*)>0
+    
+using %REPORTNAME%_B_ASSEMBLY_1_C0.%REPORTTYPE%%IF{%REPORTTYPE%=J,,%LANGUAGE%}
+
+
+next
+report
+  select   min(%DB_COST_ASSEMBLY%) as %DB_COST_ASSEMBLY%,
+            %DB_COST_ARTICLE%,
+           %DB_COST_LOSSTYPE%,
+           %DB_COST_RATION%,
+	   %DB_COST_FACTOR%,
+           %DB_COST_RATIO%,
+           sum(%DB_COST_PRICE%) as %DB_RES_PRICE%,
+           min(trim(%DB_COST_PROJECT%)||"*"||trim(%DB_COST_ASSEMBLY%)) as %DB_COST_ID%,
+		sum(%DB_COST_FACTOR%) as COST_QUANTITY,
+		min(%DB_COST_SUPPLIER%) + ',' + max(%DB_COST_SUPPLIER%) as %DB_COST_SUPPLIER%
+  from     %TBL_COST%
+  where    %DB_COST_PROJECT%  = "%PROJECT_TEXT%"
+  and      %DB_COST_ARTICLE% != %C_OPERATIONS%
+  and 		%DB_COST_ARTICLE% not in (select distinct(%DB_PIECE_ARTICLE%) from %TBL_PIECE%)
+  and		%DB_COST_ARTICLE% < 100
+  and		%DB_COST_ARTICLE% > 20
+  and		%DB_COST_ARTICLE%<>41
+  and      (%DB_COST_ASSEMBLY% = "%ASSEMBLY_TEXT%" or %DB_COST_ASSEMBLY%="") 
+  group by %DB_COST_ARTICLE%, %DB_COST_LOSSTYPE%, %DB_COST_RATION%, %DB_COST_FACTOR%, %DB_COST_RATIO%
+  having   count(*) > 0
+
+using %REPORTNAME%_B_ASSEMBLY_1.%REPORTTYPE%%IF{%REPORTTYPE%=J,,%LANGUAGE%}
+
+
+next
+report
+    select  sum(%DB_ATTRIB_NO%) as %DB_ATTRIB_NO%,
+            sum(%DB_ATTRIB_CFLENGTH%) as %DB_ATTRIB_CFLENGTH%,
+            sum(%DB_ATTRIB_PRICE%) as %DB_ATTRIB_PRICE%,
+            %DB_ATTRIB_ARTICLE%,
+            %DB_ATTRIB_LOSSTYPE%,
+            min(%DB_ATTRIB_ACCDESC%) as %DB_ATTRIB_ACCDESC%,
+            min(%DB_ATTRIB_ACC%) as %DB_ATTRIB_ACC%
+    from    %TBL_ATTRIB%
+    where   %DB_ATTRIB_PROJECT%="%PROJECT_TEXT%"
+    and     %DB_ATTRIB_ASSEMBLY%="%ASSEMBLY_TEXT%"
+    and     (%DB_ATTRIB_ARTICLE% in (select distinct(%DB_COST_ARTICLE%) from %TBL_COST%)
+        or  %DB_ATTRIB_ARTICLE%<20)
+    and     %DB_ATTRIB_ACCDESC% not like "·ÖÐÍ²Ä"
+    and     %DB_ATTRIB_ACC% not in (select distinct(%DB_PIECE_PRODUCT%) from %TBL_PIECE%)
+    group by %DB_ATTRIB_ARTICLE%,%DB_ATTRIB_LOSSTYPE%
+    having count(*)>0
+    
+using %REPORTNAME%_B_ASSEMBLY_1_A.%REPORTTYPE%%IF{%REPORTTYPE%=J,,%LANGUAGE%}
+    
+
+next
+report
+    select  sum(ce.%DB_CHARGE_QUANTITY%) as %DB_CHARGE_QUANTITY%,
+            sum(ce.%DB_CHARGE_PRICE%) as %DB_CHARGE_PRICE%,
+            ce.%DB_CHARGE_ARTICLE%,
+            ct.%DB_COST_LOSSTYPE%,
+	    ce.%DB_CHARGE_ASSEMBLY%
+    from    %TBL_CHARGE% ce, %TBL_COST% ct
+    where   ce.%DB_CHARGE_PROJECT%="%PROJECT_TEXT%"
+    and     (ce.%DB_CHARGE_ASSEMBLY%="%ASSEMBLY_TEXT%" or ce.%DB_CHARGE_ASSEMBLY%="")
+    and     ce.%DB_CHARGE_PROJECT%=%DB_COST_PROJECT%
+    and     ce.%DB_CHARGE_ASSEMBLY%=ct.%DB_COST_ASSEMBLY%
+    and     ce.%DB_CHARGE_ARTICLE%=ct.%DB_COST_ARTICLE%
+    group by ce.%DB_CHARGE_ASSEMBLY%,ce.%DB_CHARGE_ARTICLE%,ct.%DB_COST_LOSSTYPE%
+    having count(*)>0
+    
+using %REPORTNAME%_B_ASSEMBLY_1_C.%REPORTTYPE%%IF{%REPORTTYPE%=J,,%LANGUAGE%}
+    
+
+
+next
+report
+  select   min(%DB_GLASS_ASSEMBLY%) as %DB_GLASS_ASSEMBLY%,
+            %DB_GLASS_DESC%,
+           sum(%DB_GLASS_NO%) as %DB_GLASS_NO%,
+           sum(%DB_GLASS_SURFACE%) as %DB_GLASS_SURFACE%,
+           sum(%DB_GLASS_WEIGHT%) as %DB_GLASS_WEIGHT%,
+           min(%DB_GLASS_SUPPLIER%) as %DB_GLASS_SUPPLIER%,
+           sum(%DB_GLASS_PRICE%) as %DB_GLASS_PRICE%,
+	   %DB_GLASS_ARTICLE%
+  from     %TBL_GLASS%
+  where    %DB_COST_PROJECT%  = "%PROJECT_TEXT%"
+  and 		(%DB_GLASS_ASSEMBLY% = "%ASSEMBLY_TEXT%" or %DB_GLASS_ASSEMBLY% = "")
+  and    	(%DB_GLASS_ARTICLE%<30 or %DB_GLASS_ARTICLE%=41)
+  group by %DB_GLASS_DESC%,%DB_GLASS_ARTICLE%
+  having   count(*) > 0
+
+using %REPORTNAME%_B_ASSEMBLY_1_G.%REPORTTYPE%%IF{%REPORTTYPE%=J,,%LANGUAGE%}
+next
+
+using %REPORTNAME%_B_ASSEMBLY_1_END.%REPORTTYPE%%IF{%REPORTTYPE%=J,,%LANGUAGE%}
+
+
+
+next
+report
+  select   min(%DB_COST_ASSEMBLY%) as %DB_COST_ASSEMBLY%,
+            %DB_COST_ARTICLE%,
+           %DB_COST_LOSSTYPE%,
+           %DB_COST_RATION%,
+	   %DB_COST_FACTOR%,
+           %DB_COST_RATIO%,
+           sum(%DB_COST_PRICE%) as %DB_RES_PRICE%,
+           min(trim(%DB_COST_PROJECT%)||"*"||trim(%DB_COST_ASSEMBLY%)) as %DB_COST_ID%,
+		sum(%DB_COST_FACTOR%) as COST_QUANTITY,
+		min(%DB_COST_SUPPLIER%) as %DB_COST_SUPPLIER%
+  from     %TBL_COST%
+  where    %DB_COST_PROJECT%  = "%PROJECT_TEXT%"
+  and      %DB_COST_ARTICLE% != %C_OPERATIONS%
+  and 		%DB_COST_ARTICLE% not in (select distinct(%DB_PIECE_ARTICLE%) from %TBL_PIECE%)
+  and 		%DB_COST_ARTICLE% > 900
+  and      (%DB_COST_ASSEMBLY% = "%ASSEMBLY_TEXT%" or %DB_COST_ASSEMBLY%="") 
+  group by %DB_COST_ARTICLE%, %DB_COST_LOSSTYPE%, %DB_COST_RATION%, %DB_COST_FACTOR%, %DB_COST_RATIO%
+  having   count(*) > 0
+
+using %REPORTNAME%_B_ASSEMBLY_2.%REPORTTYPE%%IF{%REPORTTYPE%=J,,%LANGUAGE%}
+
+
+next
+report
+  select   min(%DB_COST_ASSEMBLY%) as %DB_COST_ASSEMBLY%,
+            %DB_COST_ARTICLE%,
+           %DB_COST_LOSSTYPE%,
+           %DB_COST_RATION%,
+	   %DB_COST_FACTOR%,
+           %DB_COST_RATIO%,
+           sum(%DB_COST_PRICE%) as %DB_RES_PRICE%,
+           min(trim(%DB_COST_PROJECT%)||"*"||trim(%DB_COST_ASSEMBLY%)) as %DB_COST_ID%,
+		sum(%DB_COST_FACTOR%) as COST_QUANTITY,
+		min(%DB_COST_SUPPLIER%) as %DB_COST_SUPPLIER%
+  from     %TBL_COST%
+  where    %DB_COST_PROJECT%  = "%PROJECT_TEXT%"
+  and      %DB_COST_ARTICLE% != %C_OPERATIONS%
+  and 		%DB_COST_ARTICLE% not in (select distinct(%DB_PIECE_ARTICLE%) from %TBL_PIECE%)
+  and 		%DB_COST_ARTICLE% > 900
+  and      (%DB_COST_ASSEMBLY% = "%ASSEMBLY_TEXT%" or %DB_COST_ASSEMBLY%="") 
+  group by %DB_COST_ARTICLE%, %DB_COST_LOSSTYPE%, %DB_COST_RATION%, %DB_COST_FACTOR%, %DB_COST_RATIO%
+
+using %REPORTNAME%_B_ASSEMBLY_2_0.%REPORTTYPE%%IF{%REPORTTYPE%=J,,%LANGUAGE%}
+
+
+next
+report
+  select   min(%DB_COST_ASSEMBLY%) as %DB_COST_ASSEMBLY%,
+	   min(%DB_COST_DESC%) as %DB_COST_DESC%,
+            %DB_COST_ARTICLE%,
+           %DB_COST_LOSSTYPE%,
+           %DB_COST_RATION%,
+	   %DB_COST_FACTOR%,
+           %DB_COST_RATIO%,
+           sum(%DB_COST_PRICE%) as %DB_RES_PRICE%,
+           min(trim(%DB_COST_PROJECT%)||"*"||trim(%DB_COST_ASSEMBLY%)) as %DB_COST_ID%,
+		sum(%DB_COST_FACTOR%) as COST_QUANTITY,
+		min(%DB_COST_SUPPLIER%) as %DB_COST_SUPPLIER%
+  from     %TBL_COST%
+  where    %DB_COST_PROJECT%  = "%PROJECT_TEXT%"
+  and      %DB_COST_ARTICLE% != %C_OPERATIONS%
+  and 		%DB_COST_ARTICLE% not in (select distinct(%DB_PIECE_ARTICLE%) from %TBL_PIECE%)
+  and 		%DB_COST_ARTICLE% between 100 and 900
+  and      (%DB_COST_ASSEMBLY% = "%ASSEMBLY_TEXT%" or %DB_COST_ASSEMBLY%="") 
+  group by %DB_COST_ARTICLE%, %DB_COST_LOSSTYPE%, %DB_COST_RATION%, %DB_COST_FACTOR%, %DB_COST_RATIO%
+  having   count(*) > 0
+
+using %REPORTNAME%_B_ASSEMBLY_3.%REPORTTYPE%%IF{%REPORTTYPE%=J,,%LANGUAGE%}

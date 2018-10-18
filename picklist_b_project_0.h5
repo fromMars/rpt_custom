@@ -1,0 +1,63 @@
+<!--picklist_b_project_0-->
+<!--Piklijst: Hoofding-------------------------------------------->
+
+<!--%% detail ----------------------------------------------------------------->
+<br>
+<font size=+1><b><JOPPS id=28000>Reference :</JOPPS></b></font>
+<table border=0 width=100% %M_TABLEPARAM%>
+<tr>
+  <td width=100%>
+    <table border=0 width=100%>
+      <tr valign="top">
+        <td>%DSP_TEXT_ADDRESS1%</td>
+      </tr>
+      <tr valign="top">
+        <td>%DSP_TEXT_ADDRESS2%</td>
+      </tr>
+      <tr valign="top">
+        <td>%DSP_TEXT_ADDRESS3%</td>
+      </tr>
+      <tr valign="top">
+        <td><JOPPS id=28001>Phone :</JOPPS>&nbsp;%DSP_TEXT_PHONE%&nbsp;&nbsp;&nbsp;
+            <JOPPS id=28002>Mobile :</JOPPS>&nbsp;%DSP_TEXT_GSM%</td>
+      </tr>
+    </table>
+  </td>
+</tr>
+</table>
+
+<br>
+<font size=+1><b><JOPPS id=28003>Delivery address :</JOPPS></b></font>
+<table border=0 width=100% %M_TABLEPARAM%>
+<tr>
+  <td width=100%>
+    <table border=0 width=100%>
+      <tr valign="top">
+        <td valign="top" width=60%>%IF{@%DB_TEXT_CONTACT3%,%DSP_TEXT_DELIVERYCONTACT%,%DSP_TEXT_ADDRESS1%}</td>
+        <td valign="top" width=10% align="right"><JOPPS id=28004>Date :</JOPPS></td>
+        <td valign="top" width=30%>%DSP_TEXT_BEGIN%</td>
+      </tr>
+      <tr valign="top">
+        <td valign="top" width=60%>%IF{@%DB_TEXT_TELEFAX3%,%DSP_TEXT_DELIVERYSTREET%,%DSP_TEXT_ADDRESS2%}</td>
+        <td valign="top" width=10% align="right"><JOPPS id=28005>Order number :</JOPPS></td>
+        <td valign="top" width=30%>%PROJECT%</td>
+      </tr>
+      <tr valign="top">
+        <td valign="top" width=60%>%IF{@%DB_TEXT_EMAIL3%,%DSP_TEXT_DELIVERYPLACE%,%DSP_TEXT_ADDRESS3%}</td>
+        <td valign="top" width=10% align="right"><JOPPS id=28006>Production week :</JOPPS></td>
+        <td valign="top" width=30%>%PROJECTDAYWEEK%</td>
+      </tr>
+      <tr valign="top">
+        <td valign="top" width=60%><JOPPS id=28001>Phone :</JOPPS>&nbsp;%IF{@%DB_TEXT_PHONE3%,%DSP_TEXT_DELIVERYPHONE%,%DSP_TEXT_PHONE%}&nbsp;&nbsp;&nbsp;
+                                   <JOPPS id=28002>Mobile :</JOPPS>&nbsp;%IF{@%DB_TEXT_GSM3%,%DSP_TEXT_DELIVERYGSM%,%DSP_TEXT_GSM%}</td>
+        <td valign="top" width=10% align="right"><JOPPS id=28007>Dealer :</JOPPS></td>
+        <td valign="top" width=30%>%PROJECTDESC%</td>
+      </tr>
+    </table>
+  </td>
+</tr>
+</table>
+
+<!--%% detail footer ---------------------------------------------------------->
+
+<!--%%------------------------------------------------------------------------->

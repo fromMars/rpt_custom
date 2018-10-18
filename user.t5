@@ -1,0 +1,9 @@
+Report "%DESC%"
+
+You can edit this report yourself,
+
+To do so, adapt the basic query %REPORTNAME%_B_PROJECT.QRF.
+(in the folder %EVAL{ExtractFilePath(FileSearch("%NAME%.QRF","%PATH_REPORT%"))})
+
+If "Save results to disk" is enabled, the result of each report
+is written to the folder %PATH_RESULT%.

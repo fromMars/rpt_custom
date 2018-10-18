@@ -1,0 +1,20 @@
+<!--confirmation_b_project_3-->
+<!--Confirmatie: extra------------------------------------------------------------->
+<p>
+<JOPPS id=19052>Extra (VAT excluded) :</JOPPS>
+</p>
+<table border=%CONFIRMATION_WORDCOMPAT% width=100% %M_TABLEPARAM_NOCOLORS%>
+
+<!--%% detail ----------------------------------------------------------------->
+<tr valign="top">
+  <td valign="top" width=6% align="right">%M_BTAG%%IF{@%DB_OFFER_CFAFFPIECES%,%DSP_OFFER_CFAFFPIECES%,&nbsp;}%M_ETAG%</td>
+  <td valign="top" width=8% align="right">%M_BTAG%%DSP_RES_ID%%M_ETAG%</td>
+  <td valign="top" width=61%>%M_BTAG%%IF{@%DB_OFFER_DESC%,%DSP_OFFER_DESC%%IF{%SH_DETFINISHES%, <i>(%EVAL{trim("%DSP_OFFER_VARIETYDESC%")})</i>,},&nbsp;}%M_ETAG%</td>
+  <td valign="top" width=10% align="right">%M_BTAG%%IF{@%DB_OFFER_LENGTH%,%DSP_OFFER_LENGTH%,&nbsp;}%M_ETAG%</td>
+  <td valign="top" width=15% align="right">%M_BTAG%%IF{@%DB_RES_COST_EXTRA%,%DSP_RES_COST_EXTRA%,&nbsp;}%M_ETAG%</td>
+</tr>
+
+<!--%% detail footer ---------------------------------------------------------->
+</table>
+
+<!--%%------------------------------------------------------------------------->

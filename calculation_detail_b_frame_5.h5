@@ -1,0 +1,53 @@
+<!--calculation_detail_b_frame_6-->
+<!--Calculatie detail: Afwerkingen--------------------------------------------->
+<br>
+<table border=0 width=100% %M_TABLEPARAM%>
+<tr valign="top">
+  <th align="left" colspan=%EVAL{6+(%DETAIL_TRACE%>0)} bgcolor="%COLOR_TABLEHEAD%"><JOPPS id=14043>窗完成</JOPPS></th>
+</tr><tr valign="bottom" align="left">
+  <th bgcolor="%COLOR_TABLEHEAD%" align="right"><JOPPS id=14044>数量</JOPPS></th>
+  <th bgcolor="%COLOR_TABLEHEAD%"><JOPPS id=14045>名称</JOPPS></th>
+  %IF{%DETAIL_TRACE%=0,,<th bgcolor="%COLOR_TABLEHEAD%"><JOPPS id=14005>链接</JOPPS></th>}
+  <th bgcolor="%COLOR_TABLEHEAD%"><JOPPS id=14046>块</JOPPS></th>
+  <th bgcolor="%COLOR_TABLEHEAD%" align="right">%IF{%CALCULATION_DETAIL_REBATE%,<JOPPS id=14055>Price with discount</JOPPS>,<JOPPS id=14047>价格</JOPPS>}</th>
+  <th bgcolor="%COLOR_TABLEHEAD%" align="right">%DSP_TIME1_DESC%</th>
+  <th bgcolor="%COLOR_TABLEHEAD%" align="right">%DSP_TIME2_DESC%</th>
+</tr>
+
+<!--%% detail ----------------------------------------------------------------->
+<tr valign="top" align="left"%IF{%CALCULATION_DETAIL_MARKER_EXTRA%=1,%IF{@%DB_EXTRA_RGB%="#000000",, bgcolor="%DSP_EXTRA_RGB%"},}>
+  <td width=10% align="right">%DSP_EXTRA_NO%</td>
+  <td width=54%>%DSP_EXTRA_DESC%</td>
+  %IF{%DETAIL_TRACE%=0,,<td width=10%>%IF{@%DB_EXTRA_LINK%,%LIST{%DSP_EXTRA_LINK%},&nbsp;}</td>}
+  <td width=6%>%DSP_EXTRA_ARTICLE%</td>
+  <td width=12% align="right">%DSP_EXTRA_CFPRICE%</td>
+  <td width=9% align="right">%IF{@%DB_EXTRA_TIME1%,%DSP_EXTRA_TIME1%,&nbsp;}</td>
+  <td width=9% align="right">%IF{@%DB_EXTRA_TIME2%,%DSP_EXTRA_TIME2%,&nbsp;}</td>
+</tr>
+
+<!--%% break header 1 -->
+
+<!--%% break footer 1 -->
+<tr valign="top" align="left">
+  <th bgcolor="%COLOR_TABLEHEAD%" align="right">%DSP_EXTRA_NO_SUM%</th>
+  <th bgcolor="%COLOR_TABLEHEAD%" colspan=%EVAL{2+(%DETAIL_TRACE%>0)}>%EVAL{trim("%DSP_EXTRA_PROJECT_BR%")+"*"+trim("%DSP_EXTRA_ASSEMBLY_BR%")+"*"+trim("%DSP_EXTRA_FRAME_BR%")}</th>
+  <th bgcolor="%COLOR_TABLEHEAD%" align="right">%DSP_EXTRA_CFPRICE_SUM%</th>
+  <th bgcolor="%COLOR_TABLEHEAD%" align="right">%IF{@%DB_EXTRA_TIME1_SUM%,%DSP_EXTRA_TIME1_SUM%,&nbsp;}</th>
+  <th bgcolor="%COLOR_TABLEHEAD%" align="right">%IF{@%DB_EXTRA_TIME2_SUM%,%DSP_EXTRA_TIME2_SUM%,&nbsp;}</th>
+</tr>
+
+<!--%% break header 2 -->
+
+<!--%% break footer 2 -->
+<tr valign="top" align="left">
+  <th bgcolor="%COLOR_TABLEHEAD%" align="right">%DSP_EXTRA_NO_SUM%</th>
+  <th bgcolor="%COLOR_TABLEHEAD%" colspan=%EVAL{2+(%DETAIL_TRACE%>0)}>%EVAL{trim("%DSP_EXTRA_PROJECT_BR%")+"*"+trim("%DSP_EXTRA_ASSEMBLY_BR%")+"*"+trim("%DSP_EXTRA_FRAME_BR%")} / <JOPPS id=14049>price block</JOPPS> %DSP_EXTRA_ARTICLE_BR%</th>
+  <th bgcolor="%COLOR_TABLEHEAD%" align="right">%DSP_EXTRA_CFPRICE_SUM%</th>
+  <th bgcolor="%COLOR_TABLEHEAD%" align="right">%IF{@%DB_EXTRA_TIME1_SUM%,%DSP_EXTRA_TIME1_SUM%,&nbsp;}</th>
+  <th bgcolor="%COLOR_TABLEHEAD%" align="right">%IF{@%DB_EXTRA_TIME2_SUM%,%DSP_EXTRA_TIME2_SUM%,&nbsp;}</th>
+</tr>
+
+<!--%% detail footer ---------------------------------------------------------->
+</table>
+
+<!--%%------------------------------------------------------------------------->

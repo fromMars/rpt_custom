@@ -1,0 +1,100 @@
+<!--invoice_b_project_1-->
+<!--Factuur: hoofding---------------------------------------------------------->
+
+<!--%% detail ----------------------------------------------------------------->
+<BR>
+%IF{%INVOICE_WORDCOMPAT%,<hr noshade width=100%>,}
+<table width=100% border=0 cellspacing=2 %M_COLOR_TABLEDATA_NOCOLORS% %IF{%INVOICE_WORDCOMPAT%,,bordercolor="%COLOR_TITLEBORDER%"} cellpadding=5>
+<tr>
+  <td width=100%>
+    <table border=0 width=100%>
+    <tr valign="top">
+      <td width=10%></td>
+      <td valign="top" width=40%>%COMPANY%</td>
+      <td width=10%></td>
+      <td valign="top" width=40%>%DSP_TEXT_CONTACT%</td>
+    </tr><tr valign="top">
+      <td></td>
+      <td valign="top">%STREET%</td>
+      <td></td>
+      <td valign="top">%DSP_TEXT_STREET%</td>
+    </tr><tr valign="top">
+      <td></td>
+      <td valign="top">%ZIP% %PLACE%</td>
+      <td></td>
+      <td valign="top">%DSP_TEXT_ZIP% %DSP_TEXT_PLACE%</td>
+    </tr><tr valign="top">
+      <td valign="top" align="right">%IF{%PHONE%,<JOPPS id=18001>Phone :</JOPPS>,}</td>
+      <td valign="top">%PHONE%</td>
+      <td valign="top" align="right">%IF{@%DB_TEXT_PHONE%,<JOPPS id=18001>Phone :</JOPPS>,}</td>
+      <td valign="top">%DSP_TEXT_PHONE%</td>
+    </tr><tr valign="top">
+      <td valign="top" align="right">%IF{%FAX%,<JOPPS id=18002>Fax :</JOPPS>,}</td>
+      <td valign="top">%FAX%</td>
+      <td valign="top" align="right">%IF{@%DB_TEXT_TELEFAX%,<JOPPS id=18002>Fax :</JOPPS>,}</td>
+      <td valign="top">%DSP_TEXT_TELEFAX%</td>
+    </tr>
+    </table>
+  </td>
+</tr>
+</table>
+<BR>
+<table border=%INVOICE_WORDCOMPAT% width=100% cellspacing=2 cellpadding=5 %M_COLOR_TABLEDATA_NOCOLORS% bordercolor="%COLOR_TITLEBORDER%">
+<tr valign="top">
+  <td valign="top" width=100%>&nbsp;&nbsp;<b><JOPPS id=18003>Invoice :</JOPPS> %DSP_TEXT_NAME%</b></td>
+</tr>
+</table>
+<BR>
+<table border=0 width=100% cellspacing=2 %M_COLOR_TABLEDATA_NOCOLORS% %IF{%INVOICE_WORDCOMPAT%,,bordercolor="%COLOR_TITLEBORDER%"}>
+<tr>
+  <td width=100%>
+    <table border=0 width=100%>
+    <tr valign="top">
+      <td valign="top" width=2%>&nbsp;</td>
+      <td valign="top" width=48%><JOPPS id=18004>Reference :</JOPPS> %DSP_TEXT_CODE%</td>
+      <td valign="top" width=10% align="right"><JOPPS id=18005>Project address :</JOPPS></td>
+      <td valign="top" width=40%>%DSP_TEXT_ADDRESS1%</td>
+    </tr><tr valign="top">
+      <td></td>
+      <td></td>
+      <td></td>
+      <td valign="top">%DSP_TEXT_ADDRESS2%</td>
+    </tr><tr valign="top">
+      <td></td>
+      <td></td>
+      <td></td>
+      <td valign="top">%DSP_TEXT_ADDRESS3%</td>
+    </tr><tr valign="top">
+      <td></td>
+      <td></td>
+      <td valign="top" align="right"><JOPPS id=18069>VAT-nr :</JOPPS></td>
+      <td valign="top">%DSP_TEXT_TAXNUMBER%</td>
+    </tr>
+    </table>
+  </td>
+</tr>
+</table>
+%IF{%INVOICE_WORDCOMPAT%,<hr noshade width=100%>,}
+<br>
+<br>
+<table border=0 width=100% cellspacing=2>
+<tr valign="top">
+  <td valign="top" width=60% align="right"></td>
+  <td valign="top" width=40%>%PLACE%, %DATE%</td>
+</tr>
+</table>
+<br>
+<br>
+<br>
+<p>
+<JOPPS id=18006>Madame, Sir,</JOPPS>
+</p>
+<br>
+<br>
+<p>
+<JOPPS id=18007>For delivery and placement of the following:</JOPPS>
+</p>
+
+<!--%% detail footer ---------------------------------------------------------->
+
+<!--%%------------------------------------------------------------------------->

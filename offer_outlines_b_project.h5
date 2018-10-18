@@ -1,0 +1,6 @@
+<!--offer_outlines_b_project-->
+<!--Offerte schetsen----------------------------------------------------------->
+<br>
+<table width="100%" %M_TABLEPARAM_NOCOLORS% border=0>
+<tr>
+  <th colspan="%OFFER_OUTLINES_COLUMNS%" align="left" %M_COLOR_TABLEHEAD_NOCOLORS%><JOPPS id=17001>±¨¼Û²ÝÍ¼</JOPPS> %IF{%HEADER_ENABLED%,,%PROJECT% %PROJECTDESC%}</th>

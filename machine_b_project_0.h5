@@ -1,0 +1,84 @@
+<!--machine_b_project-->
+<!--Bewerkingen---------------------------------------------------------------->
+
+<!--%% detail ----------------------------------------------------------------->
+        <tr valign="top">
+          <td width=20% align="right">
+            %DSP_MOPS_OFFSET%
+          </td><td width=30%>
+            %DSP_MOPS_CODE%
+          </td><td width=50%>
+            %IF{@%DB_MOPS_DESC%,%DSP_MOPS_DESC%,&nbsp;}
+          </td>
+        </tr>
+
+<!--%% break header 1 -->
+<BR>
+<table border=0 width=100% %M_TABLEPARAM%>
+<tr valign="top">
+  <td rowspan=2 width=10%>
+    %EVAL{setparam("H_BARCNT",inttostr(strtonum(getparam("H_BARCNT","0"))+1))}#
+    BAR: %EVAL{getparam("H_BARCNT")}
+  </td><td width=5% align="right">
+    %DSP_PIECE_OPTREPNO%
+  </td><td width=15% align="right">
+    %DSP_PIECE_LOPT%
+  </td><td width=10%>
+    %DSP_PIECE_SYSTEM%
+  </td><td width=10%>
+    %DSP_PIECE_PROFILE%
+  </td><td width=10%>
+    %DSP_PIECE_VARIETY%
+  </td><td width=10% align="right">
+    %DSP_PIECE_WIDTH%
+  </td><td width=10% align="right">
+    %DSP_PIECE_THICKNESS%
+  </td><td width=30% valign="top">
+    %IF{@%DB_PIECE_PROFILEDESC%,%DSP_PIECE_PROFILEDESC%,&nbsp;}
+    %IF{%FORMAT{"DXFEXISTS:0;%LOOKUP{%TBL_PROFILE%,[%DB_PROFILE_PRODUCT%],[@%DB_PIECE_PRODUCT%],%DB_PROFILE_DXFCAD%}",[EXTERNAL]},#
+        <A HREF="%HREF_DXFCAD%%LOOKUP{%TBL_PROFILE%,[%DB_PROFILE_PRODUCT%],[@%DB_PIECE_PRODUCT%],%DB_PROFILE_DXFCAD%}">#
+          %FORMAT{DXF_CAD:%LOOKUP{%TBL_PROFILE%,[%DB_PROFILE_PRODUCT%],[@%DB_PIECE_PRODUCT%],%DB_PROFILE_DXFCAD%};%CUTTING_LIST_OUTLINE_DIMENSION%,[IMGREF(0,0,0)]}</A>,#
+        &nbsp;}
+  </td>
+</tr><tr valign="top">
+  <td colspan=8>
+
+<!--%% break footer 1 -->
+  </td>
+</tr>
+</table>
+
+<!--%% break header 2 -->
+    <BR>
+    <table border=0 width=100% %M_TABLEPARAM%>
+    <tr valign="top">
+      <td rowspan=2 width=10%>
+        <A HREF="EDITOR:@%DB_PIECE_ATOM%;%HIOPERATIES%;-1">
+        CUT: %DSP_PIECE_OPTSEQNO%
+        </A>
+      </td><td width=20% align="right">
+        %DSP_PIECE_LOUTPUT%
+      </td><td width=10% align="right">
+        %DSP_PIECE_ANGLEB%
+      </td><td width=10% align="right">
+        %DSP_PIECE_ANGLEE%
+      </td><td width=50%>
+        %DSP_PIECE_ID_PRJ%
+      </td><td width=10%>
+        %DSP_PIECE_COUNT%
+      </td>
+    </tr><tr valign="top">
+      <td colspan=5>
+        %DSP_PIECE_DRAWING%<BR>      
+        WORK:<BR>
+        <table border=0 width=100% %M_TABLEPARAM%>
+
+<!--%% break footer 2 -->
+        </table>
+      </td>
+    </tr>
+    </table>
+
+<!--%% detail footer ---------------------------------------------------------->
+
+<!--%%------------------------------------------------------------------------->

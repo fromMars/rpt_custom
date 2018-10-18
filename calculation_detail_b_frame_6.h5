@@ -1,0 +1,41 @@
+<!--calculation_detail_b_frame_7-->
+<!--Calculatie detail: Bewerkingen--------------------------------------------->
+<br>
+<table border=0 width=100% %M_TABLEPARAM%>
+<tr valign="top">
+  <th align="left" colspan=%EVAL{4+(%DETAIL_TRACE%>0)} bgcolor="%COLOR_TABLEHEAD%"><JOPPS id=14058>Operations</JOPPS></th>
+</tr><tr valign="bottom" align="left">
+  <th bgcolor="%COLOR_TABLEHEAD%" align="right"><JOPPS id=14044>Qty</JOPPS></th>
+  <th bgcolor="%COLOR_TABLEHEAD%"><JOPPS id=14045>Description</JOPPS></th>
+  %IF{%DETAIL_TRACE%=0,,<th bgcolor="%COLOR_TABLEHEAD%"><JOPPS id=14005>Link</JOPPS></th>}
+  <th bgcolor="%COLOR_TABLEHEAD%" align="right">%DSP_TIME1_DESC%</th>
+  <th bgcolor="%COLOR_TABLEHEAD%" align="right">%DSP_TIME2_DESC%</th>
+</tr>
+
+<!--%% detail ----------------------------------------------------------------->
+<tr valign="top" align="left">
+  <td width=10% align="right">%DSP_MOPS_NO%</td>
+  <td width=72%>%DSP_MOPS_DESC%</td>
+  %IF{%DETAIL_TRACE%=0,,<td width=10%>%IF{@%DB_MOPS_LINK%,%LIST{%DSP_MOPS_LINK%},&nbsp;}</td>}
+  <td width=9% align="right">%IF{@%DB_MOPS_TIME1%,%DSP_MOPS_TIME1%,&nbsp;}</td>
+  <td width=9% align="right">%IF{@%DB_MOPS_TIME2%,%DSP_MOPS_TIME2%,&nbsp;}</td>
+</tr>
+
+<!--%% break header 1 -->
+
+<!--%% break footer 1 -->
+<tr valign="top" align="left">
+  <th bgcolor="%COLOR_TABLEHEAD%" align="right">%DSP_MOPS_NO_SUM%</th>
+  <th bgcolor="%COLOR_TABLEHEAD%" colspan=%EVAL{1+(%DETAIL_TRACE%>0)}>%EVAL{trim("%DSP_MOPS_PROJECT_BR%")+"*"+trim("%DSP_MOPS_ASSEMBLY_BR%")+"*"+trim("%DSP_MOPS_FRAME_BR%")}</th>
+  <th bgcolor="%COLOR_TABLEHEAD%" align="right">%IF{@%DB_MOPS_TIME1_SUM%,%DSP_MOPS_TIME1_SUM%,&nbsp;}</th>
+  <th bgcolor="%COLOR_TABLEHEAD%" align="right">%IF{@%DB_MOPS_TIME2_SUM%,%DSP_MOPS_TIME2_SUM%,&nbsp;}</th>
+</tr>
+
+<!--%% break header 2 -->
+
+<!--%% break footer 2 -->
+
+<!--%% detail footer ---------------------------------------------------------->
+</table>
+
+<!--%%------------------------------------------------------------------------->

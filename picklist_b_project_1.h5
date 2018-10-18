@@ -1,0 +1,36 @@
+<!--picklist_b_project_1-->
+<!--Piklijst: Kozijn informatie ---------------------------------->
+<br>
+<table border=0 width=100% %M_TABLEPARAM%>
+<tr valign="top">
+  <th align="left" colspan=5 bgcolor="%COLOR_TABLEHEAD%"><JOPPS id=28008>Frames/Vents</JOPPS></th>
+</tr>
+<tr valign="bottom" align="left">
+  <th bgcolor="%COLOR_TABLEHEAD%" align="right"><JOPPS id=28009>Qty</JOPPS></th>
+  <th bgcolor="%COLOR_TABLEHEAD%"><JOPPS id=28010>Description</JOPPS></th>
+  <th bgcolor="%COLOR_TABLEHEAD%"><JOPPS id=28029>Width</JOPPS></th>
+  <th bgcolor="%COLOR_TABLEHEAD%"><JOPPS id=28030>Height</JOPPS></th>
+  <th bgcolor="%COLOR_TABLEHEAD%"><JOPPS id=28012>Article number</JOPPS></th>
+</tr>
+
+<!--%% detail ----------------------------------------------------------------->
+<tr valign="top" align="left">
+  <td width=10% align="right">%DSP_RES_FRAMECOUNT%</td>
+  <td width=40%>%IF{@%DB_PART_DESC%,%DSP_PART_DESC%,&nbsp;}</td>
+  <td width=10%>%DSP_PART_WIDTH%</td>
+  <td width=10%>%DSP_PART_HEIGHT%</td>
+  <td width=30%>%EVAL{trim("%DSP_PART_CODE%")}.%DSP_PART_VARIETY%</td>
+</tr>
+
+<!--%% break header 1 -->
+
+<!--%% break footer 1 -->
+<tr valign="top" align="left">
+  <th bgcolor="%COLOR_TABLEHEAD%" align="right">%DSP_RES_FRAMECOUNT_SUM%</th>
+  <th bgcolor="%COLOR_TABLEHEAD%" align="left" colspan=4>%IF{%SHOW_DETAILS%,%EVAL{trim("%DSP_PART_PROJECT_BR%")+"*"+trim("%DSP_PART_ASSEMBLY_BR%")+"*"+trim("%DSP_PART_FRAME_BR%")},%EVAL{trim("%DSP_PART_PROJECT_BR%")}}</th>
+</tr>
+
+<!--%% detail footer ---------------------------------------------------------->
+</table>
+
+<!--%%------------------------------------------------------------------------->

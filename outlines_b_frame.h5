@@ -1,0 +1,20 @@
+<!--outlines_b_frame-->
+<!--Schetsen------------------------------------------------------------------->
+%IF{%EVAL{%ALLFRAMECNT% \\ %OUTLINES_COLUMNS%},,</tr><tr>}
+  <td width="%EVAL{100 // %OUTLINES_COLUMNS%}%%" valign="top">
+    <table border=0 width=100%>
+    <tr valign="top">
+      <th align="left">
+        %IF{%BATCHMODE%,,%IF{%EVAL{%ASSEMBLYCOUNT%>1},<font color="%COLOR_ANNOTATE%">%ASSEMBLYCOUNT%x</font> , %ASSEMBLYCOUNT%x }}
+        %IF{%BATCHMODE%,<JOPPS id=1004>部分</JOPPS> %FORMAT{"BATCHFRAMEORDER:%PROJECT%;%ASSEMBLY%;%FRAME%",[EXTERNAL]},<JOPPS id=1003>组</JOPPS> %ASSEMBLY%%COMMA% <JOPPS id=1004>部分</JOPPS> %FRAME%} &nbsp;%FRAMEDESC%
+      </th>
+    </tr><tr valign="top">
+      <th><a href="EDITOR:%FRAMEATOM%">%DSP_DRAWOUTLINESFRAME%%IF{%OUTLINES_SCALE%,<br>%DSP_SCALE%,}</a></th>
+    %IF{%EVAL{%OUTLINES_COLUMNS% > %OUTLINES_POSITION%},</tr><tr valign="top">,}
+      %IF{%OUTLINES_DETAILS%,<td valign="top" width=%EVAL{if(%OUTLINES_COLUMNS% > %OUTLINES_POSITION%,"100","90")}%>%DSP_INFOFRAME%</td>,}
+    </tr>
+    </table>
+  %IF{%ANNEX_FILE%,,</td>}
+  %IF{%EVAL{(%ALLFRAMETOT% > 0) && (%ALLFRAMECNT% = %ALLFRAMETOT%-1) && (%ALLFRAMETOT% \\ %OUTLINES_COLUMNS% != 0)},<td colspan="%EVAL{%OUTLINES_COLUMNS% - %ALLFRAMECNT%\\%OUTLINES_COLUMNS% - 1}" width="%EVAL{(%OUTLINES_COLUMNS% - %ALLFRAMECNT%\\%OUTLINES_COLUMNS% - 1)*(100 // %OUTLINES_COLUMNS%)}%%">&nbsp;</td>,}
+  
+  

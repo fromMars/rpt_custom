@@ -1,0 +1,23 @@
+<!--uvalues_b_frame_2-->
+<!--U-values: Glass------------------------------------------------------------>
+<br>
+<table border=0 width=100% %M_TABLEPARAM%>
+<tr>
+  <th width=%EVAL{30+(!%SHOW_DETAILS%)*10}% bgcolor="%COLOR_TABLEHEAD%" align="left"><JOPPS id=25007>²£Á§</JOPPS></th>
+  %IF{%SHOW_DETAILS%,<th width=10% bgcolor="%COLOR_TABLEHEAD%" align="left"><JOPPS id=25016>À´Ô´</JOPPS></th>,}
+  <th width=20% bgcolor="%COLOR_TABLEHEAD%" align="right"><JOPPS id=25008>Ug (W/m²K)</JOPPS></th>
+  <th width=20% bgcolor="%COLOR_TABLEHEAD%" align="right"><JOPPS id=25009>Ag (m?</JOPPS></th>
+  <th width=20% bgcolor="%COLOR_TABLEHEAD%" align="right"><JOPPS id=25010>Ag * Ug (W/K)</JOPPS></th>
+</tr>
+
+<!--%% detail ----------------------------------------------------------------->
+<tr>
+  <td align="left">%M_B_TAG%%DSP_UVALUES_DESC%%M_E_TAG%</td>
+  %IF{%SHOW_DETAILS%,<td align="left">%M_B_TAG%%DSP_UVALUES_SUPPLIER%%M_E_TAG%</td>,}
+  <td align="right">%M_B_TAG%%DSP_UVALUES_UG%%M_E_TAG%</td>
+  <td align="right">%M_B_TAG%%DSP_UVALUES_SG%%M_E_TAG%</td>
+  <td align="right">%M_B_TAG%%DSP_UVALUES_UT%%M_E_TAG%</td>
+</tr>
+
+<!--%% detail footer ---------------------------------------------------------->
+<!--%%------------------------------------------------------------------------->

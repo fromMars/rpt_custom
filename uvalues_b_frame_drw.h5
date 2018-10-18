@@ -1,0 +1,20 @@
+<!--uvalues_b_frame_drw-->
+<!--U-values: drawing---------------------------------------------------------->
+<br>
+<table border=0 width=100% cellpadding=5>
+<tr align="left">
+  <td bgcolor="%COLOR_ALTBACK%"><h3>
+    %IF{%BATCHMODE%,,%IF{%EVAL{%ASSEMBLYCOUNT%>1},<font color="%COLOR_ANNOTATE%">%ASSEMBLYCOUNT%x</font> , %ASSEMBLYCOUNT%x }}
+    %IF{%BATCHMODE%,,<JOPPS id=25000>Group</JOPPS> %ASSEMBLY%, }
+    <JOPPS id=25001>Part</JOPPS> %IF{%BATCHMODE%,%FORMAT{"BATCHFRAMEORDER:%PROJECT%;%ASSEMBLY%;%FRAME%",[EXTERNAL]},%FRAME%}
+    &nbsp;%FRAMEDESC%
+  </h3></td>
+</tr>
+</table>
+%IF{%UVALUES_OUTLINES%,#
+<table width=100% border=0>#
+<tr valign="top">#
+  <td><a href="EDITOR:%FRAMEATOM%">%DSP_DRAWFRAME%%IF{%UVALUES_SCALE%,<br>%DSP_SCALE%,}</a></td>#
+</tr>#
+</table>,}
+</br>

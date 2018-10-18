@@ -1,0 +1,23 @@
+<!--delivery_note_b_project_extras-->
+<!--Levernota------------------------------------------------------------------>
+<br>
+%EVAL{SetParam("DELIVERY_NOTE_EXTRAS","1")}
+<table width="100%" %M_TABLEPARAM_NOCOLORS% border=0>
+<tr>
+  <th colspan="3" align="left" %M_COLOR_TABLEHEAD_NOCOLORS%>
+    <JOPPS id=20001>Delivery note</JOPPS> %IF{%HEADER_ENABLED%,,%PROJECT% %PROJECTDESC%}
+  </th>
+
+<!--%% detail ----------------------------------------------------------------->
+<tr valign="top">
+  <td valign="top" width=5% align="right">%M_BTAG%%IF{@%DB_OFFER_CFPIECES%,%DSP_OFFER_CFPIECES%,&nbsp;}%M_ETAG%</td>
+  <td valign="top" width=85%>%M_BTAG%%IF{%SH_POSITION%,@%DB_OFFER_POSITION%&nbsp;=&nbsp;,}%IF{@%DB_OFFER_DESC%,%DSP_OFFER_DESC%,&nbsp;}%M_ETAG%</td>
+  <td valign="top" width=10% align="right">%M_BTAG%%IF{@%DB_OFFER_LENGTH%,%DSP_OFFER_LENGTH%,&nbsp;}%M_ETAG%</td>
+</tr>
+
+<!--%% detail footer ---------------------------------------------------------->
+
+<!--%% detail header ---------------------------------------------------------->
+
+<!--%%------------------------------------------------------------------------->
+</table>

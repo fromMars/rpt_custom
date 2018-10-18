@@ -1,0 +1,38 @@
+%EVAL{setparam("GLOBAL_COMPANY","ANPU安普门窗")}#
+%EVAL{setparam("GLOBAL_STREET","南京市江宁区谷里镇兴谷路2号")}#
+%EVAL{setparam("GLOBAL_PLACE","")}%EVAL{setparam("GLOBAL_ZIP","")}#
+%EVAL{setparam("GLOBAL_PHONE","025-58303661")}#
+%EVAL{setparam("GLOBAL_FAX","025-58303662")}#
+%EVAL{setparam("GLOBAL_EMAIL","")}#
+%EVAL{setparam("GLOBAL_MAILBOXADDRESS","")}#
+%EVAL{setparam("GLOBAL_MAILBOXLOACE","")}#
+%EVAL{setparam("GLOBAL_MAILBOXCODE","")}#
+%EVAL{setparam("GLOBAL_DELSTREET","")}#
+%EVAL{setparam("GLOBAL_DELPLACE","")}#
+%EVAL{setparam("GLOBAL_DELZIP","")}#
+%EVAL{setparam("GLOBAL_DELPHONE","")}#
+%EVAL{setparam("GLOBAL_DELFAX","")}#
+%EVAL{setparam("GLOBAL_DELMAIL","")}#
+%EVAL{setparam("GLOBAL_DELMAILBOXADDRESS","")}#
+%EVAL{setparam("GLOBAL_DELMAILBOXLOACE","")}#
+%EVAL{setparam("GLOBAL_DELMAILBOXCODE","")}#
+%EVAL{setparam("GLOBAL_TAXNUMBER","")}#
+%EVAL{setparam("GLOBAL_TRADEREGISTER","")}#
+%EVAL{setparam("DB_DESC","ANPU")}#
+%EVAL{setparam("DSP_TEXT_CONTACT","ANPU")}#
+%EVAL{setparam("DSP_TEXT_STREET","No.2,Xinggu Rd.")}#
+%EVAL{setparam("DSP_TEXT_ZIP","")}#
+%EVAL{setparam("DSP_TEXT_PLACE","Guli Town, Jiangning Dist., Nanjing")}#
+%EVAL{setparam("DSP_TEXT_PHONE","025-58303661")}#
+%EVAL{setparam("DSP_TEXT_TELEFAX","025-58303662")}#
+%EVAL{setparam("DSP_TEXT_CLIENT","ANPU")}#
+%EVAL{setparam("COMPANY","ANPU")}#
+%EVAL{setparam("STREET","No.2,Xinggu Rd.")}#
+%EVAL{setparam("PLACE","Guli Town, Jiangning Dist., Nanjing")}#
+%EVAL{setparam("ZIP","")}#
+%EVAL{setparam("PHONE","025-58303661")}#
+%EVAL{setparam("FAX","025-58303662")}#
+%EVAL{setparam("EMAIL","")}#
+%EVAL{setparam("SMALLLOGO","E:\JoPPSWin\Rpt\Custom\anpu_logo.bmp")}#
+%EVAL{setparam("DSP_TEXT_CLIENT","安普门窗")}#
+

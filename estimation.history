@@ -1,0 +1,50 @@
+History file for estimation -> excel
+
+2.84: implementation estimation to excel
+      (
+       b_project.qrf, b_assembly.qrf, b_frame.qrf, e_project.qrf: new queries
+       b_project_0.j, b_project_1.j, b_assembly.j, b_frame.j, e_project.j: new scripts
+      )
+3.00: estimation to excel in batch
+      (
+       b_batch.qrf, e_batch.qrf: new queries
+       b_project_0.j: changed %PROJECT% to %BATCH%
+      )
+3.11: estimation to excel with color factor
+      (
+       b_project.qrf, b_assembly.qrf, b_frame.qrf, e_project.qrf: group by %DB_COST_FACTOR%
+       b_project_0.j, b_project_1.j, b_assembly.j, b_frame.j, e_project.j: changed scripts
+      )
+3.20: added charge per priceblock
+      (
+       b_project.qrf:
+         - defines: DB_RES_CHARGE
+         - fields: DSP_RES_CHARGE
+         - select: DB_RES_CHARGE
+       b_project_0.j:
+         - added RowC6
+         - added %DB_RES_CHARGE%
+       b_project_1.j, b_assembly.j, b_frame.j:
+         - added CellC6
+      )
+3.21: bugfix percentage column margin
+      (
+       b_project.qrf:
+         - defines: definition M_RES_MARGIN changed
+         - calculate: sum(%DB_RES_MARGIN%)/sum(%DB_COST_CFCOST%)
+      )
+3.22: estimation to excel with losstype per profile and color
+      (
+       b_project.qrf, b_assembly.qrf, b_frame.qrf, e_project.qrf:
+         - added group by %DB_COST_LOSSTYPE%
+         - removed %IF{%GLOBAL_LOSS%!%C_ABSOLUTE_LOSS%,and %DB_COST_ARTICLE% != %BLOCK_LOSS%,}
+       b_project_0.j, b_project_1.j, b_assembly.j, b_frame.j, e_project.j:
+         - added %DB_COST_LOSSTYPE%
+      )
+3.26: prevent reporting negative time cost (#2523)
+      (
+       b_project_0.j:
+         - added %IF{%EVAL{@%DB_RES_COST%>0},"@%DB_RES_COST%","0"};
+         - added %IF{%EVAL{@%DB_RES_COST%>0},@%DB_RES_COST%,0};
+
+      )

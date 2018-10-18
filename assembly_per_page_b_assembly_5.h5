@@ -1,0 +1,36 @@
+<!--assembly_per_page_b_assembly_5-->
+<!--Groep/blad: Afwerking------------------------------------------------------>
+<br>
+<table border=0 width=100% %M_TABLEPARAM%>
+<tr valign="top">
+  <th align="left" colspan=%EVAL{3+(%DETAIL_LEVEL%>0)} bgcolor="%COLOR_TABLEHEAD%"><JOPPS id=8028>窗完成</JOPPS></th>
+</tr><tr valign="bottom" align="left">
+  <th bgcolor="%COLOR_TABLEHEAD%" align="right"><JOPPS id=8029>数量</JOPPS></th>
+  <th bgcolor="%COLOR_TABLEHEAD%" align="right"><JOPPS id=8030>宽度</JOPPS></th>
+  <th bgcolor="%COLOR_TABLEHEAD%" align="right"><JOPPS id=8031>高度</JOPPS></th>
+  %IF{%DETAIL_LEVEL%=0,,<th bgcolor="%COLOR_TABLEHEAD%"><JOPPS id=8032>名称</JOPPS></th>}
+</tr>
+
+<!--%% detail ----------------------------------------------------------------->
+<tr valign="top" align="left"%IF{%ASSEMBLY_PER_PAGE_MARKER_EXTRA%=1,%IF{@%DB_EXTRA_RGB%="#000000",, bgcolor="%DSP_EXTRA_RGB%"},}>
+  <td width=8% align="right">%DSP_EXTRA_NO%</td>
+  <td width=10% align="right">%DSP_EXTRA_WIDTH%</td>
+  <td width=10% align="right">%DSP_EXTRA_HEIGHT%</td>
+  %IF{%DETAIL_LEVEL%=0,,<td width=72%>%IF{@%DB_EXTRA_DESC%,%DSP_EXTRA_DESC%%IF{@%DB_EXTRA_POSITION%,&nbsp;<i>(%EVAL{trim("%DSP_EXTRA_POSITION%")})</i>,},&nbsp;}</td>}
+</tr>
+
+<!--%% break header -->
+<tr valign="top">
+  <th align="left" colspan=%EVAL{3+(%DETAIL_LEVEL%>0)}>
+    <JOPPS id=8033>部分</JOPPS> #
+    %IF{%BATCHMODE%,#
+        %FORMAT{"BATCHFRAMEORDER:%EVAL{upper(trim("%DSP_EXTRA_PROJECT%")+";"+trim("%DSP_EXTRA_ASSEMBLY%")+";"+trim("%DSP_EXTRA_FRAME%"))}",[EXTERNAL]},#
+        %DSP_EXTRA_FRAME%}
+  </th>
+</tr>
+
+<!--%% break footer -->
+
+<!--%% detail footer ---------------------------------------------------------->
+</table>
+<!--%%------------------------------------------------------------------------->

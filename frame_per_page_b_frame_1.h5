@@ -1,0 +1,36 @@
+<!--frame_per_page_b_frame_1-->
+<!--Deel/blad: Profielen------------------------------------------------------->
+<br>
+<table border=0 width=100% %M_TABLEPARAM%>
+<tr valign="top">
+  <th align="left" colspan=%EVAL{7+(%DETAIL_LEVEL%>0)} bgcolor="%COLOR_TABLEHEAD%"><JOPPS id=7004>型材</JOPPS></th>
+</tr><tr valign="bottom" align="left">
+  <th bgcolor="%COLOR_TABLEHEAD%" align="right"><JOPPS id=7005>数量</JOPPS></th>
+  <th bgcolor="%COLOR_TABLEHEAD%"><JOPPS id=7006>编号</JOPPS></th>
+  <th bgcolor="%COLOR_TABLEHEAD%" align="right">
+    %IF{%FRAME_PER_PAGE_LENGTH%=%C_LOUTPUT_ABS%,<JOPPS id=7035>锯切长度 </JOPPS>,#
+    %IF{%FRAME_PER_PAGE_LENGTH%=%C_LOUTPUT_MAX%,<JOPPS id=7007>长度</JOPPS>,#
+    %IF{%FRAME_PER_PAGE_LENGTH%=%C_LOUTPUT_MIN%,<JOPPS id=7036>内角长度 </JOPPS>,#
+    %IF{%FRAME_PER_PAGE_LENGTH%=%C_LOUTPUT_S1%,<JOPPS id=7037>Side 1</JOPPS>,#
+                                               <JOPPS id=7038>Side 2</JOPPS>}}}}
+  </th>
+  <th bgcolor="%COLOR_TABLEHEAD%" align="right"><JOPPS id=7008>角度 1</JOPPS></th>
+  <th bgcolor="%COLOR_TABLEHEAD%" align="right"><JOPPS id=7009>角度 2</JOPPS></th>
+  <th bgcolor="%COLOR_TABLEHEAD%" align="center" colspan=2><JOPPS id=7010>位置</JOPPS></th>
+  %IF{%DETAIL_LEVEL%=0,,<th bgcolor="%COLOR_TABLEHEAD%"><JOPPS id=7011>名称</JOPPS></th>}
+</tr>
+<!--%% detail ----------------------------------------------------------------->
+<tr valign="top" align="left"%IF{%FRAME_PER_PAGE_MARKER_PIECE%=1,%IF{@%DB_PIECE_RGB%="#000000",, bgcolor="%DSP_PIECE_RGB%"},}>
+  <td width=8% align="right">%DSP_PIECE_NO%</td>
+  <td width=19%>%IF{@%DB_PIECE_ARTICLECODE%,%DSP_PIECE_ARTICLECODE%,%EVAL{trim("%DSP_PIECE_PRODUCT%")}.%DSP_PIECE_VARIETY%}</td>
+  <td width=10% align="right"><b>%DSP_PIECE_LOUTPUT%</b></td>
+  <td width=8% align="right">%DSP_PIECE_AB%%IF{@%DB_PIECE_ANGLESB%=0,,&nbsp;<i>(%TRIM{%DSP_PIECE_ANGLESB%,0})</i>}</td>
+  <td width=8% align="right">%DSP_PIECE_AE%%IF{@%DB_PIECE_ANGLESE%=0,,&nbsp;<i>(%TRIM{%DSP_PIECE_ANGLESE%,0})</i>}</td>
+  <td width=5% align="center">%DSP_PIECE_CFCHAR%</td>
+  <td width=5%>%IF{@%DB_PIECE_PIECENO%=0,%IF{@%DB_PIECE_POSITION%,&nbsp;<i>%EVAL{trim("%DSP_PIECE_POSITION%")}</i>,&nbsp;},%DSP_PIECE_PIECENO%}</td>
+  %IF{%DETAIL_LEVEL%=0,,<td width=37%>%DSP_PIECE_PROFILEDESC%#
+  %IF{%EVAL{@%DB_PIECE_ARCRADIUS%=0},,<br><font color="%COLOR_ANNOTATE%">R=%DSP_PIECE_ARCRADIUS% h=%DSP_PIECE_ARCHEIGHT%</font>}</td>}
+</tr>
+<!--%% detail footer ---------------------------------------------------------->
+</table>
+<!--%%------------------------------------------------------------------------->

@@ -1,0 +1,19 @@
+<!--order_list_per_product_b_project_4-->
+<!--Bestellijst/produkt: Totaal------------------------------------------------>
+
+<!--%% detail ----------------------------------------------------------------->
+
+<!--%% break header ----------------------------------------------------------->
+
+<!--%% break footer ----------------------------------------------------------->
+%IF{%ORDER_LIST_PER_PRODUCT_PRICE%,<BR>,}
+%IF{%ORDER_LIST_PER_PRODUCT_PRICE%,<table border=%ORDER_LIST_PER_PRODUCT_EXCELCOMPAT% width=100% %M_TABLEPARAM_NOCOLORS%>,}
+%IF{%ORDER_LIST_PER_PRODUCT_PRICE%,<tr valign="top">,}
+  %IF{%ORDER_LIST_PER_PRODUCT_PRICE%,<td valign="top" align="left" %M_COLOR_TABLEHEAD_NOCOLORS% width=85% colspan=%EVAL{3+(%DETAIL_LEVEL%>0)+(%GLOBAL_PRICE_ACCESS%=%C_ACCPRICE_PACK%)+(%GLOBAL_PRICE_ACCESS%!=%C_ACCPRICE_UNIT%)}><b><JOPPS id=10021>×Ü¼Æ</JOPPS></b></td>,}
+  %IF{%ORDER_LIST_PER_PRODUCT_PRICE%,<td valign="top" align="right" %M_COLOR_TABLEHEAD_NOCOLORS% width=15%><b>%DSP_ATTRIB_PRICE_TOTAL%</b></td>,}
+%IF{%ORDER_LIST_PER_PRODUCT_PRICE%,</tr>,}
+%IF{%ORDER_LIST_PER_PRODUCT_PRICE%,</table>,}
+
+<!--%% detail footer ---------------------------------------------------------->
+
+<!--%%------------------------------------------------------------------------->

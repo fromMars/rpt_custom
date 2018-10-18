@@ -1,0 +1,20 @@
+<!--outlines_b_assembly-->
+<!--Schetsen------------------------------------------------------------------->
+%IF{%EVAL{%ASSEMBLYCNT% \\ %OUTLINES_COLUMNS%},,</tr><tr>}
+  <td width="%EVAL{100 // %OUTLINES_COLUMNS%}%%" valign="top">
+    <table border=0 width=100%>
+    <tr valign="top">
+      <th align="left">
+       
+        <JOPPS id=1002>´°ºÅ:</JOPPS> %IF{%BATCHMODE%,%PROJECT%*,}%ASSEMBLY% %IF{%OUTLINES_FRAMEDESC%, %ASSEMBLYFRAMEDESC%, %ASSEMBLYDESC%}
+&nbsp;ÊýÁ¿: %ASSEMBLYCOUNT%
+      </th>
+    </tr><tr valign="top">
+      <th><a href="EDITOR:%ASSEMBLYATOM%">%DSP_DRAWOUTLINESASSEMBLY%%IF{%OUTLINES_SCALE%,<br>%DSP_SCALE%,}</a></th>
+    %IF{%EVAL{%OUTLINES_COLUMNS% > %OUTLINES_POSITION%},</tr><tr valign="top">,}
+      %IF{%OUTLINES_DETAILS%,<td valign="top" width=%EVAL{if(%OUTLINES_COLUMNS% > %OUTLINES_POSITION%,"100","90")}%>%DSP_INFOASSEMBLY%</td>,}
+    </tr>
+    </table>
+  %IF{%ANNEX_ENABLED%,,</td>}
+  %IF{%EVAL{(%ASSEMBLYTOT% > 0) && (%ASSEMBLYCNT% = %ASSEMBLYTOT%-1) && (%ASSEMBLYTOT% \\ %OUTLINES_COLUMNS% != 0)},<td colspan="%EVAL{%OUTLINES_COLUMNS% - %ASSEMBLYCNT%\\%OUTLINES_COLUMNS% - 1}" width="%EVAL{(%OUTLINES_COLUMNS% - %ASSEMBLYCNT%\\%OUTLINES_COLUMNS% - 1)*(100 // %OUTLINES_COLUMNS%)}%%">&nbsp;</td>,}
+

@@ -1,0 +1,33 @@
+<!--invoice_b_project_4-->
+<!--Faktuur: saldo------------------------------------------------------------->
+<br>
+<table border=%OFFER_WORDCOMPAT% width=100% %M_TABLEPARAM_NOCOLORS%>
+
+<!--%% detail ----------------------------------------------------------------->
+<tr valign="top" align="left">
+  <td valign="top" %M_COLOR_TABLEHEAD_NOCOLORS% width=85%><b><JOPPS id=18008>Price :</JOPPS></b></td>
+  <td valign="top" %M_COLOR_TABLEHEAD_NOCOLORS% width=15% align="right"><b>%DSP_RES_COST%</b></td>
+%IF{@%DB_RES_C0%,</tr><tr valign="top" align="left">,}
+  %IF{@%DB_RES_C0%,<td valign="top"><JOPPS id=18031>Discount :</JOPPS> %DSP_RES_C0%#
+    %IF{%EVAL{%CALC_PRICE% != @%DB_RES_COST%}, <JOPPS id=18035>on</JOPPS> %DSP_RES_PRICE%,}<JOPPS id=18032> :</JOPPS></td>,}
+  %IF{@%DB_RES_C0%,<td valign="top" align="right">%DSP_RES_MARGIN0%</td>,}
+%IF{@%DB_RES_C1%,</tr><tr valign="top" align="left">,}
+  %IF{@%DB_RES_C1%,<td valign="top">%IF{%EVAL{@%DB_RES_C1%>0},<JOPPS id=18033>Discount</JOPPS>,<JOPPS id=18034>Surcharge</JOPPS>} #
+      %PROJECTDESCCOEF1% %DSP_RES_C1%<JOPPS id=18066> :</JOPPS></td>,}
+  %IF{@%DB_RES_C1%,<td valign="top" align="right">%DSP_RES_MARGIN1%</td>,}
+%IF{@%DB_RES_C2%,</tr><tr valign="top" align="left">,}
+  %IF{@%DB_RES_C2%,<td valign="top">%IF{%EVAL{@%DB_RES_C2%>0},<JOPPS id=18036>Discount</JOPPS>,<JOPPS id=18037>Surcharge</JOPPS>} #
+      %PROJECTDESCCOEF2% %DSP_RES_C2%<JOPPS id=18038> :</JOPPS></td>,}
+  %IF{@%DB_RES_C2%,<td valign="top" align="right">%DSP_RES_MARGIN2%</td>,}
+%IF{@%DB_RES_C3%,</tr><tr valign="top" align="left">,}
+  %IF{@%DB_RES_C3%,<td valign="top">%IF{%EVAL{@%DB_RES_C3%>0},<JOPPS id=18039>Discount</JOPPS>,<JOPPS id=18040>Surcharge</JOPPS>} #
+      %PROJECTDESCCOEF3% %DSP_RES_C3%<JOPPS id=18041> :</JOPPS></td>,}
+  %IF{@%DB_RES_C3%,<td valign="top" align="right">%DSP_RES_MARGIN3%</td>,}
+%IF{%CALC_NETTO%!@%DB_RES_COST%,</tr><tr valign="top" align="left">,}
+  %IF{%CALC_NETTO%!@%DB_RES_COST%,<td valign="top" %M_COLOR_TABLEHEAD_NOCOLORS%><b><JOPPS id=18042>Net price :</JOPPS></b></td>,}
+  %IF{%CALC_NETTO%!@%DB_RES_COST%,<td valign="top" %M_COLOR_TABLEHEAD_NOCOLORS% align="right"><b>%DSP_RES_NETTO%</b></td>,}
+</tr>
+
+<!--%% detail footer ---------------------------------------------------------->
+</table>
+<!--%%------------------------------------------------------------------------->

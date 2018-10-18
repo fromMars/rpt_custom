@@ -1,0 +1,37 @@
+<!--frame_per_page_b_frame_6-->
+<!--Deel/blad: schetsen speciale vormen vullingen------------------------------>
+<page>
+<BR>
+<table border=0 width=100% %M_TABLEPARAM%>
+<tr valign="top" align="left">
+  <th width=100% colspan=2 bgcolor="%COLOR_TABLEHEAD%"><JOPPS id=7031>≤£¡ß : Ãÿ ‚≤£¡ß∏ΩÕº</JOPPS></th>
+</tr><tr align="left" valign="top">
+  <th width=35% bgcolor="%COLOR_TABLEHEAD%"><JOPPS id=7032>…Êº∞</JOPPS></th>
+  <th width=65% bgcolor="%COLOR_TABLEHEAD%" align="center"><JOPPS id=7033>≤›Õº</JOPPS></th>
+</tr>
+</table>
+
+<!--%% detail ----------------------------------------------------------------->
+<BR>
+<table border=0 width=100% %M_TABLEPARAM%>
+<tr valign="top">
+  <td width=35%>
+    <table border=0 width=100% %M_TABLEPARAM%>
+    <tr valign="top">
+      <td%IF{%FRAME_PER_PAGE_MARKER_GLASS%=1,%IF{@%DB_GLASS_RGB%="#000000",, bgcolor="%DSP_GLASS_RGB%"},} width=20% align="right">%DSP_GLASS_NO%</td>
+      <td%IF{%FRAME_PER_PAGE_MARKER_GLASS%=1,%IF{@%DB_GLASS_RGB%="#000000",, bgcolor="%DSP_GLASS_RGB%"},} width=80%>%IF{%DETAIL_LEVEL%=0,&nbsp;,%IF{@%DB_GLASS_DESC%,%DSP_GLASS_DESC%%IF{@%DB_GLASS_POSITION%,&nbsp;<i>(%EVAL{trim("%DSP_GLASS_POSITION%")})</i>,},&nbsp;}</td>
+    </tr><tr valign="top">
+      <td width=100% colspan=2>
+        %IF{%BATCHMODE%,%EVAL{trim("%DSP_GLASS_PROJECT%")}*,}%DSP_GLASS_LABEL%%DSP_GLASS_REMARK%#
+        %IF{%BATCHMODE%, (%FORMAT{"BATCHFRAMEORDER:%EVAL{upper(trim("%DSP_GLASS_PROJECT%")+";"+trim("%DSP_GLASS_ASSEMBLY%")+";"+trim("%DSP_GLASS_FRAME%"))}",[EXTERNAL]}),}
+      </td>
+    </tr>
+    </table>
+  </td>
+  <td width=65% align="center">%DSP_DRAWFILL%</td>
+</tr>
+</table>
+
+<!--%% detail footer ---------------------------------------------------------->
+
+<!--%%------------------------------------------------------------------------->

@@ -1,0 +1,20 @@
+<!--offer_b_project_5-->
+<!--Offerte: opties------------------------------------------------------------>
+<p>
+<JOPPS id=16005>Options (excluding VAT) :</JOPPS>
+</p>
+<table border=%OFFER_WORDCOMPAT% width=100% %M_TABLEPARAM_NOCOLORS%>
+
+<!--%% detail ----------------------------------------------------------------->
+<tr valign="top">
+  <td valign="top" width=6% align="right">%IF{@%DB_OFFER_CFPIECES%,%DSP_OFFER_CFPIECES%,&nbsp;}</td>
+  <td valign="top" width=8% align="right">%DSP_RES_ID%</td>
+  <td valign="top" width=61%>%IF{%SH_POSITION%,@%DB_OFFER_POSITION%&nbsp;=&nbsp;,}%IF{@%DB_OFFER_DESC%,%DSP_OFFER_DESC%%IF{%SH_DETFINISHES%, <i>(%EVAL{trim("%DSP_OFFER_VARIETYDESC%")})</i>,},&nbsp;}</td>
+  <td valign="top" width=10% align="right">%IF{@%DB_OFFER_LENGTH%,%DSP_OFFER_LENGTH%,&nbsp;}</td>
+  <td valign="top" width=15% align="right">%IF{@%DB_RES_COST%,%DSP_RES_COST%,&nbsp;}</td>
+</tr>
+
+<!--%% detail footer ---------------------------------------------------------->
+</table>
+
+<!--%%------------------------------------------------------------------------->

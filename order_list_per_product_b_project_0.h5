@@ -1,0 +1,16 @@
+<!--order_list_per_product_b_project_0-->
+<!--Bestellijst/produkt: Hoofding---------------------------------------------->
+<BR>
+<table border=%ORDER_LIST_PER_PRODUCT_EXCELCOMPAT% width=100% cellspacing=2 %M_COLOR_TABLEDATA_NOCOLORS% bordercolor="%COLOR_TITLEBORDER%">
+<tr>
+  <td width=100% colspan=%EVAL{4+(%DETAIL_LEVEL%>0)+(%GLOBAL_PRICE_PROFILE%!=%C_PROFPRICE_UNIT%)+%ORDER_LIST_PER_PRODUCT_PRICE%}>
+    <table border=0 width=100% cellpadding=5>
+    <tr valign="top">
+      <td valign="top" width=75% colspan=3>&nbsp;&nbsp;<b>%IF{%BATCHMODE%,<JOPPS id=10022>订单 * 批(多工程) :</JOPPS>,<JOPPS id=10030>订单 * 工程 :</JOPPS>} %BATCH%</b></td>
+      <td valign="top" width=25% align="right" colspan=%EVAL{4+(%DETAIL_LEVEL%>0)+(%GLOBAL_PRICE_PROFILE%!=%C_PROFPRICE_UNIT%)+%ORDER_LIST_PER_PRODUCT_PRICE%-3}><JOPPS id=9005>Date :</JOPPS> %DATE%&nbsp;&nbsp;</td>
+    </tr>
+    </table>
+  </td>
+</tr>
+</table>
+%EVAL{setparam("TOTAL_ORDERLIST","0")}

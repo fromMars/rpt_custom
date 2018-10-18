@@ -1,0 +1,109 @@
+<!--glass_order_b_project_2-->
+<!--Glasbon: schetsen speciale vormen------------------------------------------>
+
+<!--%% detail ----------------------------------------------------------------->
+<BR>
+<table border=%GLASS_ORDER_EXCELCOMPAT% width=100% %M_TABLEPARAM_NOCOLORS%>
+<tr valign="top">
+  <td width=35% colspan=3>
+    <table border=%GLASS_ORDER_EXCELCOMPAT% width=100% %M_TABLEPARAM_NOCOLORS%>
+    <tr valign="top">
+      <td valign="top" width=20% align="right">%DSP_GLASS_NO%</td>
+      <td valign="top" width=80% colspan=2>%IF{%DETAIL_LEVEL%=0,&nbsp;,%DSP_GLASS_DESC%}</td>
+    </tr><tr valign="top">
+      <td valign="top">%IF{@%DB_GLASS_ARTICLECODE%,%DSP_GLASS_ARTICLECODE%,%IF{%GLASS_ORDER_VARIANT%,%IF{@%DB_GLASS_VARIETY%,%DSP_GLASS_VARIETY%,&nbsp;},%IF{@%DB_GLASS_SERIE%,%DSP_GLASS_SERIE%,&nbsp;}}}</td>
+      <td valign="top" colspan=2>%IF{%DETAIL_LEVEL%=0,&nbsp;,%IF{@%DB_GLASS_VARIETYDESC%,%DSP_GLASS_VARIETYDESC%,&nbsp;}}</td>
+    </tr><tr valign="top">
+      <td valign="top" width=100% colspan=3>%IF{%BATCHMODE%,%EVAL{trim("%DSP_GLASS_PROJECT%")}*,&nbsp;}%IF{@%DB_GLASS_REFERENCE%,%DSP_GLASS_REFERENCE%,&nbsp;}%DSP_GLASS_REMARK%</td>
+    </tr>
+    </table>
+  </td>
+  <td valign="top" width=65% align="center" colspan=5>%DSP_DRAWFILL%</td>
+</tr>
+</table>
+
+<!--%% break header 1-->
+<page>
+%INCLUDE{%FILE_HEADER_PROJECT%}
+<BR>
+<table width=100% border=%GLASS_ORDER_EXCELCOMPAT% cellspacing=2 %M_COLOR_TABLEDATA_NOCOLORS% bordercolor="%COLOR_TITLEBORDER%" cellpadding=5>
+<tr>
+  <td width=100% colspan=8>
+    <table border=0 width=100%>
+    <tr valign="top">
+      <td width=10%></td>
+      <td valign="top" width=40% colspan=3>%COMPANY%</td>
+      <td width=10%></td>
+      <td valign="top" width=40% colspan=3>%DSP_TEXT_CLIENT%</td>
+    </tr><tr valign="top">
+      <td></td>
+      <td valign="top" colspan=3>%STREET%</td>
+      <td></td>
+      <td valign="top" colspan=3>%DSP_TEXT_STREET%</td>
+    </tr><tr valign="top">
+      <td></td>
+      <td valign="top" colspan=3>%ZIP% %PLACE%</td>
+      <td></td>
+      <td valign="top" colspan=3>%DSP_TEXT_ZIP% %DSP_TEXT_PLACE%</td>
+    </tr><tr valign="top">
+      <td valign="top" align="right">%IF{%PHONE%,<JOPPS id=5017>Phone :</JOPPS>,}</td>
+      <td valign="top" colspan=3>%PHONE%</td>
+      <td valign="top" align="right">%IF{@%DB_TEXT_PHONE%,<JOPPS id=5017>Phone :</JOPPS>,}</td>
+      <td valign="top" colspan=3>%DSP_TEXT_PHONE%</td>
+    </tr><tr valign="top">
+      <td valign="top" align="right">%IF{%FAX%,<JOPPS id=5018>Fax :</JOPPS>,}</td>
+      <td valign="top" colspan=3>%FAX%</td>
+      <td valign="top" align="right">%IF{@%DB_TEXT_TELEFAX%,<JOPPS id=5018>Fax :</JOPPS>,}</td>
+      <td valign="top" colspan=3>%DSP_TEXT_TELEFAX%</td>
+    </tr>
+    </table>
+  </td>
+</tr>
+</table>
+<BR>
+<table border=%GLASS_ORDER_EXCELCOMPAT% width=100% cellspacing=2 %M_COLOR_TABLEDATA_NOCOLORS% bordercolor="%COLOR_TITLEBORDER%">
+<tr>
+  <td width=100% colspan=8>
+    <table border=0 width=100% cellpadding=5>
+    <tr valign="top">
+      <td width=2%>&nbsp;</td>
+      <td valign="top" width=98% colspan=7><JOPPS id=5019>Reference :</JOPPS> %DSP_TEXT_NAME%</td>
+    </tr>
+    </table>
+  </td>
+</tr>
+</table>
+<BR>
+<table border=%GLASS_ORDER_EXCELCOMPAT% width=100% cellspacing=2 %M_COLOR_TABLEDATA_NOCOLORS% bordercolor="%COLOR_TITLEBORDER%">
+<tr>
+  <td width=100% colspan=8>
+    <table border=0 width=100% cellpadding=5>
+    <tr valign="top">
+      <td width=2%>&nbsp;</td>
+      <td valign="top" width=73% colspan=4><b>%IF{%BATCHMODE%,<JOPPS id=5020>订单附件 * 批 :</JOPPS>,<JOPPS id=5027>订单附件 * 项目 :</JOPPS>} %DSP_GLASS_BATCH%</b></td>
+      <td valign="top" width=23% align="right" colspan=2><JOPPS id=5021>Date :</JOPPS> %DATE%</td>
+      <td width=2%>&nbsp;</td>
+    </tr>
+    </table>
+  </td>
+</tr>
+</table>
+<BR>
+<table border=%GLASS_ORDER_EXCELCOMPAT% width=100% %M_TABLEPARAM_NOCOLORS%>
+<tr align="left" valign="top">
+  <td valign="top" width=35% %M_COLOR_TABLEHEAD_NOCOLORS% colspan=3><b><JOPPS id=5022>用于</JOPPS></b></td>
+  <td valign="top" width=65% %M_COLOR_TABLEHEAD_NOCOLORS% align="center" colspan=5><b><JOPPS id=5023>草图</JOPPS></b></td>
+</tr>
+</table>
+
+<!--%% break footer 1-->
+</table>
+
+<!--%% break header 2-->
+
+<!--%% break footer 2-->
+<BR>
+
+<!--%% detail footer ---------------------------------------------------------->
+
+<!--%%------------------------------------------------------------------------->

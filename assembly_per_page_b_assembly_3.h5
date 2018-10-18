@@ -1,0 +1,34 @@
+<!--assembly_per_page_b_assembly_3-->
+<!--Groep/blad: Rubbers-------------------------------------------------------->
+<br>
+<table border=0 width=100% %M_TABLEPARAM%>
+<tr valign="top">
+  <th align="left" colspan=%EVAL{2+(%DETAIL_LEVEL%>0)} bgcolor="%COLOR_TABLEHEAD%"><JOPPS id=8016>胶条</JOPPS></th>
+</tr><tr valign="bottom" align="left">
+  <th width=10% bgcolor="%COLOR_TABLEHEAD%" align="right"><JOPPS id=8017>长度</JOPPS></th>
+  <th width=19% bgcolor="%COLOR_TABLEHEAD%"><JOPPS id=8018>编号</JOPPS></th>
+  %IF{%DETAIL_LEVEL%=0,,<th width=71% bgcolor="%COLOR_TABLEHEAD%"><JOPPS id=8019>名称</JOPPS></th>}
+</tr>
+
+<!--%% detail ----------------------------------------------------------------->
+<tr valign="top" align="left"%IF{%ASSEMBLY_PER_PAGE_MARKER_ATTRIB%=1,%IF{@%DB_ATTRIB_RGB%="#000000",, bgcolor="%DSP_ATTRIB_RGB%"},}>
+  <td align="right"><b>%DSP_ATTRIB_LENGTH%</b></td>
+  <td>%IF{@%DB_ATTRIB_ARTICLECODE%,%DSP_ATTRIB_ARTICLECODE%,%EVAL{trim("%DSP_ATTRIB_ACC%")}.%DSP_ATTRIB_VARIETY%}</td>
+  %IF{%DETAIL_LEVEL%=0,,<td width=63%>%IF{@%DB_ATTRIB_ACCDESC%,%DSP_ATTRIB_ACCDESC%%IF{@%DB_ATTRIB_POSITION%,&nbsp;<i>(%EVAL{trim("%DSP_ATTRIB_POSITION%")})</i>,},&nbsp;}</td>}
+</tr>
+
+<!--%% break header -->
+<tr valign="top">
+  <th align="left" colspan=%EVAL{2+(%DETAIL_LEVEL%>0)}>
+    <JOPPS id=8020>部分</JOPPS> #
+    %IF{%BATCHMODE%,#
+        %FORMAT{"BATCHFRAMEORDER:%EVAL{upper(trim("%DSP_ATTRIB_PROJECT%")+";"+trim("%DSP_ATTRIB_ASSEMBLY%")+";"+trim("%DSP_ATTRIB_FRAME%"))}",[EXTERNAL]},#
+        %DSP_ATTRIB_FRAME%}
+  </th>
+</tr>
+
+<!--%% break footer -->
+
+<!--%% detail footer ---------------------------------------------------------->
+</table>
+<!--%%------------------------------------------------------------------------->

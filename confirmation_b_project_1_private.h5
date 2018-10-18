@@ -1,0 +1,145 @@
+<!--confirmation_b_project_1_private-->
+<!--Confirmatie: hoofding particulier---------------------------------------------->
+<BR>
+%IF{%CONFIRMATION_WORDCOMPAT%,<hr noshade width=100%>,}
+<table width=100% border=0 cellspacing=2 %M_COLOR_TABLEDATA_NOCOLORS% %IF{%CONFIRMATION_WORDCOMPAT%,,bordercolor="%COLOR_TITLEBORDER%"} cellpadding=5>
+<tr>
+  <td width=100%>
+    <table border=0 width=100%>
+    <tr valign="top">
+      <td></td>
+      <td></td>
+      <td></td>
+      <td valign="top"><JOPPS id=19101>To Madame/Mister</JOPPS><BR>&nbsp;</td>
+    </tr><tr valign="top">
+      <td width=10%></td>
+      <td valign="top" width=40%>%COMPANY%</td>
+      <td width=10%></td>
+      <td valign="top" width=40%>%DSP_TEXT_CONTACT%</td>
+    </tr><tr valign="top">
+      <td></td>
+      <td valign="top">%STREET%</td>
+      <td></td>
+      <td valign="top">%DSP_TEXT_STREET%</td>
+    </tr><tr valign="top">
+      <td></td>
+      <td valign="top">%ZIP% %PLACE%</td>
+      <td></td>
+      <td valign="top">%DSP_TEXT_ZIP% %DSP_TEXT_PLACE%</td>
+    </tr><tr valign="top">
+      <td valign="top" align="right">%IF{%PHONE%,<JOPPS id=19102>Phone :</JOPPS>,}</td>
+      <td valign="top">%PHONE%</td>
+      <td valign="top" align="right">%IF{@%DB_TEXT_PHONE%,<JOPPS id=19102>Phone :</JOPPS>,}</td>
+      <td valign="top">%DSP_TEXT_PHONE%</td>
+    </tr><tr valign="top">
+      <td valign="top" align="right">%IF{%FAX%,<JOPPS id=19103>Fax :</JOPPS>,}</td>
+      <td valign="top">%FAX%</td>
+      <td valign="top" align="right">%IF{@%DB_TEXT_TELEFAX%,<JOPPS id=19103>Fax :</JOPPS>,}</td>
+      <td valign="top">%DSP_TEXT_TELEFAX%</td>
+    </tr>
+    </table>
+  </td>
+</tr>
+</table>
+%IF{%CONFIRMATION_WORDCOMPAT%,<hr noshade width=100%>,}
+<BR>
+<table border=%CONFIRMATION_WORDCOMPAT% width=100% cellspacing=2 cellpadding=5 %M_COLOR_TABLEDATA_NOCOLORS% bordercolor="%COLOR_TITLEBORDER%">
+<tr valign="top">
+  <td valign="top" width=100%>&nbsp;&nbsp;<b><JOPPS id=19104>Confirmation :</JOPPS> %DSP_TEXT_CODE%</b></td>
+</tr>
+</table>
+<br>
+<br>
+<table border=0 width=100% cellspacing=2>
+<tr valign="top">
+  <td valign="top" width=60% align="right"></td>
+  <td valign="top" width=40%>%PLACE%, %DSP_TEXT_BEGIN%</td>
+</tr>
+</table>
+<br>
+<br>
+<br>
+<p>
+<JOPPS id=19105>Dear Madame, Sir,</JOPPS>
+</p>
+<br>
+<br>
+<p>
+%IF{%EVAL{!%SH_PROJECTADDRESS% && !%SH_ARCHITECT% && !%SH_SELLER%},#
+  <JOPPS id=19106>We are very pleased to confirm your order as follows:</JOPPS>,}
+%IF{%EVAL{!%SH_PROJECTADDRESS% &&  %SH_ARCHITECT% && !%SH_SELLER%},#
+  <JOPPS id=19128>Further to our meeting with architect&#44;</JOPPS> %EVAL{rtrim("%DSP_TEXT_ARCHITECT%")}#
+  <JOPPS id=19129>&#44; we are very pleased to confirm your order as follows:</JOPPS>,}
+%IF{%EVAL{!%SH_PROJECTADDRESS% && !%SH_ARCHITECT% &&  %SH_SELLER%},#
+  <JOPPS id=19130>Further to the meeting with our representative&#44;</JOPPS> %EVAL{rtrim("%DSP_TEXT_SELLER%")}#
+  <JOPPS id=19131>&#44; we are very pleased to confirm your order as follows:</JOPPS>,}
+%IF{%EVAL{!%SH_PROJECTADDRESS% &&  %SH_ARCHITECT% &&  %SH_SELLER%},#
+  <JOPPS id=19132>Further to the meeting with our representative&#44;</JOPPS> %EVAL{rtrim("%DSP_TEXT_SELLER%")}#
+  <JOPPS id=19133>&#44; and with the architect&#44;</JOPPS> %EVAL{rtrim("%DSP_TEXT_ARCHITECT%")}#
+  <JOPPS id=19134>&#44; we are very pleased to confirm your order as follows:</JOPPS>,}
+%IF{%EVAL{ %SH_PROJECTADDRESS% && !%SH_ARCHITECT% && !%SH_SELLER%},#
+  <JOPPS id=19135>Regarding the project situated</JOPPS> %EVAL{rtrim("%DSP_TEXT_ADDRESS2%")}#
+  <JOPPS id=19136>&#44;</JOPPS> %EVAL{rtrim("%DSP_TEXT_ADDRESS3%")}#
+  <JOPPS id=19137>&#44; we are very pleased to confirm your order as follows:</JOPPS>,}
+%IF{%EVAL{ %SH_PROJECTADDRESS% &&  %SH_ARCHITECT% && !%SH_SELLER%},#
+  <JOPPS id=19138>Further to our meeting with architect&#44;</JOPPS> %EVAL{rtrim("%DSP_TEXT_ARCHITECT%")}#
+  <JOPPS id=19139>&#44; regarding the project situated</JOPPS> %EVAL{rtrim("%DSP_TEXT_ADDRESS2%")}#
+  <JOPPS id=19140>&#44;</JOPPS> %EVAL{rtrim("%DSP_TEXT_ADDRESS3%")}#
+  <JOPPS id=19141>&#44; we are very pleased to confirm your order as follows:</JOPPS>,}
+%IF{%EVAL{ %SH_PROJECTADDRESS% && !%SH_ARCHITECT% &&  %SH_SELLER%},#
+  <JOPPS id=19142>Further to the meeting with our representative&#44;</JOPPS> %EVAL{rtrim("%DSP_TEXT_SELLER%")}#
+  <JOPPS id=19143>&#44; regarding the project situated</JOPPS> %EVAL{rtrim("%DSP_TEXT_ADDRESS2%")}#
+  <JOPPS id=19144>&#44;</JOPPS> %EVAL{rtrim("%DSP_TEXT_ADDRESS3%")}#
+  <JOPPS id=19145>&#44; we are very pleased to confirm your order as follows:</JOPPS>,}
+%IF{%EVAL{ %SH_PROJECTADDRESS% &&  %SH_ARCHITECT% &&  %SH_SELLER%},#
+  <JOPPS id=19146>Further to the meeting with our representative&#44;</JOPPS> %EVAL{rtrim("%DSP_TEXT_SELLER%")}#
+  <JOPPS id=19147>&#44; and with architect&#44;</JOPPS> %EVAL{rtrim("%DSP_TEXT_ARCHITECT%")}#
+  <JOPPS id=19148>&#44; regarding the project situated</JOPPS> %EVAL{rtrim("%DSP_TEXT_ADDRESS2%")}#
+  <JOPPS id=19149>&#44;</JOPPS> %EVAL{rtrim("%DSP_TEXT_ADDRESS3%")}#
+  <JOPPS id=19150>&#44; we are very pleased to confirm your order as follows:</JOPPS>,}
+</p>
+<p>
+%IF{%SHOW_PROJECTPROFILEFINISH%,#
+  <JOPPS id=19107>Finish of the windows :</JOPPS> %DSP_TEXT_PROFILE%<br>,}
+%IF{%SHOW_PROJECTGLAZINGBEADFINISH%,#
+  <JOPPS id=19151>Default finish glazing beads in the project :</JOPPS> %DSP_TEXT_GLAZBEAD%<br>,}
+%IF{%SHOW_PROJECTSTIFFNERFINISH%,#
+  <JOPPS id=19152>Default finish reinforcements in the project :</JOPPS> %DSP_TEXT_STIFF%<br>,}
+%IF{%SHOW_PROJECTACCESSORIESFINISH%,#
+  <JOPPS id=19153>Default finish accessories in the project :</JOPPS> %DSP_TEXT_ACC%<br>,}
+%IF{%SHOW_PROJECTFILLINGFINISH%,#
+  <JOPPS id=19154>Default finish glazing in the project:</JOPPS> %DSP_TEXT_GLAS%<br>,}
+%IF{%SHOW_PROJECTWINDOWFINISHINGFINISH%,#
+  <JOPPS id=19155>Default finish window finishes in the project:</JOPPS> %DSP_TEXT_XTR%<br>,}
+%IF{%SHOW_FRAMEPROFILEFINISH%,#
+  <JOPPS id=19156>Default finish outer frames :</JOPPS> %DSP_TEXT_FRAMEPROFILE%<br>,}
+%IF{%SHOW_FRAMEGLAZINGBEADFINISH%,#
+  <JOPPS id=19157>Default finish glazing beads of the frame :</JOPPS> %DSP_TEXT_FRAMEGLAZBEAD%<br>,}
+%IF{%SHOW_FRAMESTIFFNERFINISH%,#
+  <JOPPS id=19158>Default finish reinforcements of the frame :</JOPPS> %DSP_TEXT_FRAMESTIFF%<br>,}
+%IF{%SHOW_FRAMEACCESSORIESFINISH%,#
+  <JOPPS id=19159>Default finish accessories of the frame :</JOPPS> %DSP_TEXT_FRAMEACC%<br>,}
+%IF{%SHOW_FRAMEFILLINGFINISH%,#
+  <JOPPS id=19160>Default finish glazing of the frame :</JOPPS> %DSP_TEXT_FRAMEGLAS%<br>,}
+%IF{%SHOW_FRAMEWINDOWFINISHINGFINISH%,#
+  <JOPPS id=19161>Default finish window finishes of the frame :</JOPPS> %DSP_TEXT_FRAMEXTR%<br>,}
+%IF{%SHOW_VENTPROFILEFINISH%,#
+  <JOPPS id=19162>Default finish vent profiles :</JOPPS> %DSP_TEXT_VENTPROFILE%<br>,}
+%IF{%SHOW_VENTGLAZINGBEADFINISH%,#
+  <JOPPS id=19163>Default finish glazing beads of the vent :</JOPPS> %DSP_TEXT_VENTGLAZBEAD%<br>,}
+%IF{%SHOW_VENTSTIFFNERFINISH%,#
+  <JOPPS id=19164>Default finish reinforcements of the vent :</JOPPS> %DSP_TEXT_VENTSTIFF%<br>,}
+%IF{%SHOW_VENTACCESSORIESFINISH%,#
+  <JOPPS id=19165>Default finish accessories of the vent :</JOPPS> %DSP_TEXT_VENTACC%<br>,}
+%IF{%SHOW_VENTFILLINGFINISH%,#
+  <JOPPS id=19166>Default finish glazing of the vent :</JOPPS> %DSP_TEXT_VENTGLAS%<br>,}
+%IF{%SHOW_VENTWINDOWFINISHINGFINISH%,#
+  <JOPPS id=19167>Default finish window finishes of the vent : </JOPPS> %DSP_TEXT_VENTXTR%<br>,}
+</p>
+%IF{%SHOW_FILLING%,#
+  <p><JOPPS id=19108>Standard glazing :</JOPPS> %DSP_TEXT_FILL%</p>,}
+%IF{%SHOW_REMARKTEXT0%,#
+  <p>%PROJECTCOMMENT%</p>,}
+%DSP_HEADERCLAUSES%
+
+

@@ -1,0 +1,140 @@
+<!--finishing_list_b_project-->
+<!--Afwerkingslijst------------------------------------------------------------>
+%EVAL{setparam("W_CNT","10")}
+%EVAL{setparam("W_DESC",inttostr(33*(%DETAIL_LEVEL%>0)))}
+%EVAL{setparam("W_VRTY",inttostr(7*%SHOW_VARIETY%))}
+%EVAL{setparam("W_VDESC",inttostr(20*(%DETAIL_LEVEL%>0)*%SHOW_VARIETY%))}
+%EVAL{setparam("W_WDTH","10")}
+%EVAL{setparam("W_HGHT","10")}
+%EVAL{setparam("W_UNIT",inttostr(10*%SHOW_UNIT%))}
+%EVAL{setparam("W_REF","22")}
+%EVAL{setparam("W_BATCH",inttostr(5*%SHOW_BATCH%))}
+%EVAL{setparam("W_PRICE",inttostr(15*%SHOW_PRICE%))}
+%EVAL{setparam("W_CHANGE",numtostr(100/(%W_BATCH%+%W_CNT%+%W_DESC%+%W_VRTY%+%W_VDESC%+%W_WDTH%+%W_HGHT%+%W_UNIT%+%W_REF%+%W_PRICE%)))}
+%EVAL{setparam("W_CNT",inttostr(%W_CNT%*%W_CHANGE%))}
+%EVAL{setparam("W_DESC",inttostr(%W_DESC%*%W_CHANGE%))}
+%EVAL{setparam("W_VRTY",inttostr(%W_VRTY%*%W_CHANGE%))}
+%EVAL{setparam("W_VDESC",inttostr(%W_VDESC%*%W_CHANGE%))}
+%EVAL{setparam("W_WDTH",inttostr(%W_WDTH%*%W_CHANGE%))}
+%EVAL{setparam("W_HGHT",inttostr(%W_HGHT%*%W_CHANGE%))}
+%EVAL{setparam("W_UNIT",inttostr(%W_UNIT%*%W_CHANGE%))}
+%EVAL{setparam("W_PRICE",inttostr(%W_PRICE%*%W_CHANGE%))}
+%EVAL{setparam("W_REF",inttostr(100-%W_BATCH%-%W_CNT%-%W_DESC%-%W_VRTY%-%W_VDESC%-%W_WDTH%-%W_HGHT%-%W_UNIT%-%W_PRICE%))}
+
+<!--%% detail ----------------------------------------------------------------->
+<tr valign="top">
+  <td valign="top" align="right">%DSP_EXTRA_NO%</td>
+  %IF{%SHOW_BATCH%,<td width=%W_BATCH%%% align="right">%DSP_EXTRA_BATCHID%</td>,}
+  %IF{%DETAIL_LEVEL%=0,,<td valign="top">%DSP_EXTRA_DESC%</td>}
+  %IF{%SHOW_VARIETY%,<td width=%W_VRTY%%%>%IF{@%DB_EXTRA_ARTICLECODE%,%DSP_EXTRA_ARTICLECODE%,%IF{%FINISHING_LIST_VARIANT%,%IF{@%DB_EXTRA_VARIETY%,%DSP_EXTRA_VARIETY%,&nbsp;},%IF{@%DB_EXTRA_SERIE%,%DSP_EXTRA_SERIE%,&nbsp;}}}</td>,}
+  %IF{%EVAL{(%DETAIL_LEVEL%>0) && %SHOW_VARIETY%},<td width=%W_VDESC%%%>%IF{@%DB_EXTRA_VARIETYDESC%,%DSP_EXTRA_VARIETYDESC%,&nbsp;}</td>,}
+  <td valign="top" align="right">%DSP_EXTRA_WIDTH%</td>
+  <td valign="top" align="right">%DSP_EXTRA_HEIGHT%</td>
+  %IF{%SHOW_UNIT%,<td valign="top" align="right">%IF{@%DB_EXTRA_LENGTH%,%DSP_EXTRA_LENGTH%,}%IF{@%DB_EXTRA_SURFACE%,%DSP_EXTRA_SURFACE%,}</td>,}
+  <td valign="top">%IF{%BATCHMODE%,%EVAL{trim("%DSP_EXTRA_PROJECT%")}*,}%DSP_EXTRA_REFERENCE%</td>
+  %IF{%SHOW_PRICE%,<td valign="top" align="right">%DSP_EXTRA_PRICE%</td>,}
+</tr>
+
+<!--%% break header 1-->
+%IF{%DETAILCNT%,<page>,}
+<BR>
+<table width=100% border=%FINISHING_LIST_EXCELCOMPAT% cellspacing=2 %M_COLOR_TABLEDATA_NOCOLORS% bordercolor="%COLOR_TITLEBORDER%" cellpadding=5>
+<tr>
+  <td width=100% colspan=6>
+    <table border=0 width=100%>
+    <tr valign="top">
+      <td width=10%></td>
+      <td valign="top" width=40% colspan=2>%COMPANY%</td>
+      <td width=10%></td>
+      <td valign="top" width=40% colspan=2>%DSP_TEXT_CLIENT%</td>
+    </tr><tr valign="top">
+      <td></td>
+      <td valign="top" colspan=2>%STREET%</td>
+      <td></td>
+      <td valign="top" colspan=2>%DSP_TEXT_STREET%</td>
+    </tr><tr valign="top">
+      <td></td>
+      <td valign="top" colspan=2>%ZIP% %PLACE%</td>
+      <td></td>
+      <td valign="top" colspan=2>%DSP_TEXT_ZIP% %DSP_TEXT_PLACE%</td>
+    </tr><tr valign="top">
+      <td valign="top" align="right">%IF{%PHONE%,<JOPPS id=6001>Phone :</JOPPS>,}</td>
+      <td valign="top" colspan=2>%PHONE%</td>
+      <td valign="top" align="right">%IF{@%DB_TEXT_PHONE%,<JOPPS id=6001>Phone :</JOPPS>,}</td>
+      <td valign="top" colspan=2>%DSP_TEXT_PHONE%</td>
+    </tr><tr valign="top">
+      <td valign="top" align="right">%IF{%FAX%,<JOPPS id=6002>Fax :</JOPPS>,}</td>
+      <td valign="top" colspan=2>%FAX%</td>
+      <td valign="top" align="right">%IF{@%DB_TEXT_TELEFAX%,<JOPPS id=6002>Fax :</JOPPS>,}</td>
+      <td valign="top" colspan=2>%DSP_TEXT_TELEFAX%</td>
+    </tr>
+    </table>
+  </td>
+</tr>
+</table>
+<BR>
+<table border=%FINISHING_LIST_EXCELCOMPAT% width=100% cellspacing=2 %M_COLOR_TABLEDATA_NOCOLORS% bordercolor="%COLOR_TITLEBORDER%">
+<tr>
+  <td width=100% colspan=6>
+    <table border=0 width=100% cellpadding=5>
+    <tr valign="top">
+      <td width=2%>&nbsp;</td>
+      <td valign="top" width=98% colspan=5><JOPPS id=6003>Reference :</JOPPS> %DSP_TEXT_NAME%</td>
+    </tr>
+    </table>
+  </td>
+</tr>
+</table>
+<BR>
+<table border=%FINISHING_LIST_EXCELCOMPAT% width=100% cellspacing=2 %M_COLOR_TABLEDATA_NOCOLORS% bordercolor="%COLOR_TITLEBORDER%">
+<tr>
+  <td width=100% colspan=6>
+    <table border=0 width=100% cellpadding=5>
+    <tr valign="top">
+      <td width=2%>&nbsp;</td>
+      <td valign="top" width=73% colspan=2><b>%IF{%BATCHMODE%,<JOPPS id=6004>订单 * 批 :</JOPPS>,<JOPPS id=6015>订单 * 项目 :</JOPPS>} %DSP_EXTRA_BATCH%</b></td>
+      <td valign="top" width=23% align="right" colspan=2><JOPPS id=6005>Date :</JOPPS> %DATE%</td>
+      <td width=2%>&nbsp;</td>
+    </tr>
+    </table>
+  </td>
+</tr>
+</table>
+<BR>
+<table border=%FINISHING_LIST_EXCELCOMPAT% width=100% %M_TABLEPARAM_NOCOLORS%>
+<tr align="left" valign="top">
+  <td valign="top" width=%W_CNT%%% %M_COLOR_TABLEHEAD_NOCOLORS% align="right"><b><JOPPS id=6006>数量</JOPPS></b></td>
+  %IF{%SHOW_BATCH%,<td valign="top" width=%W_BATCH%%% %M_COLOR_TABLEHEAD_NOCOLORS% align="right"><b><JOPPS id=6017>批数量</JOPPS></b></td>,}
+  %IF{%DETAIL_LEVEL%=0,,<td valign="top" width=%W_DESC%%% %M_COLOR_TABLEHEAD_NOCOLORS%><b><JOPPS id=6007>名称</JOPPS></b></td>}
+  %IF{%SHOW_VARIETY%,<td valign="top" %IF{%DETAIL_LEVEL%=0,,colspan=2} width=%EVAL{%W_VRTY%+%W_VDESC%}% %M_COLOR_TABLEHEAD_NOCOLORS% align="center"><b><JOPPS id=6014>编号</JOPPS></b></td>,}
+  <td valign="top" width=%W_WDTH%%% %M_COLOR_TABLEHEAD_NOCOLORS% align="right"><b><JOPPS id=6008>宽度</JOPPS></b></td>
+  <td valign="top" width=%W_HGHT%%% %M_COLOR_TABLEHEAD_NOCOLORS% align="right"><b><JOPPS id=6009>高度</JOPPS></b></td>
+  %IF{%SHOW_UNIT%,<td valign="top" width=%W_UNIT%%% %M_COLOR_TABLEHEAD_NOCOLORS% align="right"><b><JOPPS id=6016>Unit</JOPPS></b></td>,}
+  <td valign="top" width=%W_REF%%% %M_COLOR_TABLEHEAD_NOCOLORS%><b><JOPPS id=6010>涉及</JOPPS></b></td>
+  %IF{%SHOW_PRICE%,<td valign="top" width=%W_PRICE%%% %M_COLOR_TABLEHEAD_NOCOLORS% align="right"><b>%IF{%FINISHING_LIST_REBATE%,<JOPPS id=6013>折扣后价格</JOPPS>,<JOPPS id=6011>价格</JOPPS>}</b></td>,}
+</tr>
+
+<!--%% break footer 1-->
+%IF{%SHOW_PRICE%,<tr valign="top">,}
+  %IF{%SHOW_PRICE%,<td valign="top" align="right"><b>%DSP_EXTRA_NO_SUM%</b></td>,}
+  %IF{%SHOW_PRICE%,<td valign="top" align="right" colspan=%EVAL{3+(%DETAIL_LEVEL%>0)+%SHOW_VARIETY%+%SHOW_BATCH%+((%DETAIL_LEVEL%>0)&&%SHOW_VARIETY%)+%SHOW_UNIT%}>&nbsp;</td>,}
+  %IF{%SHOW_PRICE%,<td valign="top" align="right"><b>%DSP_EXTRA_PRICE_SUM%</b></td>,}
+%IF{%SHOW_PRICE%,</tr>,}
+</table>
+<BR><BR>
+<table border=0 width=100%>
+<tr>
+  <td width=75% colspan=4></td>
+  <td width=25% colspan=2><JOPPS id=6012>With kind regards,</JOPPS></td>
+</tr>
+</table>
+<BR><BR><BR>
+
+<!--%% break header 2-->
+
+<!--%% break footer 2-->
+%IF{%SHOW_PRICE%,<tr><td colspan=%EVAL{5+(%DETAIL_LEVEL%>0)+%SHOW_VARIETY%+%SHOW_BATCH%+((%DETAIL_LEVEL%>0)&&%SHOW_VARIETY%)+%SHOW_UNIT%}>&nbsp;</td></tr>,}
+
+<!--%% detail footer ---------------------------------------------------------->
+
+<!--%%------------------------------------------------------------------------->

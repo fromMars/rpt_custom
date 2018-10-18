@@ -1,0 +1,36 @@
+<!--picklist_b_project_6-->
+<!--Piklijst: Glas------------------------------------------------->
+<br>
+<table border=0 width=100% %M_TABLEPARAM%>
+<tr valign="top">
+  <th align="left" colspan=5 bgcolor="%COLOR_TABLEHEAD%"><JOPPS id=28018>Glazing</JOPPS></th>
+</tr>
+<tr valign="bottom" align="left">
+  <th bgcolor="%COLOR_TABLEHEAD%" align="right"><JOPPS id=28009>Qty</JOPPS></th>
+  <th bgcolor="%COLOR_TABLEHEAD%"><JOPPS id=28010>Description</JOPPS></th>
+  <th bgcolor="%COLOR_TABLEHEAD%"><JOPPS id=28029>Width</JOPPS></th>
+  <th bgcolor="%COLOR_TABLEHEAD%"><JOPPS id=28030>Height</JOPPS></th>
+  <th bgcolor="%COLOR_TABLEHEAD%"><JOPPS id=28012>Article number</JOPPS></th>
+</tr>
+
+<!--%% detail ----------------------------------------------------------------->
+<tr valign="top" align="left">
+  <td width=10% align="right">%DSP_RES_GLASSCOUNT%</td>
+  <td width=40%>%IF{@%DB_GLASS_DESC%,%DSP_GLASS_DESC%,&nbsp;}</td>
+  <td width=10%>%DSP_GLASS_SHAPEW%</td>
+  <td width=10%>%DSP_GLASS_SHAPEH%</td>
+  <td width=30%>%EVAL{trim("%DSP_GLASS_FILLING%")}.%DSP_GLASS_VARIETY%</td>
+</tr>
+
+<!--%% break header 1 -->
+
+<!--%% break footer 1 -->
+<tr valign="top" align="left">
+  <th bgcolor="%COLOR_TABLEHEAD%" align="right">%DSP_RES_GLASSCOUNT_SUM%</th>
+  <th bgcolor="%COLOR_TABLEHEAD%" align="left" colspan=4>%IF{%SHOW_DETAILS%,%EVAL{trim("%DSP_GLASS_PROJECT_BR%")+"*"+trim("%DSP_GLASS_ASSEMBLY_BR%")+"*"+trim("%DSP_GLASS_FRAME_BR%")},%EVAL{trim("%DSP_PART_PROJECT_BR%")}}</th>
+</tr>
+
+<!--%% detail footer ---------------------------------------------------------->
+</table>
+
+<!--%%------------------------------------------------------------------------->

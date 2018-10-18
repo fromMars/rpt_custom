@@ -1,0 +1,44 @@
+<!--confirmation_b_project_6_private-->
+<!--Referentie: eindtekst particulier--------------------------------------------->
+%DSP_FOOTERCLAUSES%
+<p>
+%IF{@%DB_TEXT_CONDITIONS%,<JOPPS id=19118>Terms of payment :</JOPPS> %DSP_TEXT_CONDITIONS%,}
+</p>
+<br>
+<p>
+<JOPPS id=19119>Don't hesitate to contact us for further information. Thanking you for your confidence,
+Yours faithfully,</JOPPS>
+</p>
+<br>
+<table border=0 width=100%>
+<tr valign="top">
+  <td valign="top" width=50%>%IF{%SHOW_SIGNATURE%,<JOPPS id=19168>To</JOPPS> %COMPANY%<JOPPS id=19169>&#44;</JOPPS>,}<br><br><br><br></td>
+  <td valign="top" width=50%><JOPPS id=19172>
+Agreed to carry out the work at the terms and conditions of sale as mentioned,</JOPPS><br><br><br><br></td>
+</tr>
+</table>
+<br>
+<table border=0 width=100%>
+<tr valign="top">
+  <td valign="top" width=50%>%IF{%SHOW_SIGNATURE%,<JOPPS id=19170>Name :</JOPPS> %IF{%PROJECTREFERENCE%,%PROJECTREFERENCE%,%DB_USERDESC%},}</td>
+  <td valign="top" width=50%><JOPPS id=19173>Name :</JOPPS></td>
+</tr><tr valign="top">
+  <td valign="top" width=50%>%IF{%SHOW_SIGNATURE%,<JOPPS id=19171>Date :</JOPPS> %DSP_TEXT_BEGIN%,}</td>
+  <td valign="top" width=50%><JOPPS id=19174>Date :</JOPPS></td>
+</tr>
+</table>
+<br>
+<table border=%CONFIRMATION_WORDCOMPAT% width=100% cellspacing=2 %M_COLOR_TABLEDATA_NOCOLORS% bordercolor="%COLOR_TITLEBORDER%">
+<tr>
+  <td width=100%>
+    <table border=0 width=100% cellpadding=5>
+    <tr valign="top" align="center">
+      <td valign="top" align="center" width=34%>%COMPANY%</td>
+      <td valign="top" align="center" width=32%><JOPPS id=19121>VAT-nr :</JOPPS> %GLOBAL_TAXNUMBER%</td>
+      <td valign="top" align="center" width=34%><JOPPS id=19122>Bank account :</JOPPS> %GLOBAL_ACCOUNT%</td>
+    </tr>
+    </table>
+  </td>
+</tr>
+</table>
+

@@ -1,0 +1,24 @@
+<!--uvalues_b_frame_1-->
+<!--U-values: Profiles--------------------------------------------------------->
+%INCLUDE{%FILE_HEADER_PROJECT%}
+<br>
+<table border=0 width=100% %M_TABLEPARAM%>
+<tr>
+  <th width=%EVAL{30+(!%SHOW_DETAILS%)*10}% bgcolor="%COLOR_TABLEHEAD%" align="left"><JOPPS id=25002>ÐÍ²Ä</JOPPS></th>
+  %IF{%SHOW_DETAILS%,<th width=10% bgcolor="%COLOR_TABLEHEAD%" align="left"><JOPPS id=25016>À´Ô´</JOPPS></th>,}
+  <th width=20% bgcolor="%COLOR_TABLEHEAD%" align="right"><JOPPS id=25003>Uf (W/m²K)</JOPPS></th>
+  <th width=20% bgcolor="%COLOR_TABLEHEAD%" align="right"><JOPPS id=25004>Af (m?</JOPPS></th>
+  <th width=20% bgcolor="%COLOR_TABLEHEAD%" align="right"><JOPPS id=25005>Af * Uf (W/K)</JOPPS></th>
+</tr>
+
+<!--%% detail ----------------------------------------------------------------->
+<tr>
+  <td align="left">%M_B_TAG%%DSP_UVALUES_DESC%%M_E_TAG%</td>
+  %IF{%SHOW_DETAILS%,<td align="left">%M_B_TAG%%DSP_UVALUES_SUPPLIER%%M_E_TAG%</td>,}
+  <td align="right">%M_B_TAG%%DSP_UVALUES_UF%%M_E_TAG%</td>
+  <td align="right">%M_B_TAG%%DSP_UVALUES_SF%%M_E_TAG%</td>
+  <td align="right">%M_B_TAG%%DSP_UVALUES_UT%%M_E_TAG%</td>
+</tr>
+
+<!--%% detail footer ---------------------------------------------------------->
+<!--%%------------------------------------------------------------------------->

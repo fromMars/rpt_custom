@@ -1,0 +1,27 @@
+<!--frame_per_page_b_frame_2-->
+<!--Deel/blad: Beslag---------------------------------------------------------->
+<br>
+<table border=0 width=100% %M_TABLEPARAM%>
+<tr valign="top">
+  <th align="left" colspan=%EVAL{5+2*(%DETAIL_LEVEL%>0)} bgcolor="%COLOR_TABLEHEAD%"><JOPPS id=7012>配件</JOPPS></th>
+</tr><tr valign="bottom" align="left">
+  <th width=6% bgcolor="%COLOR_TABLEHEAD%" align="right"><JOPPS id=7013>数量</JOPPS></th>
+  <th width=%EVAL{12+(%DETAIL_LEVEL%=0)*32}% bgcolor="%COLOR_TABLEHEAD%"><JOPPS id=7014>编号</JOPPS></th>
+  %IF{%DETAIL_LEVEL%=0,,<th width=32% bgcolor="%COLOR_TABLEHEAD%"><JOPPS id=7015>名称</JOPPS></th>}
+  <th width=0 rowspan=%BIG%>&nbsp;</th>
+  <th width=6% bgcolor="%COLOR_TABLEHEAD%" align="right"><JOPPS id=7013>数量</JOPPS></th>
+  <th width=%EVAL{12+(%DETAIL_LEVEL%=0)*31}% bgcolor="%COLOR_TABLEHEAD%"><JOPPS id=7014>编号</JOPPS></th>
+  %IF{%DETAIL_LEVEL%=0,,<th width=31% bgcolor="%COLOR_TABLEHEAD%"><JOPPS id=7015>名称</JOPPS></th>}
+
+<!--%% detail ----------------------------------------------------------------->
+%IF{%EVAL{%DETAILCNT% \\ 2 = 0},</tr><tr valign="top" align="left">,}
+  <td%IF{%FRAME_PER_PAGE_MARKER_ATTRIB%=1,%IF{@%DB_ATTRIB_RGB%="#000000",, bgcolor="%DSP_ATTRIB_RGB%"},} align="right">%DSP_ATTRIB_NO%</td>
+  <td%IF{%FRAME_PER_PAGE_MARKER_ATTRIB%=1,%IF{@%DB_ATTRIB_RGB%="#000000",, bgcolor="%DSP_ATTRIB_RGB%"},}>%IF{@%DB_ATTRIB_ARTICLECODE%,%DSP_ATTRIB_ARTICLECODE%,%EVAL{trim("%DSP_ATTRIB_ACC%")}.%DSP_ATTRIB_VARIETY%}</td>
+  %IF{%DETAIL_LEVEL%=0,,<td%IF{%FRAME_PER_PAGE_MARKER_ATTRIB%=1,%IF{@%DB_ATTRIB_RGB%="#000000",, bgcolor="%DSP_ATTRIB_RGB%"},}>%IF{@%DB_ATTRIB_ACCDESC%,%DSP_ATTRIB_ACCDESC%%IF{@%DB_ATTRIB_POSITION%,&nbsp;<i>(%EVAL{trim("%DSP_ATTRIB_POSITION%")})</i>,},&nbsp;}</td>}
+
+<!--%% detail footer ---------------------------------------------------------->
+  %IF{%EVAL{%TOTRECCNT% \\ 2},<td colspan=%EVAL{2+(%DETAIL_LEVEL%>0)}>&nbsp;</td>,}
+</tr>
+</table>
+
+<!--%%------------------------------------------------------------------------->

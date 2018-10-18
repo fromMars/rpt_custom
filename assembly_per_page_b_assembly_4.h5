@@ -1,0 +1,39 @@
+<!--assembly_per_page_b_assembly_4-->
+<!--Groep/blad: Glas----------------------------------------------------------->
+<br>
+<table border=0 width=100% %M_TABLEPARAM%>
+<tr valign="top">
+  <th align="left" colspan=%EVAL{4+(%DETAIL_LEVEL%>0)} bgcolor="%COLOR_TABLEHEAD%"><JOPPS id=8021>玻璃</JOPPS></th>
+</tr><tr valign="bottom" align="left">
+  <th bgcolor="%COLOR_TABLEHEAD%" align="right"><JOPPS id=8022>数量</JOPPS></th>
+  <th bgcolor="%COLOR_TABLEHEAD%" align="right"><JOPPS id=8023>宽度</JOPPS></th>
+  <th bgcolor="%COLOR_TABLEHEAD%" align="right"><JOPPS id=8024>高度</JOPPS></th>
+  <th bgcolor="%COLOR_TABLEHEAD%" align="right"><JOPPS id=8025>面积</JOPPS></th>
+  %IF{%DETAIL_LEVEL%=0,,<th bgcolor="%COLOR_TABLEHEAD%"><JOPPS id=8026>名称</JOPPS></th>}
+</tr>
+
+<!--%% detail ----------------------------------------------------------------->
+<tr valign="top" align="left"%IF{%ASSEMBLY_PER_PAGE_MARKER_GLASS%=1,%IF{@%DB_GLASS_RGB%="#000000",, bgcolor="%DSP_GLASS_RGB%"},}>
+  <td width=8% align="right">%DSP_GLASS_NO%</td>
+  %IF{%EVAL{@%DB_GLASS_WIDTH% && @%DB_GLASS_HEIGHT%},<td width=10% align="right">%DSP_GLASS_WIDTH%</td>,}
+  %IF{%EVAL{@%DB_GLASS_WIDTH% && @%DB_GLASS_HEIGHT%},<td width=10% align="right">%DSP_GLASS_HEIGHT%</td>,}
+  %IF{%EVAL{(@%DB_GLASS_WIDTH%=0) || (@%DB_GLASS_HEIGHT%=0)},<td width=20% align="center" colspan=2><JOPPS id=8037>(见附图)</JOPPS></td>,}
+  <td width=10% align="right">%DSP_GLASS_SURFACE%</td>
+  %IF{%DETAIL_LEVEL%=0,,<td width=62%>%IF{@%DB_GLASS_DESC%,%DSP_GLASS_DESC%%IF{@%DB_GLASS_POSITION%,&nbsp;<i>(%EVAL{trim("%DSP_GLASS_POSITION%")})</i>,},&nbsp;}</td>}
+</tr>
+
+<!--%% break header -->
+<tr valign="top">
+  <th align="left" colspan=%EVAL{4+(%DETAIL_LEVEL%>0)}>
+    <JOPPS id=8027>部分</JOPPS> #
+    %IF{%BATCHMODE%,#
+        %FORMAT{"BATCHFRAMEORDER:%EVAL{upper(trim("%DSP_GLASS_PROJECT%")+";"+trim("%DSP_GLASS_ASSEMBLY%")+";"+trim("%DSP_GLASS_FRAME%"))}",[EXTERNAL]},#
+        %DSP_GLASS_FRAME%}
+  </th>
+</tr>
+
+<!--%% break footer -->
+
+<!--%% detail footer ---------------------------------------------------------->
+</table>
+<!--%%------------------------------------------------------------------------->

@@ -1,0 +1,36 @@
+<!--statistics_e_project-->
+<!--Statistiek----------------------------------------------------------------->
+%IF{%STATISTICS_PROFILEINFO%=0,</tr><tr valign="top">,}
+%IF{%STATISTICS_PROFILEINFO%=0,  <td colspan=%STATISTICS_COLUMNS% align="center">,}
+%IF{%STATISTICS_PROFILEINFO%=0,    <table border=0 width=50% %M_TABLEPARAM%>,}
+%IF{%STATISTICS_PROFILEINFO%=0,    <tr valign="top" align="right">,}
+%IF{%STATISTICS_PROFILEINFO%=0,      <th width=70%><JOPPS id=21009>总数量</JOPPS></th>,}
+%IF{%STATISTICS_PROFILEINFO%=0,      <th width=30%>%DSP_TOTFRAMECNT%</th>,}
+%IF{%STATISTICS_PROFILEINFO%=0,    </tr><tr valign="top" align="right">,}
+%IF{%STATISTICS_PROFILEINFO%=0,      <th><JOPPS id=21006>总面积</JOPPS></th>,}
+%IF{%STATISTICS_PROFILEINFO%=0,      <th>%DSP_TOTFRAMEAREA%</th>,}
+%IF{%STATISTICS_PROFILEINFO%=0,    </tr><tr valign="top" align="right">,}
+%IF{%STATISTICS_PROFILEINFO%=0,      <th><JOPPS id=21007>三边总长</JOPPS></th>,}
+%IF{%STATISTICS_PROFILEINFO%=0,      <th>%DSP_TOTFRAMEEDGES%</th>,}
+%IF{%STATISTICS_PROFILEINFO%=0,    </tr><tr valign="top" align="right">,}
+%IF{%STATISTICS_PROFILEINFO%=0,      <th><JOPPS id=21008>总周长</JOPPS></th>,}
+%IF{%STATISTICS_PROFILEINFO%=0,      <th>%DSP_TOTFRAMESIDES%</th>,}
+%IF{%STATISTICS_PROFILEINFO%=0,%IF{%EVAL{%STATISTICS_WEIGHTINFO%=1},</tr><tr valign="top" align="right">,},}
+%IF{%STATISTICS_PROFILEINFO%=0,%IF{%EVAL{%STATISTICS_WEIGHTINFO%=1},  <th><JOPPS id=21023>总重量</JOPPS></th>,},}
+%IF{%STATISTICS_PROFILEINFO%=0,%IF{%EVAL{%STATISTICS_WEIGHTINFO%=1},  <th>%DSP_TOTTOTALWEIGHT%</th>,},}
+%IF{%STATISTICS_PROFILEINFO%=0,%IF{%EVAL{%STATISTICS_WEIGHTINFO%>1},</tr><tr valign="top" align="right">,},}
+%IF{%STATISTICS_PROFILEINFO%=0,%IF{%EVAL{%STATISTICS_WEIGHTINFO%>1},  <th><JOPPS id=21024>框架总重量</JOPPS></th>,},}
+%IF{%STATISTICS_PROFILEINFO%=0,%IF{%EVAL{%STATISTICS_WEIGHTINFO%>1},  <th>%DSP_TOTFRAMEWEIGHT%</th>,},}
+%IF{%STATISTICS_PROFILEINFO%=0,%IF{%EVAL{%STATISTICS_WEIGHTINFO%>2},</tr><tr valign="top" align="right">,},}
+%IF{%STATISTICS_PROFILEINFO%=0,%IF{%EVAL{%STATISTICS_WEIGHTINFO%>2},  <th><JOPPS id=21025>玻璃总重量</JOPPS></th>,},}
+%IF{%STATISTICS_PROFILEINFO%=0,%IF{%EVAL{%STATISTICS_WEIGHTINFO%>2},  <th>%DSP_TOTGLASSWEIGHT%</th>,},}
+%IF{%STATISTICS_PROFILEINFO%=0,    </tr>,}
+%IF{%STATISTICS_PROFILEINFO%=0,    </table>,}
+
+<!--%% detail ----------------------------------------------------------------->
+
+<!--%% break footer-->
+
+<!--%% detail footer ---------------------------------------------------------->
+
+<!--%%------------------------------------------------------------------------->

@@ -1,0 +1,22 @@
+<!--uvalues_b_frame_4-->
+<!--U-values: Surfaces--------------------------------------------------------->
+
+<!--%% detail ----------------------------------------------------------------->
+
+<!--%% detail footer ---------------------------------------------------------->
+<br>
+<table border=0 width=100% %M_TABLEPARAM%>
+<tr>
+  <th width=80% bgcolor="%COLOR_TABLEHEAD%" align="left">%DSP_UVALUES_DESC%&nbsp;(%DSP_UVALUES_ST%)</th>
+  <th width=20% bgcolor="%COLOR_TABLEHEAD%" align="right">%DSP_UVALUES_UW%</th>
+</tr>
+</table>
+
+<br>
+<table border=0 width=100% %M_TABLEPARAM%>
+<tr>
+  <th width=100% align="left"><JOPPS id=25015>This calculation has been made as an information.</JOPPS></th>
+</tr>
+</table>
+
+<!--%%------------------------------------------------------------------------->

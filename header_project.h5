@@ -1,0 +1,62 @@
+<!--header_project-->
+<!--Header projectgegevens----------------------------------------------------->
+<br>
+<table border=0 width=100% %M_TABLEPARAM_NOCOLORS% cellspacing=2>
+<tr valign="top">
+  <td width=100%>
+    <table border=0 width=100%>
+    <tr valign="top">
+      <td width=34%>
+        %IF{%HEADER_CLIENT_CODE%,<b>%CLIENT%</b>,}
+        %IF{%HEADER_CLIENT_CODE%%HEADER_CLIENT_NAME%, ,}
+        %IF{%HEADER_CLIENT_NAME%,%CLIENT_NAME%,}
+        %IF{%HEADER_CLIENT_CODE%%HEADER_CLIENT_NAME%,<br>,}
+        %IF{%HEADER_CLIENT_CONTACT%,%CLIENT_CONTACT%<br>,}
+        %IF{%HEADER_CLIENT_ADDRESS%,%CLIENT_ADDRESS%<br>,}
+        %IF{%HEADER_CLIENT_CITY%,%CLIENT_ZIP% %CLIENT_CITY%<br>,}
+        %IF{%HEADER_CLIENT_PHONE%,<JOPPS id=5>Phone :</JOPPS> %CLIENT_PHONE%<br>,}
+        %IF{%HEADER_CLIENT_FAX%,<JOPPS id=6>Fax :</JOPPS> %CLIENT_FAX%<br>,}
+        %IF{%HEADER_CLIENT_EMAIL%,<JOPPS id=7>E-mail :</JOPPS> %CLIENT_EMAIL%<br>,}
+        %IF{%HEADER_DATE%,%DATE%<br>,}
+      </td>
+      <td width=33%>
+        %IF{%HEADER_PROJECT_CODE%,<h4><b>%PROJECT%</b></h4><br>,}
+        %IF{%HEADER_PROJECT_NAME%,%PROJECTDESC%<br>,}
+        %IF{%HEADER_PROJECT_ADDRESS%,%PROJECTADDRESS1%<br>,}
+        %IF{%HEADER_PROJECT_ADDRESS%,%PROJECTADDRESS2%<br>,}
+        %IF{%HEADER_PROJECT_ADDRESS%,%PROJECTADDRESS3%<br>,}
+      </td>
+      <td width=33%>
+        %IF{%HEADER_PROJECT_SERIES%,<JOPPS id=8>系列 :</JOPPS> %PROJECTSERIES%<br>,}
+        %IF{%HEADER_PROJECT_PROFILE%,<JOPPS id=9>项目颜色 :</JOPPS> %PROJECTPROFILE%<br>,}
+        %IF{%HEADER_PROJECT_FRAME_PROFILE%,<JOPPS id=15>外框型材颜色 :</JOPPS> %PROJECTFRAMEPROFILE%<br>,}
+        %IF{%HEADER_PROJECT_VENT_PROFILE%,<JOPPS id=16>扇颜色 :</JOPPS> %PROJECTVENTPROFILE%<br>,}
+        %IF{%HEADER_PROJECT_BEAD%,<JOPPS id=10>工程玻璃压线颜色 :</JOPPS> %PROJECTBEAD%<br>,}
+        %IF{%HEADER_PROJECT_FRAME_BEAD%,<JOPPS id=17>框上压线颜色 :</JOPPS> %PROJECTFRAMEBEAD%<br>,}
+        %IF{%HEADER_PROJECT_VENT_BEAD%,<JOPPS id=18>扇压线颜色 :</JOPPS> %PROJECTVENTBEAD%<br>,}
+        %IF{%HEADER_PROJECT_FORCE%,<JOPPS id=21>Reinforcement finish project:</JOPPS> %PROJECTFORCE%<br>,}
+        %IF{%HEADER_PROJECT_FRAME_FORCE%,<JOPPS id=22>Reinforcement finish frames :</JOPPS> %PROJECTFRAMEFORCE%<br>,}
+        %IF{%HEADER_PROJECT_VENT_FORCE%,<JOPPS id=23>Reinforcement finish vents :</JOPPS> %PROJECTVENTFORCE%<br>,}
+        %IF{%HEADER_PROJECT_ACCESS%,<JOPPS id=11>Finish accessories project :</JOPPS> %PROJECTACCESS%<br>,}
+        %IF{%HEADER_PROJECT_FRAME_ACCESS%,<JOPPS id=19>Accessories finish frames :</JOPPS> %PROJECTFRAMEACCESS%<br>,}
+        %IF{%HEADER_PROJECT_VENT_ACCESS%,<JOPPS id=20>Accessories finish vents :</JOPPS> %PROJECTVENTACCESS%<br>,}
+        %IF{%HEADER_PROJECT_FILLING%,<JOPPS id=24>Glazing finish project:</JOPPS> %PROJECTFILLING%<br>,}
+        %IF{%HEADER_PROJECT_FRAME_FILLING%,<JOPPS id=25>Glazing finish frames :</JOPPS> %PROJECTFRAMEFILLING%<br>,}
+        %IF{%HEADER_PROJECT_VENT_FILLING%,<JOPPS id=26>Glazing finish vents :</JOPPS> %PROJECTVENTFILLING%<br>,}
+        %IF{%HEADER_PROJECT_FINISH%,<JOPPS id=27>Colour window finish project:</JOPPS> %PROJECTFINISH%<br>,}
+        %IF{%HEADER_PROJECT_FRAME_FINISH%,<JOPPS id=28>Colour window finish frames :</JOPPS> %PROJECTFRAMEFINISH%<br>,}
+        %IF{%HEADER_PROJECT_VENT_FINISH%,<JOPPS id=29>Colour window finish vents :</JOPPS> %PROJECTVENTFINISH%<br>,}
+        %IF{%HEADER_PROJECT_GLAZING%,<JOPPS id=12>Glazing :</JOPPS> %PROJECTGLAZING%<br>,}
+        %IF{%HEADER_PROJECT_NORM%,<JOPPS id=13>Position :</JOPPS> %PROJECTNORM%<br>,}
+        %IF{%HEADER_PROJECT_HEIGHT%,<JOPPS id=31>Level : </JOPPS> %PROJECTHEIGHT%<br>,}
+        %IF{%HEADER_PROJECT_VIEW%,<JOPPS id=30>View :</JOPPS> %PROJECTVIEW%<br>,}
+        %IF{%HEADER_PROJECT_DAYWEEK%,<JOPPS id=14>发运时间 :</JOPPS> %PROJECTDAYWEEK%<br>,}
+      </td>
+    </tr>
+    %IF{%EVAL{strlen(trim("%HEADER_PROJECT_MEMO%"))},<tr valign="top"><td colspan=3>%HEADER_PROJECT_MEMO%</td></tr>,}
+    %IF{%EVAL{%HEADER_PROJECT_COMMENT%&&lower(trim("%PROJECTCOMMENT%"))!="<br>"},<tr valign="top"><td colspan=3>%PROJECTCOMMENT%</td></tr>,}
+    </table>
+    %IF{%HEADER_PROJECT_BLOCKINFO%,%DSP_BLOCKINFO%,}
+  </td>
+</tr>
+</table>

@@ -1,0 +1,21 @@
+<!--assembly_per_page_b_assembly_drw-->
+<!--Groep/blad: schets--------------------------------------------------------->
+<br>
+<table border=0 width=100% cellpadding=5>
+<tr align="left">
+  <td bgcolor="%COLOR_ALTBACK%"><h3>
+ %IF{%BATCHMODE%,%PROJECT%*,}´°ºÅ:%ASSEMBLY% &nbsp;%ASSEMBLYDESC% &nbsp;ÊýÁ¿:%ASSEMBLYCOUNT% 
+    <JOPPS id=8001>éÌ</JOPPS>%IF{%BATCHMODE%,%PROJECT%*,} &nbsp;%ASSEMBLYDESC%
+
+
+  </h3></td>
+</tr>
+</table>
+%IF{%ASSEMBLY_PER_PAGE_OUTLINES%,<table width=100% border=0>#
+<tr valign="top">#
+  <td><a href="EDITOR:%ASSEMBLYATOM%">%DSP_DRAWASSEMBLY%%IF{%ASSEMBLY_PER_PAGE_SCALE%,<br>%DSP_SCALE%,}</a></td>#
+  %IF{%ASSEMBLY_PER_PAGE_INFOBELOW%,,<td width=60%><br>%DSP_INFOASSEMBLY%</td>}#
+</tr>#
+</table>#
+%IF{%ASSEMBLY_PER_PAGE_INFOBELOW%,<table border=0 width=60%><tr><td>%DSP_INFOASSEMBLY%</td></tr></table>,},#
+<table border=0 width=60%><tr><td><br>%DSP_INFOASSEMBLY%</td></tr></table>}

@@ -1,0 +1,15 @@
+<!--uvalues_b_frame_Sum-->
+<!--uvalues: Sum Filling Perimeter--------------------------------------------->
+
+<!--%% detail ----------------------------------------------------------------->
+
+<!--%% detail footer ---------------------------------------------------------->
+
+<tr>
+  <th align="left" colspan=%EVAL{2+(%SHOW_DETAILS%)*1}><JoPPS id=25006>×Ü¼Æ</JoPPS></th>
+  <th align="right">%DSP_UVALUES_PG%</th>
+  <th align="right">%DSP_UVALUES_UT%</th>
+</tr>
+</table>
+
+<!--%%------------------------------------------------------------------------->

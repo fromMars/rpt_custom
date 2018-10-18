@@ -1,0 +1,23 @@
+<!--uvalues_b_frame_3-->
+<!--U-values: Perimeters------------------------------------------------------->
+<br>
+<table border=0 width=100% %M_TABLEPARAM%>
+<tr>
+  <th width=%EVAL{30+(!%SHOW_DETAILS%)*10}% bgcolor="%COLOR_TABLEHEAD%" align="left"><JOPPS id=25011>边界影响</JOPPS></th>
+  %IF{%SHOW_DETAILS%,<th width=10% bgcolor="%COLOR_TABLEHEAD%" align="left"><JOPPS id=25016>来源</JOPPS></th>,}
+  <th width=20% bgcolor="%COLOR_TABLEHEAD%" align="right"><JOPPS id=25012>Psi (W/mK)</JOPPS></th>
+  <th width=20% bgcolor="%COLOR_TABLEHEAD%" align="right"><JOPPS id=25013>Lg (m)</JOPPS></th>
+  <th width=20% bgcolor="%COLOR_TABLEHEAD%" align="right"><JOPPS id=25014>Psi * Lg (W/K)</JOPPS></th>
+</tr>
+
+<!--%% detail ----------------------------------------------------------------->
+<tr>
+  <td align="left">%M_B_TAG%%DSP_UVALUES_DESC%%M_E_TAG%</td>
+  %IF{%SHOW_DETAILS%,<td align="left">%M_B_TAG%%DSP_UVALUES_SUPPLIER%%M_E_TAG%</td>,}
+  <td align="right">%M_B_TAG%%DSP_UVALUES_PSI%%M_E_TAG%</td>
+  <td align="right">%M_B_TAG%%DSP_UVALUES_PG%%M_E_TAG%</td>
+  <td align="right">%M_B_TAG%%DSP_UVALUES_UT%%M_E_TAG%</td>
+</tr>
+
+<!--%% detail footer ---------------------------------------------------------->
+<!--%%------------------------------------------------------------------------->

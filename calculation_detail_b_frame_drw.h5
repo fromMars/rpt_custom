@@ -1,0 +1,19 @@
+<!--calculation_detail_b_frame_drw-->
+<!--Calculatie detail: schets-------------------------------------------------->
+<br>
+<table border=0 width=100% cellpadding=5>
+<tr align="left">
+  <td bgcolor="%COLOR_ALTBACK%"><h3>
+    %IF{%BATCHMODE%,,%IF{%EVAL{%ASSEMBLYCOUNT%>1},<font color="%COLOR_ANNOTATE%">%ASSEMBLYCOUNT%x</font> , %ASSEMBLYCOUNT%x }}
+    %IF{%BATCHMODE%,,<JOPPS id=14056>éÌ</JOPPS> %ASSEMBLY%, }
+    <JOPPS id=14057>Frame</JOPPS> %IF{%BATCHMODE%,%FORMAT{"BATCHFRAMEORDER:%PROJECT%;%ASSEMBLY%;%FRAME%",[EXTERNAL]},%FRAME%}
+    &nbsp;%FRAMEDESC%
+  </h3></td>
+</tr>
+</table>
+<table border=0 width=100%>
+<tr valign="top">
+  <td><a href="EDITOR:%FRAMEATOM%">%DSP_DRAWCALCULATIONFRAME%%IF{%CALCULATION_DETAIL_SCALE%,<br>%DSP_SCALE%,}</a></td>
+  <td width=80%>%DSP_INFOFRAME%</td>
+</tr>
+</table>

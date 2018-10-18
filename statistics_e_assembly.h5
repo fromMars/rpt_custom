@@ -1,0 +1,43 @@
+<!--statistics_e_assembly-->
+<!--Statistiek----------------------------------------------------------------->
+%IF{%EVAL{%ASSEMBLYCNT% \\ %STATISTICS_COLUMNS%},,</tr><tr>}
+  <td width=%EVAL{100 // %STATISTICS_COLUMNS%}%% valign="top">
+    <table border=0 width=100%>
+    <tr valign="top">
+      <th align="left">
+        %IF{%EVAL{%ASSEMBLYCOUNT%>1},<font color="%COLOR_ANNOTATE%">%ASSEMBLYCOUNT%x</font> , %ASSEMBLYCOUNT%x }
+        <JOPPS id=21002>Group</JOPPS> %IF{%BATCHMODE%,%PROJECT%*,}%ASSEMBLY% %ASSEMBLYDESC%
+      </th>
+    </tr><tr valign="top">
+      <th><a href="EDITOR:%ASSEMBLYATOM%">%DSP_DRAWSTATISTICSASSEMBLY%%IF{%STATISTICS_SCALE%,<br>%DSP_SCALE%,}</a></th>
+    %IF{%EVAL{%STATISTICS_COLUMNS% > 1},</tr><tr valign="top">,}
+      <td>
+        <table border=0 width=100% %M_TABLEPARAM%>
+        <tr valign="top" align="right">
+          <td width=70%><JOPPS id=21003>面积</JOPPS></td>
+          <td width=30%>%DSP_FRAMEAREA%</td>
+        </tr><tr valign="top" align="right">
+          <td><JOPPS id=21004>三边长度</JOPPS></td>
+          <td>%DSP_FRAMEEDGES%</td>
+        </tr><tr valign="top" align="right">
+          <td><JOPPS id=21005>周长</JOPPS></td>
+          <td>%DSP_FRAMESIDES%</td>
+%IF{%EVAL{%STATISTICS_WEIGHTINFO%=1},</tr><tr valign="top" align="right">,}
+%IF{%EVAL{%STATISTICS_WEIGHTINFO%=1},  <td><JOPPS id=21020>重量</JOPPS></td>,}
+%IF{%EVAL{%STATISTICS_WEIGHTINFO%=1},  <td>%DSP_TOTALWEIGHT%</td>,}
+%IF{%EVAL{%STATISTICS_WEIGHTINFO%>1},</tr><tr valign="top" align="right">,}
+%IF{%EVAL{%STATISTICS_WEIGHTINFO%>1},  <td><JOPPS id=21021>框架重量</JOPPS></td>,}
+%IF{%EVAL{%STATISTICS_WEIGHTINFO%>1},  <td>%DSP_FRAMEWEIGHT%</td>,}
+%IF{%EVAL{%STATISTICS_WEIGHTINFO%>2},</tr><tr valign="top" align="right">,}
+%IF{%EVAL{%STATISTICS_WEIGHTINFO%>2},  <td><JOPPS id=21022>玻璃重量</JOPPS></td>,}
+%IF{%EVAL{%STATISTICS_WEIGHTINFO%>2},  <td>%DSP_GLASSWEIGHT%</td>,}
+        </tr>
+        </table>
+      </td>
+    </tr>
+    </table>
+
+
+
+
+

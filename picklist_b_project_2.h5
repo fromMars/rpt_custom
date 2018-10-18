@@ -1,0 +1,32 @@
+<!--picklist_b_project_2-->
+<!--Piklijst: Profielen-------------------------------------------->
+<br>
+<table border=0 width=100% %M_TABLEPARAM%>
+<tr valign="top">
+  <th align="left" colspan=3 bgcolor="%COLOR_TABLEHEAD%"><JOPPS id=28013>Profiles</JOPPS></th>
+</tr>
+<tr valign="bottom" align="left">
+  <th bgcolor="%COLOR_TABLEHEAD%" align="right"><JOPPS id=28014>Length</JOPPS></th>
+  <th bgcolor="%COLOR_TABLEHEAD%"><JOPPS id=28010>Description</JOPPS></th>
+  <th bgcolor="%COLOR_TABLEHEAD%"><JOPPS id=28012>Article number</JOPPS></th>
+</tr>
+
+<!--%% detail ----------------------------------------------------------------->
+<tr valign="top" align="left">
+  <td width=10% align="right">%DSP_RES_PIECELENGTH%</td>
+  <td width=60%>%IF{@%DB_PIECE_PROFILEDESC%,%DSP_PIECE_PROFILEDESC%,&nbsp;}</td>
+  <td width=30%>%EVAL{trim("%DSP_PIECE_PRODUCT%")}.%DSP_PIECE_VARIETY%</td>
+</tr>
+
+<!--%% break header 1 -->
+
+<!--%% break footer 1 -->
+<tr valign="top" align="left">
+  <th bgcolor="%COLOR_TABLEHEAD%" align="right">%DSP_RES_PIECELENGTH_SUM%</th>
+  <th bgcolor="%COLOR_TABLEHEAD%" align="left" colspan=2>%IF{%SHOW_DETAILS%,%EVAL{trim("%DSP_PIECE_PROJECT_BR%")+"*"+trim("%DSP_PIECE_ASSEMBLY_BR%")+"*"+trim("%DSP_PIECE_FRAME_BR%")},%EVAL{trim("%DSP_PART_PROJECT_BR%")}}</th>
+</tr>
+
+<!--%% detail footer ---------------------------------------------------------->
+</table>
+
+<!--%%------------------------------------------------------------------------->

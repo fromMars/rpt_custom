@@ -1,0 +1,187 @@
+<!--filling_list_b_project_1-->
+<!--Vullinglijst (hoofdgedeelte)---------------------------------------------------->
+%EVAL{setparam("W_CNT","7")}
+%EVAL{setparam("W_DESC",inttostr(27*(%DETAIL_LEVEL%>0)))}
+%EVAL{setparam("W_VRTY",inttostr(7*%SHOW_VARIETY%))}
+%EVAL{setparam("W_VDESC",inttostr(20*(%DETAIL_LEVEL%>0)*%SHOW_VARIETY%))}
+%EVAL{setparam("W_WDTH","10")}
+%EVAL{setparam("W_HGHT","10")}
+%EVAL{setparam("W_REF","16")}
+%EVAL{setparam("W_SURF","9")}
+%EVAL{setparam("W_BATCH",inttostr(5*%SHOW_BATCH%))}
+%EVAL{setparam("W_WGHT",inttostr(9*%SHOW_WEIGHT%))}
+%EVAL{setparam("W_PRICE",inttostr(12*%SHOW_PRICE%))}
+%EVAL{setparam("W_CHANGE",numtostr(100/(%W_BATCH%+%W_CNT%+%W_DESC%+%W_VRTY%+%W_VDESC%+%W_WDTH%+%W_HGHT%+%W_REF%+%W_SURF%+%W_WGHT%+%W_PRICE%)))}
+%EVAL{setparam("W_CNT",inttostr(%W_CNT%*%W_CHANGE%))}
+%EVAL{setparam("W_DESC",inttostr(%W_DESC%*%W_CHANGE%))}
+%EVAL{setparam("W_VRTY",inttostr(%W_VRTY%*%W_CHANGE%))}
+%EVAL{setparam("W_VDESC",inttostr(%W_VDESC%*%W_CHANGE%))}
+%EVAL{setparam("W_WDTH",inttostr(%W_WDTH%*%W_CHANGE%))}
+%EVAL{setparam("W_HGHT",inttostr(%W_HGHT%*%W_CHANGE%))}
+%EVAL{setparam("W_SURF",inttostr(%W_SURF%*%W_CHANGE%))}
+%EVAL{setparam("W_WGHT",inttostr(%W_WGHT%*%W_CHANGE%))}
+%EVAL{setparam("W_PRICE",inttostr(%W_PRICE%*%W_CHANGE%))}
+%EVAL{setparam("W_REF",inttostr(100-%W_BATCH%-%W_CNT%-%W_DESC%-%W_VRTY%-%W_VDESC%-%W_WDTH%-%W_HGHT%-%W_SURF%-%W_WGHT%-%W_PRICE%))}
+
+<!--%% detail ----------------------------------------------------------------->
+<!-- Begin detail glass_order_b_project_1 -->
+<tr valign="top">
+  <td width=%W_CNT%%% align="right">%DSP_GLASS_NO%</td>
+  %IF{%SHOW_BATCH%,<td width=%W_BATCH%%% align="right">%DSP_GLASS_BATCHID%</td>,}
+  %IF{%DETAIL_LEVEL%=0,,<td width=%W_DESC%%%>%DSP_GLASS_DESC%</td>}
+  %IF{%SHOW_VARIETY%,<td width=%W_VRTY%%%>%IF{@%DB_GLASS_ARTICLECODE%,%DSP_GLASS_ARTICLECODE%,%IF{%FILLING_LIST_VARIANT%,%IF{@%DB_GLASS_VARIETY%,%DSP_GLASS_VARIETY%,&nbsp;},%IF{@%DB_GLASS_SERIE%,%DSP_GLASS_SERIE%,&nbsp;}}}</td>,}
+  %IF{%EVAL{(%DETAIL_LEVEL%>0) && %SHOW_VARIETY%},<td width=%W_VDESC%%%>%IF{@%DB_GLASS_VARIETYDESC%,%DSP_GLASS_VARIETYDESC%,&nbsp;}</td>,}
+  %EVAL{setparam("VAR_SPECIAL", iif((@%DB_GLASS_WIDTH%=0) || (@%DB_GLASS_HEIGHT%=0), "1", "%VAR_SPECIAL%"))}
+  %IF{%EVAL{@%DB_GLASS_WIDTH% && @%DB_GLASS_HEIGHT%},<td width=%W_WDTH%%% align="right">%DSP_GLASS_WIDTH%</td>,}
+  %IF{%EVAL{@%DB_GLASS_WIDTH% && @%DB_GLASS_HEIGHT%},<td width=%W_HGHT%%% align="right">%DSP_GLASS_HEIGHT%</td>,}
+  %IF{%EVAL{(@%DB_GLASS_WIDTH%=0) || (@%DB_GLASS_HEIGHT%=0)},<td width=%EVAL{%W_WDTH%+%W_HGHT%}% align="center" colspan=2><JOPPS id=23014>(see enclosure)</JOPPS></td>,}
+  <td width=%W_REF%%%>
+    %IF{ %BATCHMODE%,%EVAL{trim("%DSP_GLASS_PROJECT%")}*,}#
+    %IF{ %EVAL{( %SHOW_DETAIL%=%C_REF_DETAILED%) || ( %SHOW_DETAIL%=%C_REF_FILLINGCODE%)},#
+         %IF{@%DB_GLASS_REFERENCE%,%DSP_GLASS_REFERENCE%,&nbsp;},#
+         %IF{ %SHOW_DETAIL%=%C_REF_ASSEMBLY%,#
+              %IF{ %FILLING_LIST_BATCHREF%,#
+                   %IF{@%DB_GLASS_REFERENCE%,%EVAL{substr("%DSP_GLASS_REFERENCE%",1,strpos(":","%DSP_GLASS_REFERENCE%")-1)},&nbsp;},#
+                   %IF{@%DB_GLASS_ASSEMBLY%,%EVAL{trim("%DSP_GLASS_ASSEMBLY%")},&nbsp;}},#
+                   &nbsp;}}
+  </td>
+  <td width=%W_SURF%%% align="right">%DSP_GLASS_MEASURE%</td>
+  %IF{%SHOW_WEIGHT%,<td width=%W_WGHT%%% align="right">%DSP_GLASS_WEIGHT%</td>,}
+  %IF{%SHOW_PRICE%,<td width=%W_PRICE%%% align="right">%DSP_GLASS_PRICE%</td>,}
+</tr>
+<!-- end detail glass_order_b_project_1 -->
+
+<!--%% break header 1-->
+<!-- Begin break header 1 glass_order_b_project_1 -->
+%IF{%DETAILCNT%,<page>,}
+%INCLUDE{%FILE_HEADER_PROJECT%}
+<BR>
+<table width=100% border=%FILLING_LIST_EXCELCOMPAT% cellspacing=2 %M_COLOR_TABLEDATA_NOCOLORS% bordercolor="%COLOR_TITLEBORDER%" cellpadding=5>
+<tr>
+  <td width=100% colspan=8>
+    <table border=0 width=100%>
+    <tr valign="top">
+      <td width=10%></td>
+      <td valign="top" width=40% colspan=3>%COMPANY%</td>
+      <td width=10%></td>
+      <td valign="top" width=40% colspan=3>%DSP_TEXT_CLIENT%</td>
+    </tr><tr valign="top">
+      <td></td>
+      <td valign="top" colspan=3>%STREET%</td>
+      <td></td>
+      <td valign="top" colspan=3>%DSP_TEXT_STREET%</td>
+    </tr><tr valign="top">
+      <td></td>
+      <td valign="top" colspan=3>%ZIP% %PLACE%</td>
+      <td></td>
+      <td valign="top" colspan=3>%DSP_TEXT_ZIP% %DSP_TEXT_PLACE%</td>
+    </tr><tr valign="top">
+      <td valign="top" align="right">%IF{%PHONE%,<JOPPS id=23001>Phone :</JOPPS>,}</td>
+      <td valign="top" colspan=3>%PHONE%</td>
+      <td valign="top" align="right">%IF{@%DB_TEXT_PHONE%,<JOPPS id=23001>Phone :</JOPPS>,}</td>
+      <td valign="top" colspan=3>%DSP_TEXT_PHONE%</td>
+    </tr><tr valign="top">
+      <td valign="top" align="right">%IF{%FAX%,<JOPPS id=23002>Fax :</JOPPS>,}</td>
+      <td valign="top" colspan=3>%FAX%</td>
+      <td valign="top" align="right">%IF{@%DB_TEXT_TELEFAX%,<JOPPS id=23002>Fax :</JOPPS>,}</td>
+      <td valign="top" colspan=3>%DSP_TEXT_TELEFAX%</td>
+    </tr>
+    </table>
+  </td>
+</tr>
+</table>
+<BR>
+<table border=%FILLING_LIST_EXCELCOMPAT% width=100% cellspacing=2 %M_COLOR_TABLEDATA_NOCOLORS% bordercolor="%COLOR_TITLEBORDER%">
+<tr>
+  <td width=100% colspan=8>
+    <table border=0 width=100% cellpadding=5>
+    <tr valign="top">
+      <td width=2%>&nbsp;</td>
+      <td valign="top" width=98% colspan=7><JOPPS id=23003>Reference :</JOPPS> %DSP_TEXT_NAME%</td>
+    </tr>
+    </table>
+  </td>
+</tr>
+</table>
+<BR>
+<table border=%FILLING_LIST_EXCELCOMPAT% width=100% cellspacing=2 %M_COLOR_TABLEDATA_NOCOLORS% bordercolor="%COLOR_TITLEBORDER%">
+<tr>
+  <td width=100% colspan=8>
+    <table border=0 width=100% cellpadding=5>
+    <tr valign="top">
+      <td width=2%>&nbsp;</td>
+      <td valign="top" width=73% colspan=4><b>%IF{%BATCHMODE%,<JOPPS id=23004>订单 * 批 :</JOPPS>,<JOPPS id=23026>订单 * 项目 :</JOPPS>} %DSP_GLASS_BATCH%</b></td>
+      <td valign="top" width=23% align="right" colspan=2><JOPPS id=23005>Date :</JOPPS> %DATE%</td>
+      <td width=2%>&nbsp;</td>
+    </tr>
+    </table>
+  </td>
+</tr>
+</table>
+<BR>
+<table border=%FILLING_LIST_EXCELCOMPAT% width=100% %M_TABLEPARAM_NOCOLORS%>
+<tr align="left" valign="top">
+  <td valign="top" width=%W_CNT%%% %M_COLOR_TABLEHEAD_NOCOLORS% align="right"><b><JOPPS id=23006>数量</JOPPS></b></td>
+  %IF{%SHOW_BATCH%,<td valign="top" width=%W_BATCH%%% %M_COLOR_TABLEHEAD_NOCOLORS% align="right"><b><JOPPS id=23028>批数量</JOPPS></b></td>,}
+  %IF{%DETAIL_LEVEL%=0,,<td valign="top" width=%W_DESC%%% %M_COLOR_TABLEHEAD_NOCOLORS%><b><JOPPS id=23007>名称</JOPPS></b></td>}
+  %IF{%SHOW_VARIETY%,<td valign="top" %IF{%DETAIL_LEVEL%=0,,colspan=2} width=%EVAL{%W_VRTY%+%W_VDESC%}% %M_COLOR_TABLEHEAD_NOCOLORS% align="center"><b><JOPPS id=23025>编号</JOPPS></b></td>,}
+  <td valign="top" width=%W_WDTH%%% %M_COLOR_TABLEHEAD_NOCOLORS% align="right"><b><JOPPS id=23008>宽度</JOPPS></b></td>
+  <td valign="top" width=%W_HGHT%%% %M_COLOR_TABLEHEAD_NOCOLORS% align="right"><b><JOPPS id=23009>高度</JOPPS></b></td>
+  <td valign="top" width=%W_REF%%% %M_COLOR_TABLEHEAD_NOCOLORS%><b><JOPPS id=23010>用于</JOPPS></b></td>
+  <td valign="top" width=%W_SURF%%% %M_COLOR_TABLEHEAD_NOCOLORS% align="right"><b><JOPPS id=23011>面积</JOPPS></b></td>
+  %IF{%SHOW_WEIGHT%,<td valign="top" width=%W_WGHT%%% %M_COLOR_TABLEHEAD_NOCOLORS% align="right"><b><JOPPS id=23012>重量</JOPPS></b></td>,}
+  %IF{%SHOW_PRICE%,<td valign="top" width=%W_PRICE%%% %M_COLOR_TABLEHEAD_NOCOLORS% align="right"><b>%IF{%FILLING_LIST_REBATE%,<JOPPS id=23024>折扣后价格</JOPPS>,<JOPPS id=23013>价格</JOPPS>}</b></td>,}
+</tr>
+</table>
+%EVAL{setparam("VAR_SPECIAL","0")}
+
+<!-- end break header 1 filling_order_b_project_1 -->
+
+<!--%% break footer 1-->
+<!-- Begin break footer 1- filling_order_b_project_1 -->
+<BR>
+<table border=%FILLING_LIST_EXCELCOMPAT% width=100% %M_TABLEPARAM_NOCOLORS%>
+<tr valign="top">
+  <td valign="top" width=%W_CNT%%% align="right"><b>%DSP_GLASS_NO_SUM%</b></td>
+  <td valign="top" width=%EVAL{inttostr(%W_BATCH%+%W_DESC%+%W_VRTY%+%W_VDESC%+%W_WDTH%+%W_HGHT%+%W_REF%)}%>&nbsp;</td>
+  <td valign="top" width=%W_SURF%%% align="right"><b>%DSP_GLASS_MEASURE_SUM%</b></td>
+  %IF{%SHOW_WEIGHT%,<td valign="top" width=%W_WGHT%%% align="right"><b>%DSP_GLASS_WEIGHT_SUM%</b></td>,}
+  %IF{%SHOW_PRICE%,<td valign="top" width=%W_PRICE%%% align="right"><b>%DSP_GLASS_PRICE_SUM%</b></td>,}
+</tr>
+</table>
+<BR><BR>
+<table border=0 width=100%>
+<tr>
+  <td width=75% colspan=6></td>
+  <td width=25% colspan=2><JOPPS id=23015>Yours faithfully,</JOPPS></td>
+</tr>
+</table>
+<BR><BR>
+%IF{%VAR_SPECIAL%,<p><JOPPS id=23016>Enclosure: special forms.</JOPPS></p>,}
+<!-- end break footer 1- glass_order_b_project_1 -->
+
+<!--%% break header 2-->
+<!-- Begin break header 2- glass_order_b_project_1 -->
+<BR>
+<table border=%FILLING_LIST_EXCELCOMPAT% width=100% %M_TABLEPARAM_NOCOLORS%>
+<!-- end break header 2- glass_order_b_project_1 -->
+
+<!--%% break footer 2-->
+<!-- Begin break footer 2- glass_order_b_project_1 -->
+</table>
+
+<!--%IF{%EVAL{%SHOW_DETAIL% >= %C_REF_FILLINGCODE%},<BR>,}-->
+%IF{%EVAL{%SHOW_DETAIL% >= %C_REF_FILLINGCODE%},<table border=%GLASS_ORDER_EXCELCOMPAT% width=100% %M_TABLEPARAM_NOCOLORS%>,}
+%IF{%EVAL{%SHOW_DETAIL% >= %C_REF_FILLINGCODE%},<tr valign="top">,}
+%IF{%EVAL{%SHOW_DETAIL% >= %C_REF_FILLINGCODE%},  <td valign="top" width=%W_CNT%%% align="right"><b>%DSP_GLASS_NO_SUM%</b></td>,}
+%IF{%EVAL{%SHOW_DETAIL% >= %C_REF_FILLINGCODE%},  <td valign="top" width=%EVAL{inttostr(%W_BATCH%+%W_DESC%+%W_VRTY%+%W_VDESC%+%W_WDTH%+%W_HGHT%+%W_REF%)}%>&nbsp;</td>,}
+%IF{%EVAL{%SHOW_DETAIL% >= %C_REF_FILLINGCODE%},  <td valign="top" width=%W_SURF%%% align="right"><b>%DSP_GLASS_MEASURE_SUM%</b></td>,}
+%IF{%EVAL{%SHOW_DETAIL% >= %C_REF_FILLINGCODE%},  %IF{%SHOW_WEIGHT%,<td valign="top" width=%W_WGHT%%% align="right"><b>%DSP_GLASS_WEIGHT_SUM%</b></td>,},}
+%IF{%EVAL{%SHOW_DETAIL% >= %C_REF_FILLINGCODE%},  %IF{%SHOW_PRICE%,<td valign="top" width=%W_PRICE%%% align="right"><b>%DSP_GLASS_PRICE_SUM%</b></td>,},}
+%IF{%EVAL{%SHOW_DETAIL% >= %C_REF_FILLINGCODE%},</tr>,}
+%IF{%EVAL{%SHOW_DETAIL% >= %C_REF_FILLINGCODE%},</table>,}
+<!-- end break footer 2- glass_order_b_project_1 -->
+
+<!--%% detail footer ---------------------------------------------------------->
+
+<!--%%------------------------------------------------------------------------->

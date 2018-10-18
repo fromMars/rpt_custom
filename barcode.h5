@@ -1,0 +1,10 @@
+<!--barcode-->
+<!--Barcode gegevens----------------------------------------------------------->
+<br>
+<table border=0 width=100% %M_TABLEPARAM_NOCOLORS% cellspacing=2>
+<tr align="center" valign="middle">
+  <td width=100%>
+    %DSP_BARCODE%
+  </td>
+</tr>
+</table>

@@ -1,0 +1,33 @@
+<!--accessories_list_b_project_2-->
+<!--Beslaglijst: Rubbers------------------------------------------------------->
+<br>
+<table border=0 width=100% %M_TABLEPARAM%>
+<tr valign="top">
+  <th align="left" colspan=%EVAL{2+(%DETAIL_LEVEL%>0)} bgcolor="%COLOR_TABLEHEAD%"><JOPPS id=4005>胶条类</JOPPS></th>
+</tr><tr valign="bottom" align="left">
+  <th width=10% bgcolor="%COLOR_TABLEHEAD%" align="right"><JOPPS id=4006>长度</JOPPS></th>
+  <th width=19% bgcolor="%COLOR_TABLEHEAD%"><JOPPS id=4007>编号</JOPPS></th>
+  %IF{%DETAIL_LEVEL%=0,,<th width=71% bgcolor="%COLOR_TABLEHEAD%"><JOPPS id=4008>名称</JOPPS></th>}
+</tr>
+
+<!--%% detail ----------------------------------------------------------------->
+<tr valign="top" align="left">
+  <td align="right">%DSP_ATTRIB_LENGTH%</td>
+  <td>%IF{@%DB_ATTRIB_ARTICLECODE%,%DSP_ATTRIB_ARTICLECODE%,%EVAL{trim("%DSP_ATTRIB_ACC%")}.%DSP_ATTRIB_VARIETY%}</td>
+  %IF{%DETAIL_LEVEL%=0,,<td>%IF{@%DB_ATTRIB_ACCDESC%,%DSP_ATTRIB_ACCDESC%%IF{@%DB_ATTRIB_POSITION%,&nbsp;<i>(%EVAL{trim("%DSP_ATTRIB_POSITION%")})</i>,},&nbsp;}</td>}
+</tr>
+
+<!--%% break header -->
+<tr>
+  <th align="left" colspan=%EVAL{2+(%DETAIL_LEVEL%>0)}>
+    %IF{%BATCHMODE%,#
+    %BATCH%*%FORMAT{"BATCHFRAMEORDER:%EVAL{upper(trim("%DSP_ATTRIB_PROJECT%")+";"+trim("%DSP_ATTRIB_ASSEMBLY%")+";"+trim("%DSP_ATTRIB_FRAME%"))}",[EXTERNAL]},#
+    %EVAL{upper(trim("%DSP_ATTRIB_PROJECT%")+"*"+trim("%DSP_ATTRIB_ASSEMBLY%")+"*"+trim("%DSP_ATTRIB_FRAME%"))}}
+  </th>
+</tr>
+
+<!--%% break footer -->
+
+<!--%% detail footer ---------------------------------------------------------->
+</table>
+<!--%%------------------------------------------------------------------------->

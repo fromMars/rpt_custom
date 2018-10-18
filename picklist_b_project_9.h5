@@ -1,0 +1,53 @@
+<!--picklist_b_project_9-->
+<!--Piklijst: Einde-------------------------------------------->
+<br>
+<br>
+<font size=+1>
+<table border=0 width=100% cellspacing=2>
+<tr valign="top">
+  <th valign="top" width=50% align="center"><JOPPS id=28021>Packed by</JOPPS></td>
+  <th valign="top" width=50% align="center"><JOPPS id=28022>Checked by</JOPPS></td>
+<tr valign="top">
+  <td valign="top" width=50% align="center">&nbsp;</td>
+  <td valign="top" width=50% align="center">&nbsp;</td>
+</tr>
+</tr>
+<tr valign="top">
+  <td valign="top" width=50% align="center">_________________________</td>
+  <td valign="top" width=50% align="center">_________________________</td>
+</tr>
+</table>
+<br>
+<br>
+<b><i><JOPPS id=28023>Because of the dimensions of our products, we expect help with unloading.</JOPPS></i></b>
+<br>
+<b><i><JOPPS id=28024>Without help we cannot accept reklamaties on transport damage.</JOPPS></i></b>
+</font>
+<br>
+<br>
+<i><JOPPS id=28025>Please fill in upon receipt</JOPPS></i>
+<br>
+<table border=0 width=100%>
+<tr>
+  <td width=30%>
+    <table border=0 width=100% %M_TABLEPARAM%>
+      <tr valign="top"><th><JOPPS id=28026>Delivery date :</JOPPS></th></tr>
+      <tr valign="top"><td>&nbsp;<br>&nbsp;<br>&nbsp;</td></tr>
+    </table>
+  </td>
+  <td width=40%>
+    <table border=0 width=100% %M_TABLEPARAM%>
+      <tr valign="top"><th><JOPPS id=28027>Name in capital letters :</JOPPS></th></tr>
+      <tr valign="top"><td>&nbsp;<br>&nbsp;<br>&nbsp;</td></tr>
+    </table>
+  </td>
+  <td width=30%>
+    <table border=0 width=100% %M_TABLEPARAM%>
+      <tr valign="top"><th><JOPPS id=28028>Signature :</JOPPS></th></tr>
+      <tr valign="top"><td>&nbsp;<br>&nbsp;<br>&nbsp;</td></tr>
+    </table>
+  </td>
+</tr>
+</table>
+
+<!--%%------------------------------------------------------------------------->

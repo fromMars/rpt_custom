@@ -1,0 +1,26 @@
+%% detail
+WORK:@%DB_MOPS_OFFSET%,#
+     "@%DB_MOPS_CODE%",#
+     "@%DB_MOPS_DESC%"
+%% break header 1
+%EVAL{setparam("BARCNT_T",inttostr(strtonum(getparam("BARCNT_T","0"))+1))}#
+BAR:%EVAL{getparam("BARCNT_T")},#
+    @%DB_PIECE_OPTREPNO%,#
+    @%DB_PIECE_LOPT%,#
+    "@%DB_PIECE_SYSTEM%",#
+    "@%DB_PIECE_PROFILE%",#
+    "@%DB_PIECE_VARIETY%",#
+    @%DB_PIECE_WIDTH%,#
+    @%DB_PIECE_THICKNESS%,#
+    "@%DB_PIECE_PROFILEDESC%"
+%% break footer 1
+%% break header 2
+CUT:@%DB_PIECE_OPTSEQNO%,#
+    @%DB_PIECE_LOUTPUT%,#
+    @%DB_PIECE_ANGLEB%,#
+    @%DB_PIECE_ANGLEE%,#
+    "@%DB_PIECE_ID_PRJ%",#
+    @%DB_PIECE_COUNT%
+%% break footer 2
+%% detail footer
+%%

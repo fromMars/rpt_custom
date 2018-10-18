@@ -1,0 +1,34 @@
+<!--delivery_note_b_assembly-->
+<!--Levernota: detail---------------------------------------------------------->
+%IF{%EVAL{%ASSEMBLYCNT% \\ %DELIVERY_NOTE_COLUMNS%},,</tr><tr>}
+  <td width="%EVAL{100 // %DELIVERY_NOTE_COLUMNS%}%%" valign="top">
+    <table border=0 width=100%>
+    <tr valign="top">
+      <th><a href="EDITOR:%ASSEMBLYATOM%">%DSP_DRAWDELIVERYASSEMBLY%%IF{%DELIVERY_NOTE_SCALE%,<br>%DSP_SCALE%,}</a></th>
+    %IF{%EVAL{%DELIVERY_NOTE_COLUMNS% > 1},</tr><tr valign="top">,}
+      <td valign="top" width=%EVAL{if(%DELIVERY_NOTE_COLUMNS% > 1,"100","90")}%>
+        <table border=0 width=100% %M_TABLEPARAM_NOCOLORS%>
+
+<!--%% detail------------------------------------------------------------------>
+        <tr valign="top">
+          <td width=10% align="right">%M_BTAG%%IF{@%DB_OFFER_CFAFFPIECES%,%DSP_OFFER_CFAFFPIECES%,&nbsp;}%M_ETAG%</td>
+          <td width=15% align="left">%M_BTAG%%DSP_RES_ID%%M_ETAG%</td>
+          <td width=75%>%M_BTAG%%IF{%SH_POSITION%,@%DB_OFFER_POSITION%&nbsp;=&nbsp;,}%IF{@%DB_OFFER_DESC%,%DSP_OFFER_DESC%,&nbsp;}%M_ETAG%</td>
+        </tr>
+
+<!--%% footer------------------------------------------------------------------>
+        </table>
+      </td>
+    </tr>
+    </table>
+%IF{%ANNEX_ENABLED%,,</td>}
+%IF{%ANNEX_ENABLED%,,#
+    %IF{%EVAL{(%ASSEMBLYTOT% > 0) && (%ASSEMBLYCNT% = %ASSEMBLYTOT%-1) && (%ASSEMBLYTOT% \\ %DELIVERY_NOTE_COLUMNS% != 0)},#
+        <td colspan="%EVAL{%DELIVERY_NOTE_COLUMNS% - %ASSEMBLYCNT%\\%DELIVERY_NOTE_COLUMNS% - 1}"#
+        width="%EVAL{(%DELIVERY_NOTE_COLUMNS% - %ASSEMBLYCNT%\\%DELIVERY_NOTE_COLUMNS% - 1)*(100 // %DELIVERY_NOTE_COLUMNS%)}%%">#
+        &nbsp;#
+        </td>,#
+       }#
+   }
+
+<!--%%------------------------------------------------------------------------->

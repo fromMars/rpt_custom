@@ -1,0 +1,25 @@
+<!--invoice_b_project_3-->
+<!--Factuur: eindtekst--------------------------------------------------------->
+
+<!--%% detail ----------------------------------------------------------------->
+<p>
+%IF{@%DB_TEXT_CONDITIONS%,<JOPPS id=18028>Terms of payment :</JOPPS> %DSP_TEXT_CONDITIONS%,}
+</p>
+<br>
+<table border=%INVOICE_WORDCOMPAT% width=100% cellspacing=2 %M_COLOR_TABLEDATA_NOCOLORS% bordercolor="%COLOR_TITLEBORDER%">
+<tr>
+  <td width=100%>
+    <table border=0 width=100% cellpadding=5>
+    <tr valign="top" align="center">
+      <td valign="top" align="center" width=34%>%COMPANY%</td>
+      <td valign="top" align="center" width=32%><JOPPS id=18029>VAT-nr :</JOPPS> %GLOBAL_TAXNUMBER%</td>
+      <td valign="top" align="center" width=34%><JOPPS id=18030>Bank account :</JOPPS> %GLOBAL_ACCOUNT%</td>
+    </tr>
+    </table>
+  </td>
+</tr>
+</table>
+
+<!--%% detail footer ---------------------------------------------------------->
+
+<!--%%------------------------------------------------------------------------->

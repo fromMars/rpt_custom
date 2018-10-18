@@ -1,0 +1,38 @@
+%EVAL{setparam("GLOBAL_COMPANY","北京万享建材有限公司")}#
+%EVAL{setparam("GLOBAL_STREET","中国 北京")}#
+%EVAL{setparam("GLOBAL_PLACE","")}%EVAL{setparam("GLOBAL_ZIP","")}#
+%EVAL{setparam("GLOBAL_PHONE","400-000-3380")}#
+%EVAL{setparam("GLOBAL_FAX","")}#
+%EVAL{setparam("GLOBAL_EMAIL","")}#
+%EVAL{setparam("GLOBAL_MAILBOXADDRESS","")}#
+%EVAL{setparam("GLOBAL_MAILBOXLOACE","")}#
+%EVAL{setparam("GLOBAL_MAILBOXCODE","")}#
+%EVAL{setparam("GLOBAL_DELSTREET","")}#
+%EVAL{setparam("GLOBAL_DELPLACE","")}#
+%EVAL{setparam("GLOBAL_DELZIP","")}#
+%EVAL{setparam("GLOBAL_DELPHONE","")}#
+%EVAL{setparam("GLOBAL_DELFAX","")}#
+%EVAL{setparam("GLOBAL_DELMAIL","")}#
+%EVAL{setparam("GLOBAL_DELMAILBOXADDRESS","")}#
+%EVAL{setparam("GLOBAL_DELMAILBOXLOACE","")}#
+%EVAL{setparam("GLOBAL_DELMAILBOXCODE","")}#
+%EVAL{setparam("GLOBAL_TAXNUMBER","")}#
+%EVAL{setparam("GLOBAL_TRADEREGISTER","")}#
+%EVAL{setparam("DB_DESC","watjoy")}#
+%EVAL{setparam("DSP_TEXT_CONTACT","watjoy")}#
+%EVAL{setparam("DSP_TEXT_STREET","")}#
+%EVAL{setparam("DSP_TEXT_ZIP","")}#
+%EVAL{setparam("DSP_TEXT_PLACE","Beijing, China")}#
+%EVAL{setparam("DSP_TEXT_PHONE","400-000-3380")}#
+%EVAL{setparam("DSP_TEXT_TELEFAX","")}#
+%EVAL{setparam("DSP_TEXT_CLIENT","watjoy")}#
+%EVAL{setparam("COMPANY","watjoy")}#
+%EVAL{setparam("STREET","")}#
+%EVAL{setparam("PLACE","Beijing, China")}#
+%EVAL{setparam("ZIP","")}#
+%EVAL{setparam("PHONE","400-000-3380")}#
+%EVAL{setparam("FAX","")}#
+%EVAL{setparam("EMAIL","")}#
+%EVAL{setparam("SMALLLOGO","E:\JoPPSWin\Rpt\Custom\watjoy_logo.bmp")}#
+%EVAL{setparam("DSP_TEXT_CLIENT","北京万享建材有限公司")}#
+

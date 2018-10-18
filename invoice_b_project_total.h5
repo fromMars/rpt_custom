@@ -1,0 +1,53 @@
+<!--invoice_b_project_total-->
+<!--Factuur: saldo------------------------------------------------------------->
+<table border=%INVOICE_WORDCOMPAT% width=100% %M_TABLEPARAM_NOCOLORS%>
+
+<!--%% detail ----------------------------------------------------------------->
+%IF{@%DB_TEXT_TAXTARIFF%,<tr valign="top" align="left"> #
+  <td valign="top" %M_COLOR_TABLEHEAD_NOCOLORS% width=85%><JOPPS id=18043>VAT</JOPPS> %DSP_TEXT_TAXTARIFF%<JOPPS id=18044> :</JOPPS></td> #
+  <td valign="top" %M_COLOR_TABLEHEAD_NOCOLORS% align="right" width=15%>%DSP_RES_TAX%</td> #
+</tr>,}
+  <tr valign="top" align="left">
+  <td valign="top" %M_COLOR_TABLEHEAD_NOCOLORS%><b>%IF{@%DB_TEXT_TAXTARIFF%,<JOPPS id=18045>Total amount VAT included :</JOPPS>,<JOPPS id=18065>Total price (VAT excluded)</JOPPS>}</b>
+    %IF{%EVAL{%INVOICE_CURR2_SHOW% && !%SH_TRANSPORT%},<BR><i><JOPPS id=18046>Total amount VAT included in</JOPPS> #
+      %INVOICE_CURR2_PREFIX% %INVOICE_CURR2_POSTFIX% <JOPPS id=18047>(</JOPPS>#
+      %IF{%INVOICE_CURR2_ACTION%=%C_DIVIDE%,%IF{%INVOICE_CURR2_PREFIX%,%INVOICE_CURR2_PREFIX% ,},%IF{%FM_OFFERPRECURR%,%FM_OFFERPRECURR% ,}}#
+      <JOPPS id=18048>1</JOPPS> #
+      %IF{%INVOICE_CURR2_ACTION%=%C_DIVIDE%,%INVOICE_CURR2_POSTFIX%,%FM_OFFERPOSTCURR%} #
+      <JOPPS id=18049>=</JOPPS> #
+      %IF{%INVOICE_CURR2_ACTION%=%C_DIVIDE%,%FM_OFFERPRECURR%,%INVOICE_CURR2_PREFIX%} #
+      %CALC_CURR2_FACTOR% #
+      %IF{%INVOICE_CURR2_ACTION%=%C_DIVIDE%,%FM_OFFERPOSTCURR%,%INVOICE_CURR2_POSTFIX%}#
+      <JOPPS id=18050>) :</JOPPS></i>,}
+  </td>
+  <td valign="top" %M_COLOR_TABLEHEAD_NOCOLORS% align="right"><b>%DSP_RES_TOTAL%</b>
+    %IF{%EVAL{%INVOICE_CURR2_SHOW% && !%SH_TRANSPORT%},<BR><i>%DSP_RES_TOTAL_CURR2%</i>,}
+  </td>
+%IF{%SH_TRANSPORT%,</tr><tr valign="top" align="left">,}
+  %IF{%SH_TRANSPORT%,<td valign="top"><JOPPS id=18053>Charges for transport :</JOPPS></td>,}
+  %IF{%SH_TRANSPORT%,<td valign="top" align="right">%DSP_RES_TRANS%</td>,}
+%IF{%SH_TRANSPORT%,</tr><tr valign="top" align="left">,}
+  %IF{%SH_TRANSPORT%,<td valign="top"><JOPPS id=18054>VAT transport</JOPPS> %DSP_TEXT_TAXTRANSPORT%<JOPPS id=18055> :</JOPPS></td>,}
+  %IF{%SH_TRANSPORT%,<td valign="top" align="right">%DSP_RES_TAX_TRANS%</td>,}
+%IF{%SH_TRANSPORT%,</tr><tr valign="top" align="left">,}
+  %IF{%SH_TRANSPORT%,<td valign="top" %M_COLOR_TABLEHEAD_NOCOLORS%><b><JOPPS id=18056>Total price transport included :</JOPPS></b>#
+    %IF{%INVOICE_CURR2_SHOW%,<BR><i><JOPPS id=18057>Total price transport included in</JOPPS> #
+      %INVOICE_CURR2_PREFIX% %INVOICE_CURR2_POSTFIX% <JOPPS id=18047>(</JOPPS>#
+      %IF{%INVOICE_CURR2_ACTION%=%C_DIVIDE%,%IF{%INVOICE_CURR2_PREFIX%,%INVOICE_CURR2_PREFIX% ,},%IF{%FM_OFFERPRECURR%,%FM_OFFERPRECURR% ,}}#
+      <JOPPS id=18058>1</JOPPS> #
+      %IF{%INVOICE_CURR2_ACTION%=%C_DIVIDE%,%INVOICE_CURR2_POSTFIX%,%FM_OFFERPOSTCURR%} #
+      <JOPPS id=18059>=</JOPPS> #
+      %IF{%INVOICE_CURR2_ACTION%=%C_DIVIDE%,%FM_OFFERPRECURR%,%INVOICE_CURR2_PREFIX%} #
+      %CALC_CURR2_FACTOR% #
+      %IF{%INVOICE_CURR2_ACTION%=%C_DIVIDE%,%FM_OFFERPOSTCURR%,%INVOICE_CURR2_POSTFIX%}#
+      <JOPPS id=18060>) :</JOPPS></i>,}#
+  </td>,}
+  %IF{%SH_TRANSPORT%,<td valign="top" %M_COLOR_TABLEHEAD_NOCOLORS% align="right"><b>%DSP_RES_TOTAL_TRANS%</b>#
+    %IF{%INVOICE_CURR2_SHOW%,<BR><i>%DSP_RES_TOTAL_TRANS_CURR2%</i>,}#
+  </td>,}
+</tr>
+
+<!--%% detail footer ---------------------------------------------------------->
+</table>
+<br>
+<!--%%------------------------------------------------------------------------->

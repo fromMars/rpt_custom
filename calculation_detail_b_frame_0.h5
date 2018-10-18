@@ -1,0 +1,44 @@
+<!--calculation_detail_b_frame_0-->
+<!--Calculatie detail: Algemeen------------------------------------------------>
+<br>
+<table border=0 width=100% %M_TABLEPARAM%>
+<tr valign="top">
+  <th align="left" colspan=6 bgcolor="%COLOR_TABLEHEAD%"><JOPPS id=14059>Frames/Vents</JOPPS></th>
+</tr><tr valign="bottom" align="left">
+  <th bgcolor="%COLOR_TABLEHEAD%" align="right"><JOPPS id=14044>Qty</JOPPS></th>
+  <th bgcolor="%COLOR_TABLEHEAD%"><JOPPS id=14045>Description</JOPPS></th>
+  <th bgcolor="%COLOR_TABLEHEAD%"><JOPPS id=14060>Block</JOPPS></th>
+  <th bgcolor="%COLOR_TABLEHEAD%" align="right">%IF{%CALCULATION_DETAIL_REBATE%,<JOPPS id=14054>Price with discount</JOPPS>,<JOPPS id=14040>Price</JOPPS>}</th>
+  <th bgcolor="%COLOR_TABLEHEAD%" align="right">%DSP_TIME1_DESC%</th>
+  <th bgcolor="%COLOR_TABLEHEAD%" align="right">%DSP_TIME2_DESC%</th>
+</tr>
+
+<!--%% detail ----------------------------------------------------------------->
+<tr valign="top" align="left">
+  <td width=10% align="right">%DSP_PART_NO%</td>
+  <td width=56%>%DSP_PART_DESC%</td>
+  <td width=6%>%DSP_PART_ARTICLE%</td>
+  <td width=12% align="right">%IF{@%DB_PART_DATALINK%,%LIST{%DSP_PART_DATALINK%,%DSP_PART_PRICE%},%DSP_PART_PRICE%}</td>
+  <td width=9% align="right">%IF{@%DB_PART_TIME1%,%DSP_PART_TIME1%,&nbsp;}</td>
+  <td width=9% align="right">%IF{@%DB_PART_TIME2%,%DSP_PART_TIME2%,&nbsp;}</td>
+</tr>
+
+<!--%% break header 1 -->
+
+<!--%% break footer 1 -->
+<tr valign="top" align="left">
+  <th bgcolor="%COLOR_TABLEHEAD%" align="right">%DSP_PART_NO_SUM%</th>
+  <th bgcolor="%COLOR_TABLEHEAD%" colspan=2>%EVAL{trim("%DSP_PART_PROJECT_BR%")+"*"+trim("%DSP_PART_ASSEMBLY_BR%")+"*"+trim("%DSP_PART_FRAME_BR%")}</th>
+  <th bgcolor="%COLOR_TABLEHEAD%" align="right">%DSP_PART_PRICE_SUM%</th>
+  <th bgcolor="%COLOR_TABLEHEAD%" align="right">%IF{@%DB_PART_TIME1_SUM%,%DSP_PART_TIME1_SUM%,&nbsp;}</th>
+  <th bgcolor="%COLOR_TABLEHEAD%" align="right">%IF{@%DB_PART_TIME2_SUM%,%DSP_PART_TIME2_SUM%,&nbsp;}</th>
+</tr>
+
+<!--%% break header 2 -->
+
+<!--%% break footer 2 -->
+
+<!--%% detail footer ---------------------------------------------------------->
+</table>
+
+<!--%%------------------------------------------------------------------------->

@@ -1,0 +1,55 @@
+<!--calculation_detail_b_frame_1-->
+<!--Calculatie detail: Profielen----------------------------------------------->
+<br>
+<table border=0 width=100% %M_TABLEPARAM%>
+<tr valign="top">
+  <th align="left" colspan=%EVAL{6+(%DETAIL_LEVEL%>0)+(%DETAIL_TRACE%>0)} bgcolor="%COLOR_TABLEHEAD%"><JOPPS id=14001>型材</JOPPS></th>
+</tr><tr valign="bottom" align="left">
+  <th bgcolor="%COLOR_TABLEHEAD%" align="right"><JOPPS id=14002>长度</JOPPS></th>
+  <th bgcolor="%COLOR_TABLEHEAD%"><JOPPS id=14003>编号</JOPPS></th>
+  %IF{%DETAIL_LEVEL%=0,,<th bgcolor="%COLOR_TABLEHEAD%"><JOPPS id=14004>名称</JOPPS></th>}
+  %IF{%DETAIL_TRACE%=0,,<th bgcolor="%COLOR_TABLEHEAD%"><JOPPS id=14005>链接</JOPPS></th>}
+  <th bgcolor="%COLOR_TABLEHEAD%"><JOPPS id=14006>块</JOPPS></th>
+  <th bgcolor="%COLOR_TABLEHEAD%" align="right">%IF{%CALCULATION_DETAIL_REBATE%,<JOPPS id=14050>Price with discount</JOPPS>,<JOPPS id=14007>价格</JOPPS>}</th>
+  <th bgcolor="%COLOR_TABLEHEAD%" align="right">%DSP_TIME1_DESC%</th>
+  <th bgcolor="%COLOR_TABLEHEAD%" align="right">%DSP_TIME2_DESC%</th>
+</tr>
+
+<!--%% detail ----------------------------------------------------------------->
+<tr valign="top" align="left"%IF{%CALCULATION_DETAIL_MARKER_PIECE%=1,%IF{@%DB_PIECE_RGB%="#000000",, bgcolor="%DSP_PIECE_RGB%"},}>
+  <td width=10% align="right">%DSP_PIECE_CFLENGTH%</td>
+  <td width=14%>%IF{@%DB_PIECE_ARTICLECODE%,%DSP_PIECE_ARTICLECODE%,%EVAL{trim("%DSP_PIECE_PRODUCT%")}.%DSP_PIECE_VARIETY%}</td>
+  %IF{%DETAIL_LEVEL%=0,,<td width=30%>%DSP_PIECE_PROFILEDESC%</td>}
+  %IF{%DETAIL_TRACE%=0,,<td width=10%>%IF{@%DB_PIECE_LINK%,%LIST{%DSP_PIECE_LINK%},&nbsp;}</td>}
+  <td width=6%>%DSP_PIECE_ARTICLE%</td>
+  <td width=12% align="right">%DSP_PIECE_CFPRICE%</td>
+  <td width=9% align="right">%IF{@%DB_PIECE_TIME1%,%DSP_PIECE_TIME1%,&nbsp;}</td>
+  <td width=9% align="right">%IF{@%DB_PIECE_TIME2%,%DSP_PIECE_TIME2%,&nbsp;}</td>
+</tr>
+
+<!--%% break header 1 -->
+
+<!--%% break footer 1 -->
+<tr valign="top" align="left">
+  <th bgcolor="%COLOR_TABLEHEAD%" align="right">%DSP_PIECE_CFLENGTH_SUM%</th>
+  <th bgcolor="%COLOR_TABLEHEAD%" colspan=%EVAL{2+(%DETAIL_LEVEL%>0)+(%DETAIL_TRACE%>0)}>%EVAL{trim("%DSP_PIECE_PROJECT_BR%")+"*"+trim("%DSP_PIECE_ASSEMBLY_BR%")+"*"+trim("%DSP_PIECE_FRAME_BR%")}</th>
+  <th bgcolor="%COLOR_TABLEHEAD%" align="right">%DSP_PIECE_CFPRICE_SUM%</th>
+  <th bgcolor="%COLOR_TABLEHEAD%" align="right">%IF{@%DB_PIECE_TIME1_SUM%,%DSP_PIECE_TIME1_SUM%,&nbsp;}</th>
+  <th bgcolor="%COLOR_TABLEHEAD%" align="right">%IF{@%DB_PIECE_TIME2_SUM%,%DSP_PIECE_TIME2_SUM%,&nbsp;}</th>
+</tr>
+
+<!--%% break header 2 -->
+
+<!--%% break footer 2 -->
+<tr valign="top" align="left">
+  <th bgcolor="%COLOR_TABLEHEAD%" align="right">%DSP_PIECE_CFLENGTH_SUM%</th>
+  <th bgcolor="%COLOR_TABLEHEAD%" colspan=%EVAL{2+(%DETAIL_LEVEL%>0)+(%DETAIL_TRACE%>0)}>%EVAL{trim("%DSP_PIECE_PROJECT_BR%")+"*"+trim("%DSP_PIECE_ASSEMBLY_BR%")+"*"+trim("%DSP_PIECE_FRAME_BR%")} / <JOPPS id=14009>price block</JOPPS> %DSP_PIECE_ARTICLE_BR%</th>
+  <th bgcolor="%COLOR_TABLEHEAD%" align="right">%DSP_PIECE_CFPRICE_SUM%</th>
+  <th bgcolor="%COLOR_TABLEHEAD%" align="right">%IF{@%DB_PIECE_TIME1_SUM%,%DSP_PIECE_TIME1_SUM%,&nbsp;}</th>
+  <th bgcolor="%COLOR_TABLEHEAD%" align="right">%IF{@%DB_PIECE_TIME2_SUM%,%DSP_PIECE_TIME2_SUM%,&nbsp;}</th>
+</tr>
+
+<!--%% detail footer ---------------------------------------------------------->
+</table>
+
+<!--%%------------------------------------------------------------------------->

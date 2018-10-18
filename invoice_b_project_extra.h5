@@ -1,0 +1,14 @@
+<!--invoice_b_project_extra-->
+<!--Factuur: saldo extra's----------------------------------------------------->
+<table border=%INVOICE_WORDCOMPAT% width=100% %M_TABLEPARAM_NOCOLORS%>
+
+<!--%% detail ----------------------------------------------------------------->
+<tr>
+  <td valign="top" width=85% align="left"><b><JOPPS id=18064>Sub total extra items</JOPPS></b></td>
+  <td valign="top" width=15% align="right"><b>%DSP_RES_COST%</b></td>
+</tr>
+
+<!--%% detail footer ---------------------------------------------------------->
+</table>
+<br>
+<!--%%------------------------------------------------------------------------->

@@ -1,0 +1,63 @@
+<!--cutting_list_b_project-->
+<!--Zaaglijst------------------------------------------------------------------>
+<font size=+2>
+<br>
+<table border=0 width=100% %M_TABLEPARAM%>
+<tr valign="top" align="left">
+  <th colspan=2 bgcolor="%COLOR_TABLEHEAD%"><JOPPS id=3001>型材</JOPPS></th>
+</tr>
+</table>
+
+<!--%% detail ----------------------------------------------------------------->
+<tr valign="top" align="left">
+  <th width=10% align="right">%DSP_NUMBER%</th>
+  <td width=5% align="center">%DSP_PIECE_CFCHAR%</td>
+  <td width=5% align="center">%IF{@%DB_PIECE_NUMBER%,%DSP_PIECE_NUMBER%,&nbsp;}</td>
+  <th align="right">%DSP_PIECE_LOUTPUT%</th>
+  <th align="right">%DSP_PIECE_AB%</th>
+  <th align="right">%DSP_PIECE_AE%</th>
+  <td colspan=2>%IF{%CUTTING_LIST_BATCHREF%,%DSP_PIECE_ID%,%DSP_PIECE_ID_PRJ%}#
+  %IF{%EVAL{@%DB_PIECE_ARCRADIUS%=0},,<br><font color="%COLOR_ANNOTATE%">R=%DSP_PIECE_ARCRADIUS% h=%DSP_PIECE_ARCHEIGHT%</font>}</td>
+</tr>
+
+<!--%% break header -->
+<br>
+<table border=0 width=100% %M_TABLEPARAM%>
+<tr valign="top" align="left">
+  <td colspan=7 width=80%>
+    <table border=0 width=100%>
+    <tr valign="top" align="left">
+      <th width=40%>%IF{@%DB_PIECE_ARTICLECODE%,%DSP_PIECE_ARTICLECODE%,%EVAL{trim("%DSP_PIECE_PRODUCT%")}.%DSP_PIECE_VARIETY%}</th>
+      <td width=60% align="right"><i>%DSP_PIECE_PRODUCTDESC%</i></td>
+    </tr><tr valign="top" align="left">
+      <td colspan=2 align="right">%DSP_PIECE_VARIETYDESC%</td>
+    </tr>
+    </table>
+  </td><td width=20% align="center">
+    %IF{%FORMAT{"DXFEXISTS:0;%LOOKUP{%TBL_PROFILE%,[%DB_PROFILE_PRODUCT%],[@%DB_PIECE_PRODUCT%],%DB_PROFILE_DXFCAD%}",[EXTERNAL]},#
+      <A HREF="%HREF_DXFCAD%%LOOKUP{%TBL_PROFILE%,[%DB_PROFILE_PRODUCT%],[@%DB_PIECE_PRODUCT%],%DB_PROFILE_DXFCAD%}">#
+        %FORMAT{DXF_CAD:%LOOKUP{%TBL_PROFILE%,[%DB_PROFILE_PRODUCT%],[@%DB_PIECE_PRODUCT%],%DB_PROFILE_DXFCAD%};%CUTTING_LIST_OUTLINE_DIMENSION%,[IMGREF(0,0,0)]}</A>,#
+      &nbsp;}
+  </td>
+</tr><tr valign="bottom" align="left">
+  <th bgcolor="%COLOR_TABLEHEAD%" width=10% align="right"><JOPPS id=3002>数量</JOPPS></th>
+  <td bgcolor="%COLOR_TABLEHEAD%" width=10% align="center" colspan=2><JOPPS id=3003>位置</JOPPS></td>
+  <th bgcolor="%COLOR_TABLEHEAD%" width=15% align="right">
+    %IF{%CUTTING_LIST_LENGTH%=%C_LOUTPUT_ABS%,<JOPPS id=3009>锯切长度</JOPPS>,#
+    %IF{%CUTTING_LIST_LENGTH%=%C_LOUTPUT_MAX%,<JOPPS id=3004>长度</JOPPS>,#
+    %IF{%CUTTING_LIST_LENGTH%=%C_LOUTPUT_MIN%,<JOPPS id=3010>内角长度</JOPPS>,#
+    %IF{%CUTTING_LIST_LENGTH%=%C_LOUTPUT_S1%,<JOPPS id=3011>Side 1</JOPPS>,#
+                                             <JOPPS id=3012>Side 2</JOPPS>}}}}
+  </th>
+  <th bgcolor="%COLOR_TABLEHEAD%" width=10% align="right"><JOPPS id=3005>角度 1</JOPPS></th>
+  <th bgcolor="%COLOR_TABLEHEAD%" width=10% align="right"><JOPPS id=3006>角度 2</JOPPS></th>
+  <td bgcolor="%COLOR_TABLEHEAD%" width=45% colspan=2><JOPPS id=3007>用于</JOPPS></td>
+</tr>
+
+<!--%% break footer -->
+</table>
+
+<!--%% detail footer ---------------------------------------------------------->
+</font>
+
+<!--%%------------------------------------------------------------------------->
