@@ -31,7 +31,7 @@ costsheet.cells[rowid][3].value:="©O";
 costsheet.cells[rowid][3].HorizontalAlignment:=-4108;
 
 ;²£Á§¼Û¸ñ
-TempValue   := StrReplace("@%DB_GLASS_PRICE%/%ASSEMBLYCOUNT%",".","%DECIMALSEP%");
+/*TempValue   := StrReplace("@%DB_GLASS_PRICE%/%ASSEMBLYCOUNT%",".","%DECIMALSEP%");
 if @%DB_GLASS_PRICE%<>0 && RowId_G<>0 then
 {
     CellCT := 'Indirect("Cost!"&address('+inttostr(strtonum(sList.Strings[cList.IndexOf(IntToStr(RowId_G))]))+","+IntToStr(ColCT)+"))/"+pList.Strings[cList.IndexOf(IntToStr(RowId_G))];
@@ -56,8 +56,9 @@ if @%DB_GLASS_PRICE%<>0 && RowId_G<>0 then
 else
 {
     TempFormula:="="+TempValue;
-}
+}*/
 
+TempFormula:="=RC[-2]*RC[-1]";
 CurrentCell := CostSheet.Cells[rowid][ColId];
 CurrentCell.Formula := TempFormula;
 CurrentCell.Font.Italic := False;
