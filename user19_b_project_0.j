@@ -59,7 +59,7 @@ else
 	goto generalerror;
 }
 
-curr_sheet.range["ProjectName"].value:=" å·¥ç¨‹åç§°ï¼š%PROJECT%";
+curr_sheet.range["ProjectName"].value:="¹¤³ÌÃû³Æ¡ª¡ª%PROJECT%";
 
 first_row:=curr_sheet.range["ArticleList"];
 rowid:=first_row.row;

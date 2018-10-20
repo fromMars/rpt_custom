@@ -64,12 +64,3 @@ curr_cell.value:=@%DB_ATTRIB_PRICE%;
 %% detail footer
 ;-------------------------------------------------------------------------------
 
-/*
-if %GLOBAL_PRICE_PROFILE%=1 then
-	curr_sheet.cells[init_rowid][11].value:="易菲特隔热条"+chr(10)+"超高精级";
-else
-	curr_sheet.cells[init_rowid][11].value:="泰诺风隔热条"+chr(10)+"超高精级";
-curr_sheet.range[curr_sheet.cells[init_rowid][11]][curr_sheet.cells[rowid][11]].merge();
-curr_sheet.usedrange.rows[""+inttostr(init_rowid)+":"+inttostr(rowid+1)].borders.linestyle:=1;
-first_row.columns[4].formula:="=sum(D"+inttostr(init_rowid)+":D"+inttostr(rowid)+")";
-*/
