@@ -136,6 +136,8 @@ tmp_tmp_value:="0";
 a_linked:=strings.create();                                 /*记录跟随价格块*/
 z_pg:=pricegroups.create();
 
+max_row_prof:=-1;                                              /*型材部分最大行号，用于小计*/
+
 %% detail
 ; ******************************Estim Excel************************************
 ; *****************************************************************************
@@ -323,6 +325,9 @@ currentcell.borders.linestyle:=1;
 recent_profile_value:=tmp_tmp_value;
 tmp_tmp_value:="0";
 
+if max_row_prof<rowid then                      /*获取型材部分最大行号*/
+    max_row_prof:=rowid;
+
 %% break header
 ; ******************************Estim Excel************************************
 ; *****************************************************************************
@@ -340,6 +345,10 @@ tmp_tmp_value:="0";
 ; *****************************************************************************
 ; %NAME% (%BATCH%) - Detail footer
 ; 
+
+
+if rowid<max_row_prof then                      /*小计部分起始行*/
+    rowid:=max_row_prof;
 
 
 /*新增小计行，rowid仍为最后一项所在行，row_increase为新增行数*/
