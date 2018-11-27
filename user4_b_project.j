@@ -96,11 +96,15 @@ curr_cell:=curr_sheet.cells[rowid][1];
 curr_cell.value:=(rowid-init_rowid+2)/2;
 
 curr_cell:=curr_sheet.cells[rowid][2];
-curr_cell.value:="%DSP_PIECE_PROFILEDESC%";
+curr_cell.value:="%DSP_PIECE_PRODUCTDESC%";
 
 curr_cell:=curr_sheet.cells[rowid][3];
 if "@%DB_PIECE_ARTICLECODE%"<>"" then
-    curr_cell.value:=substr("@%DB_PIECE_ARTICLECODE%",0,7);
+    if substr("@%DB_PIECE_ARTICLECODE%",0,3)="002" then
+	curr_cell.value:="%DSP_PIECE_PRODUCT%";
+        /*curr_cell.value:=substr("@%DB_PIECE_ARTICLECODE%",0,7);*/
+    else
+        curr_cell.value:="@%DB_PIECE_ARTICLECODE%";
 else
     curr_cell.value:="%DSP_PIECE_PRODUCT%";
 
@@ -112,6 +116,10 @@ curr_cell.value:=p_cnt;
 
 curr_cell:=curr_sheet.cells[rowid][8];
 curr_cell.value:="6063-T5";
+if trim("%DSP_PIECE_PRODUCT%")="0092730" then
+{
+    curr_sheet.cells[rowid][8].value:="6063-T4"+chr(10)+"(²»Ê±Ð§)";
+}
 
 p_profiles.code.system:="@%DB_PIECE_SYSTEM%";
 p_profiles.code.profile:="@%DB_PIECE_PROFILE%";
@@ -158,7 +166,8 @@ else if p_profiles.colour=3 then
 /*m_weight:=p_profiles.weight;*/
 m_weight:=@%DB_PIECE_WEIGHT%;
 curr_cell:=curr_sheet.cells[rowid][7];
-curr_cell.value:=m_weight/p_cnt/p_lth;
+/*curr_cell.value:=m_weight/p_cnt/p_lth;*/
+curr_cell.value:=m_weight;
 
 if "@%DB_PIECE_INSIDE%"<>"" && "@%DB_PIECE_OUTSIDE%"<>"" then
 {

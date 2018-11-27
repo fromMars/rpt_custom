@@ -82,10 +82,17 @@ curr_cell:=curr_sheet.cells[rowid][1];
 curr_cell.value:=(rowid-init_rowid+2)/2;
 
 curr_cell:=curr_sheet.cells[rowid][2];
-curr_cell.value:="%DSP_PIECE_PROFILEDESC%";
+curr_cell.value:="%DSP_PIECE_PRODUCTDESC%";
 
 curr_cell:=curr_sheet.cells[rowid][3];
-curr_cell.value:="%DSP_PIECE_PRODUCT%";
+if "@%DB_PIECE_ARTICLECODE%"<>"" then
+    if substr("@%DB_PIECE_ARTICLECODE%",0,3)="002" then
+	curr_cell.value:="%DSP_PIECE_PRODUCT%";
+        /*curr_cell.value:=substr("@%DB_PIECE_ARTICLECODE%",0,7);*/
+    else
+        curr_cell.value:="@%DB_PIECE_ARTICLECODE%";
+else
+    curr_cell.value:="%DSP_PIECE_PRODUCT%";
 
 curr_cell:=curr_sheet.cells[rowid][5];
 curr_cell.value:="=@%DB_PIECE_LOPT%/1000";
@@ -95,6 +102,11 @@ curr_cell.value:=%DSP_PIECE_FACTOR%;
 
 curr_cell:=curr_sheet.cells[rowid][8];
 curr_cell.value:="6063-T5";
+if trim("%DSP_PIECE_PRODUCT%")="0092730" then
+{
+    curr_sheet.cells[rowid][8].value:="6063-T4"+chr(10)+"(²»Ê±Ð§)";
+}
+
 
 seperated_profile.code.system:="@%DB_PIECE_SYSTEM%";
 seperated_profile.code.profile:="@%DB_PIECE_PROFILE%";
