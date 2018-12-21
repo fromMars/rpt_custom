@@ -1,0 +1,53 @@
+<!--order_list_per_product_b_project_2-->
+<!--Bestellijst/produkt: Beslag------------------------------------------------>
+%EVAL{setparam("W_CNT","8")}
+%EVAL{setparam("W_VRTY","14")}
+%EVAL{setparam("W_VDESC","15")}
+%EVAL{setparam("W_DESC",inttostr(30*(%DETAIL_LEVEL%>0)))}
+%EVAL{setparam("W_COLLI",inttostr(8*(%GLOBAL_PRICE_ACCESS%!=%C_ACCPRICE_UNIT%)))}
+%EVAL{setparam("W_PCS",inttostr(10*(%GLOBAL_PRICE_ACCESS%=%C_ACCPRICE_PACK%)))}
+%EVAL{setparam("W_PRICE",inttostr(15*%ORDER_LIST_PER_PRODUCT_PRICE%))}
+%EVAL{setparam("W_CHANGE",numtostr(100/(%W_CNT%+%W_VRTY%+%W_VDESC%+%W_DESC%+%W_COLLI%+%W_PCS%+%W_PRICE%)))}
+%EVAL{setparam("W_CNT",inttostr(%W_CNT%*%W_CHANGE%))}
+%EVAL{setparam("W_VDESC",inttostr(%W_VDESC%*%W_CHANGE%))}
+%EVAL{setparam("W_DESC",inttostr(%W_DESC%*%W_CHANGE%))}
+%EVAL{setparam("W_COLLI",inttostr(%W_COLLI%*%W_CHANGE%))}
+%EVAL{setparam("W_PCS",inttostr(%W_PCS%*%W_CHANGE%))}
+%EVAL{setparam("W_PRICE",inttostr(%W_PRICE%*%W_CHANGE%))}
+%EVAL{setparam("W_VRTY",inttostr(100-%W_CNT%-%W_VDESC%-%W_DESC%-%W_COLLI%-%W_PCS%-%W_PRICE%))}
+
+<!--%% detail ----------------------------------------------------------------->
+<tr valign="top">
+  <td valign="top" align="right">%DSP_ATTRIB_NO%</td>
+  <td valign="top" width=%W_VRTY%%%>%IF{@%DB_ATTRIB_ARTICLECODE%,%DSP_ATTRIB_ARTICLECODE%,%EVAL{trim("%DSP_ATTRIB_ACC%")}.%IF{%ORDER_LIST_PER_PRODUCT_VARIANT%=0,%DSP_ATTRIB_SERIE%,%DSP_ATTRIB_VARIETY%}}</td>
+  <td valign="top" width=%W_VDESC%%%>%IF{@%DB_ATTRIB_VARIETYDESC%,%DSP_ATTRIB_VARIETYDESC%,&nbsp;}</td>
+  %IF{%DETAIL_LEVEL%=0,,<td valign="top">%IF{@%DB_ATTRIB_ACCDESC%,%DSP_ATTRIB_ACCDESC%,&nbsp;}</td>}
+  %IF{%GLOBAL_PRICE_ACCESS%!%C_ACCPRICE_UNIT%,<td valign="top" align="right" width=%W_COLLI%%%>%DSP_ATTRIB_ACCCOLLI%</td>,}
+  %IF{%GLOBAL_PRICE_ACCESS%=%C_ACCPRICE_PACK%,<td valign="top" align="right" width=%W_PCS%%%>%DSP_ATTRIB_PACKPIECES%</td>,}
+  %IF{%ORDER_LIST_PER_PRODUCT_PRICE%,<td valign="top" align="right">%DSP_ATTRIB_ORDERPRICE%</td>,}
+</tr>
+
+<!--%% break header-->
+<BR>
+<table border=%ORDER_LIST_PER_PRODUCT_EXCELCOMPAT% width=100% %M_TABLEPARAM_NOCOLORS%>
+<tr align="left" valign="top">
+  <td valign="top" %M_COLOR_TABLEHEAD_NOCOLORS% colspan=%EVAL{3+(%DETAIL_LEVEL%>0)+(%GLOBAL_PRICE_ACCESS%!=%C_ACCPRICE_UNIT%)+(%GLOBAL_PRICE_ACCESS%=%C_ACCPRICE_PACK%)+%ORDER_LIST_PER_PRODUCT_PRICE%}><b><JOPPS id=10007>配件</JOPPS></b></td>
+</tr><tr align="left" valign="top">
+  <td valign="top" width=%W_CNT%%% %M_COLOR_TABLEHEAD_NOCOLORS% align="right"><b><JOPPS id=10008>数量</JOPPS></b></td>
+  <td valign="top" width=%EVAL{%W_VRTY%+%W_VDESC%}% align="center" colspan=2 %M_COLOR_TABLEHEAD_NOCOLORS%><b><JOPPS id=10009>编号</JOPPS></b></td>
+  %IF{%DETAIL_LEVEL%=0,,<td valign="top" width=%W_DESC%%% %M_COLOR_TABLEHEAD_NOCOLORS%><b><JOPPS id=10010>名称</JOPPS></b></td>}
+  %IF{%EVAL{(%GLOBAL_PRICE_ACCESS%!=%C_ACCPRICE_UNIT%)||(%GLOBAL_PRICE_ACCESS%=%C_ACCPRICE_PACK%)},<td valign="top" width=%EVAL{%W_COLLI%+%W_PCS%}% %M_COLOR_TABLEHEAD_NOCOLORS% %IF{%GLOBAL_PRICE_ACCESS%!%C_ACCPRICE_PACK%,align="right",align="center" colspan=2}><b>%IF{%GLOBAL_PRICE_ACCESS%!%C_ACCPRICE_PACK%,<JOPPS id=10028>Ordered</JOPPS>,<JOPPS id=10012>Packing</JOPPS>}</b></td>,}
+  %IF{%ORDER_LIST_PER_PRODUCT_PRICE%,<td valign="top" width=%W_PRICE%%% %M_COLOR_TABLEHEAD_NOCOLORS% align="right"><b>%IF{%ORDER_LIST_PER_PRODUCT_REBATE%,<JOPPS id=10024>折扣后价格</JOPPS>,<JOPPS id=10013>价格</JOPPS>}</b></td>,}
+</tr>
+
+<!--%% break footer-->
+%IF{%ORDER_LIST_PER_PRODUCT_PRICE%,<tr valign="top">,}
+  %IF{%ORDER_LIST_PER_PRODUCT_PRICE%,<td valign="top" align="right" colspan=%EVAL{3+(%DETAIL_LEVEL%>0)+(%GLOBAL_PRICE_ACCESS%!=%C_ACCPRICE_UNIT%)+(%GLOBAL_PRICE_ACCESS%=%C_ACCPRICE_PACK%)}>&nbsp;</td>,}
+  %IF{%ORDER_LIST_PER_PRODUCT_PRICE%,<td valign="top" align="right"><b>%DSP_ATTRIB_PRICE_SUM%</b></td>,}
+%IF{%ORDER_LIST_PER_PRODUCT_PRICE%,</tr>,}
+</table>
+%EVAL{setparam("TOTAL_ORDERLIST",numtostr(%TOTAL_ORDERLIST%+@%DB_ATTRIB_PRICE%))}
+
+<!--%% detail footer ---------------------------------------------------------->
+
+<!--%%------------------------------------------------------------------------->
