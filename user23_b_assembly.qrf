@@ -182,6 +182,7 @@ report
   where    %DB_COST_PROJECT%  = "%PROJECT_TEXT%"
   and 		(%DB_GLASS_ASSEMBLY% = "%ASSEMBLY_TEXT%" or %DB_GLASS_ASSEMBLY% = "")
   and    	(%DB_GLASS_ARTICLE%<150 or %DB_GLASS_ARTICLE%=205)
+  and           (%DB_GLASS_FILLING%<>"GL00" and %DB_GLASS_FILLING%<>"G000")
   group by %DB_GLASS_DESC%,%DB_GLASS_ARTICLE%
   having   count(*) > 0
 
