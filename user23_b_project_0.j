@@ -152,6 +152,13 @@ glass_price:=0;                                             /*玻璃价格标志位，*/
                                                             /*1-表示已记录玻璃行号*/
 z_pg_block:="@%DB_COST_BLOCK%";
 img_no:=0;						/* assembly count */
+
+
+/*different system different suffix, PRICE_K1,PRICE_PT1,...,etc.,*/
+surffix_cnt:=0;
+/*systems list*/
+sys_list:=strings.create();
+
                                              
 %% detail
 ; ******************************Estim Excel************************************

@@ -113,6 +113,7 @@ P_SH:="70";                 /*隔热扇型材*/
 P_T:="65";                  /*隔热梃型材*/
 P_QT:="75";                 /*其它隔热型材*/
 
+
 ; ******************************Estim Excel************************************
 ; *****************************************************************************
 ; %NAME% (%BATCH%)  b_assembly_0.j
@@ -276,26 +277,108 @@ if @%DB_COST_ARTICLE%=80 || @%DB_COST_ARTICLE%=85 then
     currentcell.value:="";
 }
 
+/*detect new system and append its unit price parameters*/
+base_pos:=24;
+sys_pos:=sys_list.indexof("%DSP_PIECE_SYSTEM%");
+if sys_pos=-1 then
+{
+    sys_list.add("%DSP_PIECE_SYSTEM%");
+    sys_pos:=sys_list.indexof("%DSP_PIECE_SYSTEM%");
+    /*copy base data*/
+    if sys_pos>0 then
+    {
+        datasheet.range[datasheet.cells[base_pos][1]][datasheet.cells[base_pos+7][8]].copy();
+        datasheet.activate;
+        datasheet.cells[base_pos+8*sys_pos][1].select();
+        datasheet.paste;
+        costsheet.activate;
+    }
+    /*add range name*/
+    if sys_pos>0 then
+    {
+        surffix_cnt:=surffix_cnt+1;
+        x0:=base_pos+8*sys_pos;
+        datasheet.cells[x0][6].formula:="=(G$"+inttostr(x0)+"+H"+inttostr(x0)+")/1000";
+        template.names.add("PRICE_K"+inttostr(surffix_cnt),datasheet.cells[x0][6]);
+        x0:=x0+1;
+        datasheet.cells[x0][6].formula:="=(G$"+inttostr(x0-1)+"+H"+inttostr(x0)+")/1000";
+        template.names.add("PRICE_SH"+inttostr(surffix_cnt),datasheet.cells[x0][6]);
+        x0:=x0+1;
+        datasheet.cells[x0][6].formula:="=(G$"+inttostr(x0-2)+"+H"+inttostr(x0)+")/1000";
+        template.names.add("PRICE_T"+inttostr(surffix_cnt),datasheet.cells[x0][6]);
+        x0:=x0+1;
+        datasheet.cells[x0][6].formula:="=(G$"+inttostr(x0-3)+"+H"+inttostr(x0)+")/1000";
+        template.names.add("PRICE_QT"+inttostr(surffix_cnt),datasheet.cells[x0][6]);
+        x0:=x0+1;
+        datasheet.cells[x0][6].formula:="=(G$"+inttostr(x0-4)+"+H"+inttostr(x0)+")/1000";
+        template.names.add("PRICE_PT"+inttostr(surffix_cnt),datasheet.cells[x0][6]);
+        x0:=x0+1;
+        datasheet.cells[x0][6].formula:="=(G$"+inttostr(x0-5)+"+H"+inttostr(x0)+")/1000";
+        template.names.add("PRICE_YH"+inttostr(surffix_cnt),datasheet.cells[x0][6]);
+        x0:=x0+1;
+        datasheet.cells[x0][6].formula:="=(G$"+inttostr(x0-6)+"+H"+inttostr(x0)+")/1000";
+        template.names.add("PRICE_J"+inttostr(surffix_cnt),datasheet.cells[x0][6]);
+    }
+    datasheet.cells[base_pos+8*sys_pos][1].value:="%DSP_PIECE_SYSTEM%";
+}
+
+
 
 ;单价
 u_colid:=colid-1;
 currentcell:=costsheet.cells[rowid][u_colid];
 u_recent_value:=currentcell.value;
 tmp_atk:="@%DB_COST_ARTICLE%";
+
 if P_PT.indexof(tmp_atk)<>-1 then
-    currentcell.formula:="=Data!PRICE_PT";
+{   
+    if sys_pos=0 then
+        currentcell.formula:="=Data!PRICE_PT";
+    else
+        currentcell.formula:="=Data!PRICE_PT"+inttostr(sys_pos);
+}
 else if P_J=tmp_atk then
-    currentcell.formula:="=Data!PRICE_J";
+{ 
+    if sys_pos=0 then
+        currentcell.formula:="=Data!PRICE_J";
+    else
+        currentcell.formula:="=Data!PRICE_J"+inttostr(sys_pos);
+}
 else if P_YH=tmp_atk then
-    currentcell.formula:="=Data!PRICE_YH";
+{
+    if sys_pos=0 then
+        currentcell.formula:="=Data!PRICE_YH";
+    else
+        currentcell.formula:="=Data!PRICE_YH"+inttostr(sys_pos);
+}
 else if P_K=tmp_atk then
-    currentcell.formula:="=Data!PRICE_K";
+{
+    if sys_pos=0 then
+        currentcell.formula:="=Data!PRICE_K";
+    else
+        currentcell.formula:="=Data!PRICE_K"+inttostr(sys_pos);
+}
 else if P_SH=tmp_atk then
-    currentcell.formula:="=Data!PRICE_SH";
+{
+    if sys_pos=0 then
+        currentcell.formula:="=Data!PRICE_SH";
+    else
+        currentcell.formula:="=Data!PRICE_SH"+inttostr(sys_pos);  
+}
 else if P_T=tmp_atk then
-    currentcell.formula:="=Data!PRICE_T";
+{
+    if sys_pos=0 then
+        currentcell.formula:="=Data!PRICE_T";
+    else
+        currentcell.formula:="=Data!PRICE_T"+inttostr(sys_pos);
+}
 else if P_QT=tmp_atk then
-    currentcell.formula:="=Data!PRICE_QT";
+{
+    if sys_pos=0 then
+        currentcell.formula:="=Data!PRICE_QT";
+    else
+        currentcell.formula:="=Data!PRICE_QT"+inttostr(sys_pos);
+}
 else
 {
     if u_recent_value<>0 && a_link="" && a_linked.indexof("@%DB_COST_ARTICLE%")=-1 then
