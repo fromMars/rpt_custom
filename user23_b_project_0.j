@@ -159,6 +159,9 @@ surffix_cnt:=0;
 /*systems list*/
 sys_list:=strings.create();
 
+/*glass types list*/
+glass_type_list:=strings.create();
+
                                              
 %% detail
 ; ******************************Estim Excel************************************

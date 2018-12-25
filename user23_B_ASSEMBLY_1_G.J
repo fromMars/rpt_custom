@@ -31,7 +31,7 @@ costsheet.cells[rowid][3].value:="㎡";
 costsheet.cells[rowid][3].HorizontalAlignment:=-4108;
 
 ;玻璃价格
-/*TempValue   := StrReplace("@%DB_GLASS_PRICE%/%ASSEMBLYCOUNT%",".","%DECIMALSEP%");
+TempValue   := StrReplace("@%DB_GLASS_PRICE%/%ASSEMBLYCOUNT%",".","%DECIMALSEP%");
 if @%DB_GLASS_PRICE%<>0 && RowId_G<>0 then
 {
     CellCT := 'Indirect("Cost!"&address('+inttostr(strtonum(sList.Strings[cList.IndexOf(IntToStr(RowId_G))]))+","+IntToStr(ColCT)+"))/"+pList.Strings[cList.IndexOf(IntToStr(RowId_G))];
@@ -56,9 +56,9 @@ if @%DB_GLASS_PRICE%<>0 && RowId_G<>0 then
 else
 {
     TempFormula:="="+TempValue;
-}*/
+}
 
-TempFormula:="=RC[-2]*RC[-1]";
+/*TempFormula:="=RC[-2]*RC[-1]";*/
 CurrentCell := CostSheet.Cells[rowid][ColId];
 CurrentCell.Formula := TempFormula;
 CurrentCell.Font.Italic := False;
@@ -75,6 +75,20 @@ if trim(currentcell.value)="EOSS" then
     currentcell.value:="易欧思专用";
 currentcell.borders.linestyle:=1;
 
+
+/*retrieve or add glass type*/
+glass_identity:="@%DB_GLASS_FILLING%"+"_"+"@%DB_GLASS_DESC";
+glass_base:=11;
+glass_pos:=glass_type_list.indexof(glass_identity);
+if glass_pos=-1 then
+{
+    glass_type_list.add(glass_identity);
+    glass_pos:=glass_type_list.indexof(glass_identity);
+}
+datasheet.cells[glass_base+glass_pos][7].value:="@%DB_GLASS_FILLING%";
+datasheet.cells[glass_base+glass_pos][8].value:="@%DB_GLASS_DESC%";
+
+
 ;单价
 u_colid:=colid-1;
 currentcell:=costsheet.cells[rowid][u_colid];
@@ -88,12 +102,21 @@ if "@%DB_GLASS_ASSEMBLY%"="" then
 }
 else
 {
-    /*
-	tot_formula:="="+RId+LBr+inttostr(0)+RBr+CId+Lbr+"1"+RBr+"/@%DB_GLASS_NO%";
-	currentcell.formulaR1C1:=tot_formula;*/
-    currentcell.value:=0;
+    
+	/*tot_formula:="="+RId+LBr+inttostr(0)+RBr+CId+Lbr+"1"+RBr+"/@%DB_GLASS_NO%";*/
+        tot_formula:="="+RId+LBr+inttostr(0)+RBr+CId+Lbr+"1"+RBr+"/(@%DB_GLASS_SURFACE%/@%DB_GLASS_NO%)";
+	currentcell.formulaR1C1:=tot_formula;
+        /*unit price to be value rather than formula*/
+        datasheet.cells[glass_base+glass_pos][9].value:=currentcell.value;
+        currentcell.formula:="=Data!I"+inttostr(glass_base+glass_pos);
+    /*currentcell.value:=0;*/
 }
 currentcell.borders.linestyle:=1;
+
+/*modify price to be unit price multiplies by quantities*/
+TempFormula:="=RC[-2]*RC[-1]";
+CurrentCell := CostSheet.Cells[rowid][ColId];
+CurrentCell.Formula := TempFormula;
 
 ;单樘用量
 wps_colid:=colid-2;
