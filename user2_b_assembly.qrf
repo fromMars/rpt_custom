@@ -172,6 +172,7 @@ next
 report
   select   min(%DB_GLASS_ASSEMBLY%) as %DB_GLASS_ASSEMBLY%,
             %DB_GLASS_DESC%,
+            %DB_GLASS_FILLING%,
            sum(%DB_GLASS_NO%) as %DB_GLASS_NO%,
            sum(%DB_GLASS_SURFACE%) as %DB_GLASS_SURFACE%,
            sum(%DB_GLASS_WEIGHT%) as %DB_GLASS_WEIGHT%,
@@ -183,7 +184,7 @@ report
   and 		(%DB_GLASS_ASSEMBLY% = "%ASSEMBLY_TEXT%" or %DB_GLASS_ASSEMBLY% = "")
   and    	(%DB_GLASS_ARTICLE%<150 or %DB_GLASS_ARTICLE%=205)
   and           (%DB_GLASS_FILLING%<>"GL00" and %DB_GLASS_FILLING%<>"G000")
-  group by %DB_GLASS_DESC%,%DB_GLASS_ARTICLE%
+  group by %DB_GLASS_DESC%,%DB_GLASS_FILLING%,%DB_GLASS_ARTICLE%
   having   count(*) > 0
 
 using %REPORTNAME%_B_ASSEMBLY_1_G.%REPORTTYPE%%IF{%REPORTTYPE%=J,,%LANGUAGE%}

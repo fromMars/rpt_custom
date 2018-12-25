@@ -118,6 +118,7 @@ TempFormula:="=RC[-2]*RC[-1]";
 CurrentCell := CostSheet.Cells[rowid][ColId];
 CurrentCell.Formula := TempFormula;
 
+
 ;µ•ÈÃ”√¡ø
 wps_colid:=colid-2;
 currentcell:=costsheet.cells[rowid][wps_colid];
