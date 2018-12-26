@@ -116,7 +116,7 @@ else
     {
         currentcell.formulaR1C1:="=@%DB_ATTRIB_NO%/%ASSEMBLYCOUNT%";
         /*clear unused items*/
-        if @%DB_ATTRIB_ARTICLE%<>160 then
+        if 1 then
             currentcell.value:="";
         if @%DB_ATTRIB_ARTICLE%=160 then
             currentcell0.value:="Ì×";        /*currentcell0.value:="¼þ";*/

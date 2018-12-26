@@ -88,7 +88,7 @@ else
 	currentcell.formulaR1C1:=tot_formula;
 }
 /*clear unused items*/
-if @%DB_COST_ARTICLE%<>160 && @%DB_COST_ARTICLE%<>445 then
+if @%DB_COST_ARTICLE%<>445 then
     currentcell.value:="";
 currentcell.borders.linestyle:=1;
 
@@ -99,7 +99,7 @@ if "@%DB_COST_ASSEMBLY%"<>"" then
 {
     currentcell.formulaR1C1:="=@COST_QUANTITY/%ASSEMBLYCOUNT%";
     /*clear unused items*/
-    if @%DB_COST_ARTICLE%<>160 && @%DB_COST_ARTICLE%<>445 then
+    if @%DB_COST_ARTICLE%<>445 then
         currentcell.value:="";
     
 }
