@@ -69,8 +69,16 @@ costsheet.cells[rowid+row_increase][1].formula:=list_no_formula;
 s_colid:=colid+1;
 currentcell:=costsheet.cells[rowid+row_increase][s_colid];
 currentcell.value:="%DSP_COST_SUPPLIER%";
-if trim(currentcell.value)="EOSS" then
+/*if trim(currentcell.value)="EOSS" then*/
+if @%DB_COST_ARTICLE%<>160 then
     currentcell.value:="易欧思专用";
+else
+{
+    datasheet.cells[3][6].value:="五金供应商";
+    datasheet.cells[3][7].value:="请填写五金供应商";
+    template.names.add("WJGYS",datasheet.cells[3][7]);
+    currentcell.formula:="=Data!WJGYS";
+}
 currentcell.borders.linestyle:=1;
 
 ;单价
