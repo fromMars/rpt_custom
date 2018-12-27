@@ -83,7 +83,7 @@ else
         acc_supplier_pos:=acc_supplier_list.indexof("@%DB_COST_ARTICLE%");
     }
     tmp_pos:=base_supplier+acc_supplier_pos;
-    tmp_name:="GYS"+inttostr(tmp_pos);
+    tmp_name:="DCBJ_GYS"+inttostr(tmp_pos);
     datasheet.cells[tmp_pos][6].value:="@%DB_COST_DESC%供应商";
     datasheet.cells[tmp_pos][7].value:="请填写供应商";
     template.names.add(tmp_name,datasheet.cells[tmp_pos][7]);
