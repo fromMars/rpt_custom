@@ -104,6 +104,7 @@ next
 report
   select   min(%DB_COST_ASSEMBLY%) as %DB_COST_ASSEMBLY%,
             %DB_COST_ARTICLE%,
+            %DB_COST_DESC%,
            %DB_COST_LOSSTYPE%,
            %DB_COST_RATION%,
 	   %DB_COST_FACTOR%,
@@ -120,7 +121,7 @@ report
   and		%DB_COST_ARTICLE% > 90
   and		%DB_COST_ARTICLE%<>205
   and      (%DB_COST_ASSEMBLY% = "%ASSEMBLY_TEXT%" or %DB_COST_ASSEMBLY%="") 
-  group by %DB_COST_ARTICLE%, %DB_COST_LOSSTYPE%, %DB_COST_RATION%, %DB_COST_FACTOR%, %DB_COST_RATIO%
+  group by %DB_COST_ARTICLE%, %DB_COST_DESC%, %DB_COST_LOSSTYPE%, %DB_COST_RATION%, %DB_COST_FACTOR%, %DB_COST_RATIO%
   having   count(*) > 0
 
 using %REPORTNAME%_B_ASSEMBLY_1.%REPORTTYPE%%IF{%REPORTTYPE%=J,,%LANGUAGE%}

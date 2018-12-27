@@ -158,9 +158,10 @@ img_no:=0;						/* assembly count */
 surffix_cnt:=0;
 /*systems list*/
 sys_list:=strings.create();
-
 /*glass types list*/
 glass_type_list:=strings.create();
+/*acc list for supplier params*/
+acc_supplier_list:=strings.create();
 
                                              
 %% detail
