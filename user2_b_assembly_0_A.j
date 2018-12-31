@@ -120,7 +120,9 @@ CurrentCell.Font.Italic := %IF{@%DB_RES_PRICE%,False,True};
 CurrentCell.Interior.Color := Color;
 CurrentCell.Borders.LineStyle := 1;*/
 
-
+;行号
+currentcell:=costsheet.cells[rowid][1];
+currentcell.formula:="=Row()-5";
 
 ;型材单位
 un_colid:=3;

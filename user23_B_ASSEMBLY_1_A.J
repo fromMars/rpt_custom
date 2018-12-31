@@ -91,6 +91,10 @@ else if @%DB_ATTRIB_ARTICLE%<90 then
     
     if @%DB_COST_ARTICLE%=80 || @%DB_COST_ARTICLE%=85 then
     {
+        /*set line number*/
+        currentcelltmp:=costsheet.cells[rowid+row_increase][1];
+	currentcelltmp.formula:="=Row()-5";
+        
 	currentcelltmp:=costsheet.cells[rowid+row_increase][5];
 	currentcelltmp.value:="";
         currentcelltmp:=costsheet.cells[rowid+row_increase][6];
