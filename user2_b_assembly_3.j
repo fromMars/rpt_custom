@@ -88,6 +88,9 @@ s_colid:=colid+1;
 currentcell:=costsheet.cells[rowid+row_increase][s_colid];
 currentcell.value:="%DSP_COST_SUPPLIER%";
 currentcell.borders.linestyle:=1;
+if trim("%DSP_COST_DESC%")="胶条焊合" then
+    currentcell.value:="";
+
 
 ;unit
 u_colid:=colid-1;
@@ -126,6 +129,10 @@ else
     {
         currentcell.formula:="=Data!HNDRateF";		/*manual input value default 0*/
     }
+    else if trim("%DSP_COST_DESC%")="胶条焊合" then
+    {
+        currentcell.formula:="=Data!HNDRateG";		/*manual input value default 0*/
+    }
 }
 currentcell.borders.linestyle:=1;
 
@@ -137,8 +144,11 @@ currentcell:=costsheet.cells[rowid+row_increase][wps_colid];
 if "@%DB_COST_ASSEMBLY%"<>"" then
 {
     currentcell.formulaR1C1:="="+numtostr(curr_surface);
+    if trim("%DSP_COST_DESC%")="胶条焊合" then
+        currentcell.value:=inttostr(@COST_QUANTITY);
     currentcell:=costsheet.cells[rowid+row_increase][u_colid-3];
     currentcell.value:="㎡";
+    currentcell.HorizontalAlignment:=-4108;
 }
 else
 {

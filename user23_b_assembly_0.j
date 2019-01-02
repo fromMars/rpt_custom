@@ -282,7 +282,7 @@ if @%DB_COST_ARTICLE%=80 || @%DB_COST_ARTICLE%=85 then
 }
 
 /*detect new system and append its unit price parameters*/
-base_pos:=24;
+base_pos:=25;
 sys_pos:=sys_list.indexof("%DSP_PIECE_SYSTEM%");
 if sys_pos=-1 then
 {
