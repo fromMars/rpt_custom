@@ -133,6 +133,18 @@ else
     {
         currentcell_tmp.formula:="=Data!HNDRateW";
     }
+    else if trim("%DSP_COST_ARTICLE%")="970" then
+    {
+        currentcell_tmp.formula:="=Data!HNDRateJC";
+    }
+    else if trim("%DSP_COST_ARTICLE%")="975" then
+    {
+        currentcell_tmp.formula:="=Data!HNDRateZB";
+    }
+    else if trim("%DSP_COST_ARTICLE%")="980" then
+    {
+        currentcell_tmp.formula:="=Data!HNDRateJS";
+    }
     else
     {
         datasheet.range["HNDRate"].formula:='=Indirect("Cost!"&address('+inttostr(rowid)+","+inttostr(colid+7)+"))"+"/Cost!mianji";                 /*每平米用量*/

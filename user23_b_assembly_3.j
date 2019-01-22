@@ -99,6 +99,18 @@ u_recent_value:=currentcell.formula;
 if "@%DB_COST_ASSEMBLY%"="" then
 {
     /*project level artikels*/
+    if trim("%DSP_COST_ARTICLE%")="970" then
+    {
+        currentcell.formula:="=Data!HNDRateJC";		/*manual input value default 0*/
+    }
+    else if trim("%DSP_COST_ARTICLE%")="975" then
+    {
+        currentcell.formula:="=Data!HNDRateZB";		/*manual input value default 0*/
+    }
+    else if trim("%DSP_COST_ARTICLE%")="980" then
+    {
+        currentcell.formula:="=Data!HNDRateJS";		/*manual input value default 0*/
+    }
 }
 else
 {
@@ -156,8 +168,27 @@ else
 	currentcell.formula:=pla_formula;
     currentcell_tmp:=costsheet.cells[rowid+row_increase][wps_colid+1];
     /*datasheet.range["HNDRate"].formula:='=Indirect("Cost!"&address('+inttostr(rowid)+","+inttostr(colid+7)+"))"+"/Cost!mianji";*/
-    datasheet.range["HNDRate"].value:=0;		/*manual input value default 0*/
-    currentcell_tmp.formula:="=Data!HNDRate";
+    if trim("%DSP_COST_ARTICLE%")="970" then
+    {
+        datasheet.range["HNDRate"].value:=0;		/*manual input value default 0*/
+        currentcell_tmp.formula:="=Data!HNDRateJC";
+    }
+    else if trim("%DSP_COST_ARTICLE%")="975" then
+    {
+        datasheet.range["HNDRate"].value:=0;		/*manual input value default 0*/
+        currentcell_tmp.formula:="=Data!HNDRateZB";
+    }
+    else if trim("%DSP_COST_ARTICLE%")="980" then
+    {
+        datasheet.range["HNDRate"].value:=0;		/*manual input value default 0*/
+        currentcell_tmp.formula:="=Data!HNDRateJS";
+    }
+    else if trim("%DSP_COST_ARTICLE%")="445" then
+    {
+        datasheet.range["HNDRate"].value:=0;		/*manual input value default 0*/
+        currentcell_tmp.formula:="=Data!HNDRate";
+    }
+    
     currentcell_tmp:=costsheet.cells[rowid+row_increase][wps_colid+2];
     currentcell_tmp.formulaR1C1:="="+RId+CId+LBr+"-2"+RBr+"*"+RId+CId+LBr+"-1"+RBr;
     currentcell_tmp:=costsheet.cells[rowid+row_increase][wps_colid-2];
