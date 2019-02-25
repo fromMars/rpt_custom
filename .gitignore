@@ -2,3 +2,5 @@
 Thumbs.db:encryptable
 *.db:encryptable
 *.db:encryptable
+Thumbs.db
+Thumbs.db:encryptable
