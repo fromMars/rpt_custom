@@ -96,7 +96,7 @@ curr_cell:=curr_sheet.cells[rowid][1];
 curr_cell.value:=(rowid-init_rowid+2)/2;
 
 curr_cell:=curr_sheet.cells[rowid][2];
-curr_cell.value:="%DSP_PIECE_PRODUCTDESC%";
+curr_cell.value:=trim("%DSP_PIECE_PRODUCTDESC%");
 
 curr_cell:=curr_sheet.cells[rowid][3];
 if "@%DB_PIECE_ARTICLECODE%"<>"" then
