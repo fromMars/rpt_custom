@@ -59,8 +59,8 @@ excel.selection.value:="工程名称:%PROJECT%";
 /**********************************************************/
 costsheet.cells[rowid][1].RowHeight:="50";
 
-costsheet.Columns["A"].rows[rowid].select();
-excel.selection.value:="=row()-6";
+current_cell := costsheet.Columns["A"].rows[rowid];
+current_cell.value:="=row()-6";
 
 ;costsheet.Columns["B"].rows[rowid].select();
 costsheet.Columns["B"].rows[rowid].value:="@%DB_ATTRIB_ACCDESC%";
@@ -73,7 +73,7 @@ costsheet.Columns["E"].rows[rowid].value:="%IF{@%DB_ATTRIB_TYPE%=-2,件,m}";
 ;costsheet.Columns["F"].rows[rowid].select();
 
 costsheet.Columns["F"].rows[rowid].value:="%IF{@%DB_ATTRIB_TYPE%=-1,=@%DB_ATTRIB_ITMPRICE%/@%DB_ATTRIB_LENGTH%*(1-@%DB_ATTRIB_REBATE%/100),=@%DB_ATTRIB_ITMPRICE%*(1-@%DB_ATTRIB_REBATE%/100)}";
-/*excel.selection.value:="=@%DB_ATTRIB_ITMPRICE%*(1-@%DB_ATTRIB_REBATE%/100)";*/
+/*current_cell.value:="=@%DB_ATTRIB_ITMPRICE%*(1-@%DB_ATTRIB_REBATE%/100)";*/
 ;costsheet.Columns["G"].rows[rowid].select();
 costsheet.Columns["G"].rows[rowid].value:="%IF{@%DB_ATTRIB_TYPE%=-2,%DSP_ATTRIB_NO01%,%IF{@%DB_ATTRIB_SEQNO%=0,%DSP_ATTRIB_LENGTH01%,=@%DB_ATTRIB_NO%*@%DB_ATTRIB_LENGTH%}}";
 ;costsheet.Columns["H"].rows[rowid].select();

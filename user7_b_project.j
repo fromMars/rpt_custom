@@ -57,21 +57,21 @@ excel.selection.value:="工程名称:%PROJECT%";
 
 %% detail
 /**********************************************************/
-costsheet.Columns["A"].rows[rowid].select();
-excel.selection.value:="=row()-6";
+current_cell := costsheet.cells[rowid][1];
+current_cell.value := "=row()-6";
 
-costsheet.Columns["B"].rows[rowid].select();
-excel.selection.value:="@%DB_ATTRIB_ACCDESC%";
-costsheet.Columns["C"].rows[rowid].select();
-excel.selection.value:="%IF{@%Db_ATTRIB_ARTICLECODE%="",'@%DB_ATTRIB_ACC% @%DB_ATTRIB_SERIE%,'@%DB_ATTRIB_ARTICLECODE%}";
-costsheet.Columns["D"].rows[rowid].select();
-excel.selection.value:="@%DB_ATTRIB_VARIETYDESC%";
-costsheet.Columns["E"].rows[rowid].select();
-excel.selection.value:="%IF{@%DB_ATTRIB_TYPE%=-2,件,m}";
-costsheet.Columns["F"].rows[rowid].select();
-excel.selection.value:="=Ceiling(%IF{@%DB_ATTRIB_TYPE%=-2,@%DB_ATTRIB_NO%,%IF{@%DB_ATTRIB_TYPE%=-1,@%DB_ATTRIB_NO%,@%DB_ATTRIB_LENGTH%}}/%IF{@%DB_ATTRIB_TYPE%=-2,@%DB_ATTRIB_PACKSIZE%,%IF{@%DB_ATTRIB_TYPE%=-1,1,@%DB_ATTRIB_PACKSIZE%}},1)*%IF{@%DB_ATTRIB_TYPE%=-2,@%DB_ATTRIB_PACKSIZE%,%IF{@%DB_ATTRIB_TYPE%=-1,@%DB_ATTRIB_LENGTH%,@%DB_ATTRIB_PACKSIZE%}}";
-costsheet.Columns["G"].rows[rowid].select();
-excel.selection.value:="";
+current_cell := costsheet.cells[rowid][2];
+current_cell.value := "@%DB_ATTRIB_ACCDESC%";
+current_cell := costsheet.cells[rowid][3];
+current_cell.value := "%IF{@%Db_ATTRIB_ARTICLECODE%="",'@%DB_ATTRIB_ACC% @%DB_ATTRIB_SERIE%,'@%DB_ATTRIB_ARTICLECODE%}";
+current_cell := costsheet.cells[rowid][4];
+current_cell.value := "@%DB_ATTRIB_VARIETYDESC%";
+current_cell := costsheet.cells[rowid][5];
+current_cell.value := "%IF{@%DB_ATTRIB_TYPE%=-2,件,m}";
+current_cell := costsheet.cells[rowid][6];
+current_cell.value := "=Ceiling(%IF{@%DB_ATTRIB_TYPE%=-2,@%DB_ATTRIB_NO%,%IF{@%DB_ATTRIB_TYPE%=-1,@%DB_ATTRIB_NO%,@%DB_ATTRIB_LENGTH%}}/%IF{@%DB_ATTRIB_TYPE%=-2,@%DB_ATTRIB_PACKSIZE%,%IF{@%DB_ATTRIB_TYPE%=-1,1,@%DB_ATTRIB_PACKSIZE%}},1)*%IF{@%DB_ATTRIB_TYPE%=-2,@%DB_ATTRIB_PACKSIZE%,%IF{@%DB_ATTRIB_TYPE%=-1,@%DB_ATTRIB_LENGTH%,@%DB_ATTRIB_PACKSIZE%}}";
+current_cell := costsheet.cells[rowid][7];
+current_cell.value := "";
 
 
 rowid:=rowid+1;

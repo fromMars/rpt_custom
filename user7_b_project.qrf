@@ -6,7 +6,6 @@ include attrib.qif
 
 defines
   ESTIMATION_TEMPLATE=accesorypack
-  MTQ_LENGTH       =
 
 field definitions
   FMTQ_LENGTH    =DOUBLE(8,2,"%%s%MTQ_LENGTH%")
