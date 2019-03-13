@@ -130,6 +130,9 @@ else
 
 inside_color:="@%DB_PIECE_INSIDE%";
 outside_color:="@%DB_PIECE_OUTSIDE%";
+/*  commented below for EOSS2018: 
+    duplicated color reverse, stuk.dbf inside/outside does well.
+    for EOSS2016 not sure, so kept uncommented  */
 if seperated_profile.colour=0 then
 else if seperated_profile.colour=1 then
 	inside_color:=outside_color;
@@ -141,6 +144,7 @@ else if seperated_profile.colour=3 then
 	inside_color:=outside_color;
 	outside_color:=tmp_color;
 }
+
 
 m_weight:=seperated_profile.weight;
 curr_cell:=curr_sheet.cells[rowid][7];
