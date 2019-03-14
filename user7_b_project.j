@@ -57,6 +57,9 @@ excel.selection.value:="¹¤³ÌÃû³Æ:%PROJECT%";
 
 %% detail
 /**********************************************************/
+costsheet.cells[rowid][1].select();
+excel.selection.entirerow.insert(-4121, 1);
+
 current_cell := costsheet.cells[rowid][1];
 current_cell.value := "=row()-6";
 
