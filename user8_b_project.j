@@ -85,7 +85,7 @@ row_list.add(tmp_value);
 
 
 cnt:=0;
-while cnt<row_list.length-1 do
+while cnt<row_list.length-0 do
 {
     costsheet.cells[rowid][cnt+1].value:=row_list[cnt];
     cnt:=cnt+1;
