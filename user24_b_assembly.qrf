@@ -29,6 +29,18 @@ defines
   C_REAL_LOSS        =2
 
   Z_WEIGHT_EXTRA_RATE =(1+0)
+  
+  EOSS2016_TO_2018_16 =%IF{"%DB_DESC%"="EOSS2018",80,16}
+  EOSS2016_TO_2018_17 =%IF{"%DB_DESC%"="EOSS2018",85,17}
+  EOSS2016_TO_2018_20 =%IF{"%DB_DESC%"="EOSS2018",90,20}
+  EOSS2016_TO_2018_30 =%IF{"%DB_DESC%"="EOSS2018",150,30}
+  EOSS2016_TO_2018_32 =%IF{"%DB_DESC%"="EOSS2018",160,32}
+  EOSS2016_TO_2018_35 =%IF{"%DB_DESC%"="EOSS2018",175,35}
+  EOSS2016_TO_2018_89 =%IF{"%DB_DESC%"="EOSS2018",445,89}
+  EOSS2016_TO_2018_94 =%IF{"%DB_DESC%"="EOSS2018",470,94}
+  EOSS2016_TO_2018_41 =%IF{"%DB_DESC%"="EOSS2018",205,41}
+  EOSS2016_TO_2018_100 =%IF{"%DB_DESC%"="EOSS2018",500,100}
+  EOSS2016_TO_2018_900 =%IF{"%DB_DESC%"="EOSS2018",1000,900}
 
 
 fields
@@ -53,7 +65,7 @@ report
   where    %DB_PIECE_PROJECT%  = "%PROJECT_TEXT%"
   and      %DB_PIECE_ASSEMBLY% = "%ASSEMBLY_TEXT%"
   and      %DB_PIECE_ARTICLE% != %C_OPERATIONS%
-  and		%DB_PIECE_ARTICLE% not in (0,90,16,17)
+  and		%DB_PIECE_ARTICLE% not in (0,%EOSS2016_TO_2018_20%,%EOSS2016_TO_2018_16%,%EOSS2016_TO_2018_17%)
   and		%DB_PIECE_PRICE% <> 0
   group by %DB_PIECE_ARTICLE%,%DB_PIECE_LOSSTYPE%
   having   count(*) > 0
@@ -75,7 +87,7 @@ report
   where    %DB_PIECE_PROJECT%  = "%PROJECT_TEXT%"
   and      %DB_PIECE_ASSEMBLY% = "%ASSEMBLY_TEXT%"
   and      %DB_PIECE_ARTICLE% != %C_OPERATIONS%
-  and		%DB_PIECE_ARTICLE% in (16,17)
+  and		%DB_PIECE_ARTICLE% in (%EOSS2016_TO_2018_16%,%EOSS2016_TO_2018_17%)
   and		%DB_PIECE_PRICE% <> 0
   group by %DB_PIECE_ARTICLE%,%DB_PIECE_LOSSTYPE%
   having   count(*) > 0
@@ -118,9 +130,9 @@ report
   where    %DB_COST_PROJECT%  = "%PROJECT_TEXT%"
   and      %DB_COST_ARTICLE% != %C_OPERATIONS%
   and 		%DB_COST_ARTICLE% not in (select distinct(%DB_PIECE_ARTICLE%) from %TBL_PIECE%)
-  and		%DB_COST_ARTICLE% < 100
-  and		%DB_COST_ARTICLE% > 20
-  and		%DB_COST_ARTICLE%<>41
+  and		%DB_COST_ARTICLE% < %EOSS2016_TO_2018_100%
+  and		%DB_COST_ARTICLE% > %EOSS2016_TO_2018_20%
+  and		%DB_COST_ARTICLE%<>%EOSS2016_TO_2018_41%
   and      (%DB_COST_ASSEMBLY% = "%ASSEMBLY_TEXT%" or %DB_COST_ASSEMBLY%="") 
   group by %DB_COST_ARTICLE%, %DB_COST_LOSSTYPE%, %DB_COST_RATION%, %DB_COST_FACTOR%, %DB_COST_RATIO%
   having   count(*) > 0
@@ -141,8 +153,9 @@ report
     where   %DB_ATTRIB_PROJECT%="%PROJECT_TEXT%"
     and     %DB_ATTRIB_ASSEMBLY%="%ASSEMBLY_TEXT%"
     and     (%DB_ATTRIB_ARTICLE% in (select distinct(%DB_COST_ARTICLE%) from %TBL_COST%)
-        or  %DB_ATTRIB_ARTICLE%<20)
+        or  %DB_ATTRIB_ARTICLE%<%EOSS2016_TO_2018_20%)
     and     %DB_ATTRIB_ACCDESC% not like "·ÖÐÍ²Ä"
+    and     %DB_ATTRIB_SPLIT%<>-2
     and     %DB_ATTRIB_ACC% not in (select distinct(%DB_PIECE_PRODUCT%) from %TBL_PIECE%)
     group by %DB_ATTRIB_ARTICLE%,%DB_ATTRIB_LOSSTYPE%
     having count(*)>0
@@ -183,7 +196,7 @@ report
   from     %TBL_GLASS%
   where    %DB_COST_PROJECT%  = "%PROJECT_TEXT%"
   and 		(%DB_GLASS_ASSEMBLY% = "%ASSEMBLY_TEXT%" or %DB_GLASS_ASSEMBLY% = "")
-  and    	(%DB_GLASS_ARTICLE%<30 or %DB_GLASS_ARTICLE%=41)
+  and    	(%DB_GLASS_ARTICLE%<%EOSS2016_TO_2018_30% or %DB_GLASS_ARTICLE%=%EOSS2016_TO_2018_41%)
   group by %DB_GLASS_DESC%,%DB_GLASS_ARTICLE%
   having   count(*) > 0
 
@@ -210,7 +223,7 @@ report
   where    %DB_COST_PROJECT%  = "%PROJECT_TEXT%"
   and      %DB_COST_ARTICLE% != %C_OPERATIONS%
   and 		%DB_COST_ARTICLE% not in (select distinct(%DB_PIECE_ARTICLE%) from %TBL_PIECE%)
-  and 		%DB_COST_ARTICLE% > 900
+  and 		%DB_COST_ARTICLE% > %EOSS2016_TO_2018_900%
   and      (%DB_COST_ASSEMBLY% = "%ASSEMBLY_TEXT%" or %DB_COST_ASSEMBLY%="") 
   group by %DB_COST_ARTICLE%, %DB_COST_LOSSTYPE%, %DB_COST_RATION%, %DB_COST_FACTOR%, %DB_COST_RATIO%
   having   count(*) > 0
@@ -234,7 +247,7 @@ report
   where    %DB_COST_PROJECT%  = "%PROJECT_TEXT%"
   and      %DB_COST_ARTICLE% != %C_OPERATIONS%
   and 		%DB_COST_ARTICLE% not in (select distinct(%DB_PIECE_ARTICLE%) from %TBL_PIECE%)
-  and 		%DB_COST_ARTICLE% > 900
+  and 		%DB_COST_ARTICLE% > %EOSS2016_TO_2018_900%
   and      (%DB_COST_ASSEMBLY% = "%ASSEMBLY_TEXT%" or %DB_COST_ASSEMBLY%="") 
   group by %DB_COST_ARTICLE%, %DB_COST_LOSSTYPE%, %DB_COST_RATION%, %DB_COST_FACTOR%, %DB_COST_RATIO%
 
@@ -258,7 +271,7 @@ report
   where    %DB_COST_PROJECT%  = "%PROJECT_TEXT%"
   and      %DB_COST_ARTICLE% != %C_OPERATIONS%
   and 		%DB_COST_ARTICLE% not in (select distinct(%DB_PIECE_ARTICLE%) from %TBL_PIECE%)
-  and 		%DB_COST_ARTICLE% between 100 and 900
+  and 		%DB_COST_ARTICLE% between %EOSS2016_TO_2018_100% and %EOSS2016_TO_2018_900%
   and      (%DB_COST_ASSEMBLY% = "%ASSEMBLY_TEXT%" or %DB_COST_ASSEMBLY%="") 
   group by %DB_COST_ARTICLE%, %DB_COST_LOSSTYPE%, %DB_COST_RATION%, %DB_COST_FACTOR%, %DB_COST_RATIO%
   having   count(*) > 0

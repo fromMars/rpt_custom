@@ -253,7 +253,7 @@ un_colid:=3;
 currentcell:=costsheet.cells[rowid][un_colid];
 currentcell.value:="m";
 currentcell.HorizontalAlignment:=-4108;
-if @%DB_COST_ARTICLE%=16 || @%DB_COST_ARTICLE%=17 then
+if @%DB_COST_ARTICLE%=%EOSS2016_TO_2018_16% || @%DB_COST_ARTICLE%=%EOSS2016_TO_2018_17% then
 {
     currentcell.value:="";
 }
@@ -284,7 +284,7 @@ else
     currentcell.formulaR1C1:="=(1+Data!AWRate)*@%DB_PIECE_CFLENGTH%/%ASSEMBLYCOUNT%";
 	currentcell.borders.linestyle:=1;
 }
-if @%DB_COST_ARTICLE%=16 || @%DB_COST_ARTICLE%=17 then
+if @%DB_COST_ARTICLE%=%EOSS2016_TO_2018_16% || @%DB_COST_ARTICLE%=%EOSS2016_TO_2018_17% then
 {
     currentcell.value:="";
 }
@@ -314,7 +314,7 @@ else
 		currentcell.formulaR1C1:=tot_formula;
 	}
 }
-if @%DB_COST_ARTICLE%=16 || @%DB_COST_ARTICLE%=17 then
+if @%DB_COST_ARTICLE%=%EOSS2016_TO_2018_16% || @%DB_COST_ARTICLE%=%EOSS2016_TO_2018_17% then
 {
     currentcell.value:="";
 }

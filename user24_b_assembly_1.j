@@ -97,7 +97,7 @@ if "@%DB_COST_ASSEMBLY%"<>"" then
 {
     currentcell.formulaR1C1:="=@COST_QUANTITY/%ASSEMBLYCOUNT%";
     /*clear unused items*/
-    if @%DB_COST_ARTICLE%<>32 && @%DB_COST_ARTICLE%<>89 then
+    if @%DB_COST_ARTICLE%<>%EOSS2016_TO_2018_32% && @%DB_COST_ARTICLE%<>%EOSS2016_TO_2018_89% then
         currentcell.value:="";
     
 }
@@ -109,7 +109,7 @@ else
 	currentcell.formula:=pla_formula;
     currentcell_tmp:=costsheet.cells[rowid+row_increase][wps_colid+1];
     
-    if trim("%DSP_COST_ARTICLE%")="94" then
+    if trim("%DSP_COST_ARTICLE%")="%EOSS2016_TO_2018_94%" then
     {
         currentcell_tmp.formula:="=Data!HNDRateW";
     }

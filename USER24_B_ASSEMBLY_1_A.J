@@ -60,11 +60,11 @@ if a_link<>"" then
     costsheet.cells[rowid][6].Interior.ColorIndex:="22";
     costsheet.cells[rowid][5].Interior.ColorIndex:="22";*/
 }
-else if @%DB_ATTRIB_ARTICLE%<20 then
+else if @%DB_ATTRIB_ARTICLE%<%EOSS2016_TO_2018_20% then
 {
 	RowId  := StrToNum(cList.Strings[bList.IndexOf("@%DB_ATTRIB_ARTICLE%"+"@%DB_COST_LOSSTYPE%")]);
     
-    if @%DB_COST_ARTICLE%<20 then
+    if @%DB_COST_ARTICLE%<%EOSS2016_TO_2018_20% then
     {
         CellCT := 'Indirect("Cost!"&address('+sList.Strings[cList.IndexOf(IntToStr(RowId))]+","+IntToStr(ColCT)+"))";/*/"+pList.Strings[cList.IndexOf(IntToStr(RowId))];*/
         CellC1 := 'Indirect("Cost!"&address('+sList.Strings[cList.IndexOf(IntToStr(RowId))]+","+IntToStr(ColC1)+"))";
@@ -89,7 +89,7 @@ else if @%DB_ATTRIB_ARTICLE%<20 then
         costsheet.cells[rowid][8].Interior.ColorIndex:="22";*/
     }
     
-    if @%DB_COST_ARTICLE%=16 || @%DB_COST_ARTICLE%=17 then
+    if @%DB_COST_ARTICLE%=%EOSS2016_TO_2018_16% || @%DB_COST_ARTICLE%=%EOSS2016_TO_2018_17% then
     {
 	currentcelltmp:=costsheet.cells[rowid+row_increase][5];
 	currentcelltmp.value:="";
@@ -114,12 +114,12 @@ else
     {
         currentcell.formulaR1C1:="=@%DB_ATTRIB_NO%/%ASSEMBLYCOUNT%";
         /*clear unused items*/
-        if @%DB_ATTRIB_ARTICLE%<>32 then
+        if @%DB_ATTRIB_ARTICLE%<>%EOSS2016_TO_2018_32% then
             currentcell.value:="";
-        if @%DB_ATTRIB_ARTICLE%=32 then
+        if @%DB_ATTRIB_ARTICLE%=%EOSS2016_TO_2018_32% then
             currentcell0.value:="套";        /*currentcell0.value:="件";*/
         /*价格块35-胶条*/
-        if @%DB_ATTRIB_ARTICLE%=35 then
+        if @%DB_ATTRIB_ARTICLE%=%EOSS2016_TO_2018_35% then
         {
             /*currentcell.formulaR1C1:="=@%DB_ATTRIB_CFLENGTH%/%ASSEMBLYCOUNT%";*/
             /*currentcell0.value:="m";*/
@@ -130,7 +130,7 @@ else
 
     currentcell.borders.linestyle:=1;
 
-    if @%DB_COST_ARTICLE%=16 || @%DB_COST_ARTICLE%=17 then
+    if @%DB_COST_ARTICLE%=%EOSS2016_TO_2018_16% || @%DB_COST_ARTICLE%=%EOSS2016_TO_2018_17% then
     {
 	currentcelltmp:=costsheet.cells[rowid+row_increase][5];
 	currentcelltmp.value:="";

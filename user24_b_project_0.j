@@ -189,13 +189,13 @@ pList.Add(StrReplace("TempValue",".","%DECIMALSEP%"));      /*记录价格*/
 sList.Add(inttostr(RowId));                                 /*记录行号*/
 
 /* 记录玻璃行号并设置玻璃价格标志位1*/
-if (@%DB_COST_ARTICLE%=20 || @%DB_COST_ARTICLE%=41) && RowId_G=0 then
+if (@%DB_COST_ARTICLE%=%EOSS2016_TO_2018_20% || @%DB_COST_ARTICLE%=%EOSS2016_TO_2018_41%) && RowId_G=0 then
 {
     RowId_G:=RowId;
     glass_price:=1;
 }
 /*
-if @%DB_COST_ARTICLE%=41 then
+if @%DB_COST_ARTICLE%=%EOSS2016_TO_2018_41% then
 {
     RowId_S:=RowId;
     glass_price:=1;

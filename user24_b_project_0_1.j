@@ -41,7 +41,7 @@ if a_link<>"" then                                          /*记录价格块或跟随块
 else
 {
 	bList.Add("@%DB_COST_ARTICLE%"+"@%DB_COST_LOSSTYPE%");
-    if @%DB_COST_ARTICLE%=16 || @%DB_COST_ARTICLE%=17 then
+    if @%DB_COST_ARTICLE%=%EOSS2016_TO_2018_16% || @%DB_COST_ARTICLE%=%EOSS2016_TO_2018_17% then
         cnt_16_17:=cnt_16_17+1;                             /*配件统计增加型材行，起始行改变*/
 }
 cList.Add(IntToStr(RowId));                                 /*记录行号*/
@@ -49,13 +49,13 @@ pList.Add(StrReplace("TempValue",".","%DECIMALSEP%"));      /*记录价格*/
 sList.Add(inttostr(RowId));                                 /*记录行号*/
 
 /* 记录玻璃行号并设置玻璃价格标志位1*/
-if (@%DB_COST_ARTICLE%=20 || @%DB_COST_ARTICLE%=41) && RowId_G=0 then
+if (@%DB_COST_ARTICLE%=%EOSS2016_TO_2018_20% || @%DB_COST_ARTICLE%=%EOSS2016_TO_2018_41%) && RowId_G=0 then
 {
     RowId_G:=RowId;
     glass_price:=1;
 }
 /*
-if @%DB_COST_ARTICLE%=41 then
+if @%DB_COST_ARTICLE%=%EOSS2016_TO_2018_41% then
 {
     RowId_S:=RowId;
     glass_price:=1;
