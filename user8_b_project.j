@@ -109,7 +109,7 @@ full_list.free();
 costsheet.range[costsheet.cells[rowid][1]][costsheet.cells[rowid][10]].merge();
 costsheet.cells[rowid][1].value:="      设计：                     审核：                    批准：";
 costsheet.cells[rowid][1].horizontalAlignment:=-4108;
-costsheet.cells[rowid][1].RowHeight:="30";
+costsheet.cells[rowid][1].RowHeight:="25";
 
 costsheet.range[costsheet.cells[6][1]][costsheet.cells[rowid-1][10]].Columns.AutoFit;
 costsheet.range[costsheet.cells[6][1]][costsheet.cells[rowid][10]].Borders.LineStyle:=1;
