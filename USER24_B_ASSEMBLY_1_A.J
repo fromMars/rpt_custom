@@ -114,7 +114,7 @@ else
     {
         currentcell.formulaR1C1:="=@%DB_ATTRIB_NO%/%ASSEMBLYCOUNT%";
         /*clear unused items*/
-        if @%DB_ATTRIB_ARTICLE%<>%EOSS2016_TO_2018_32% then
+        if 1 then
             currentcell.value:="";
         if @%DB_ATTRIB_ARTICLE%=%EOSS2016_TO_2018_32% then
             currentcell0.value:="Ì×";        /*currentcell0.value:="¼þ";*/

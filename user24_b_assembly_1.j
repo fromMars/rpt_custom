@@ -67,8 +67,26 @@ costsheet.cells[rowid+row_increase][1].formula:=list_no_formula;
 s_colid:=colid+1;
 currentcell:=costsheet.cells[rowid+row_increase][s_colid];
 currentcell.value:="%DSP_COST_SUPPLIER%";
-if trim(currentcell.value)="EOSS" then
+/*if trim(currentcell.value)="EOSS" then*/
+base_supplier:=3;
+acc_supplier_pos:=0;
+if @%DB_COST_ARTICLE%<>160 && @%DB_COST_ARTICLE%<>250 && @%DB_COST_ARTICLE%<>255 && @%DB_COST_ARTICLE%<>260 && @%DB_COST_ARTICLE%<>275 then
     currentcell.value:="易欧思专用";
+else
+{
+    acc_supplier_pos:=acc_supplier_list.indexof("@%DB_COST_ARTICLE%");
+    if acc_supplier_pos=-1 then
+    {
+        acc_supplier_list.add("@%DB_COST_ARTICLE%");
+        acc_supplier_pos:=acc_supplier_list.indexof("@%DB_COST_ARTICLE%");
+    }
+    tmp_pos:=base_supplier+acc_supplier_pos;
+    tmp_name:="DCBJ_GYS"+inttostr(tmp_pos);
+    datasheet.cells[tmp_pos][6].value:="@%DB_COST_DESC%供应商";
+    datasheet.cells[tmp_pos][7].value:="请填写供应商";
+    template.names.add(tmp_name,datasheet.cells[tmp_pos][7]);
+    currentcell.formula:="=Data!"+tmp_name;
+}
 currentcell.borders.linestyle:=1;
 
 ;单价
@@ -86,7 +104,7 @@ else
 	currentcell.formulaR1C1:=tot_formula;
 }
 /*clear unused items*/
-if @%DB_COST_ARTICLE%<>32 && @%DB_COST_ARTICLE%<>89 then
+if @%DB_COST_ARTICLE%<>445 then
     currentcell.value:="";
 currentcell.borders.linestyle:=1;
 
@@ -97,7 +115,7 @@ if "@%DB_COST_ASSEMBLY%"<>"" then
 {
     currentcell.formulaR1C1:="=@COST_QUANTITY/%ASSEMBLYCOUNT%";
     /*clear unused items*/
-    if @%DB_COST_ARTICLE%<>%EOSS2016_TO_2018_32% && @%DB_COST_ARTICLE%<>%EOSS2016_TO_2018_89% then
+    if @%DB_COST_ARTICLE%<>445 then
         currentcell.value:="";
     
 }
@@ -112,6 +130,18 @@ else
     if trim("%DSP_COST_ARTICLE%")="%EOSS2016_TO_2018_94%" then
     {
         currentcell_tmp.formula:="=Data!HNDRateW";
+    }
+    else if trim("%DSP_COST_ARTICLE%")="970" then
+    {
+        currentcell_tmp.formula:="=Data!HNDRateJC";
+    }
+    else if trim("%DSP_COST_ARTICLE%")="975" then
+    {
+        currentcell_tmp.formula:="=Data!HNDRateZB";
+    }
+    else if trim("%DSP_COST_ARTICLE%")="980" then
+    {
+        currentcell_tmp.formula:="=Data!HNDRateJS";
     }
     else
     {

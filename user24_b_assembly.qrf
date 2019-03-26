@@ -118,6 +118,7 @@ next
 report
   select   min(%DB_COST_ASSEMBLY%) as %DB_COST_ASSEMBLY%,
             %DB_COST_ARTICLE%,
+            %DB_COST_DESC%,
            %DB_COST_LOSSTYPE%,
            %DB_COST_RATION%,
 	   %DB_COST_FACTOR%,
@@ -134,7 +135,7 @@ report
   and		%DB_COST_ARTICLE% > %EOSS2016_TO_2018_20%
   and		%DB_COST_ARTICLE%<>%EOSS2016_TO_2018_41%
   and      (%DB_COST_ASSEMBLY% = "%ASSEMBLY_TEXT%" or %DB_COST_ASSEMBLY%="") 
-  group by %DB_COST_ARTICLE%, %DB_COST_LOSSTYPE%, %DB_COST_RATION%, %DB_COST_FACTOR%, %DB_COST_RATIO%
+  group by %DB_COST_ARTICLE%, %DB_COST_DESC%, %DB_COST_LOSSTYPE%, %DB_COST_RATION%, %DB_COST_FACTOR%, %DB_COST_RATIO%
   having   count(*) > 0
 
 using %REPORTNAME%_B_ASSEMBLY_1.%REPORTTYPE%%IF{%REPORTTYPE%=J,,%LANGUAGE%}
@@ -187,6 +188,7 @@ next
 report
   select   min(%DB_GLASS_ASSEMBLY%) as %DB_GLASS_ASSEMBLY%,
             %DB_GLASS_DESC%,
+            %DB_GLASS_FILLING%,
            sum(%DB_GLASS_NO%) as %DB_GLASS_NO%,
            sum(%DB_GLASS_SURFACE%) as %DB_GLASS_SURFACE%,
            sum(%DB_GLASS_WEIGHT%) as %DB_GLASS_WEIGHT%,
@@ -197,7 +199,8 @@ report
   where    %DB_COST_PROJECT%  = "%PROJECT_TEXT%"
   and 		(%DB_GLASS_ASSEMBLY% = "%ASSEMBLY_TEXT%" or %DB_GLASS_ASSEMBLY% = "")
   and    	(%DB_GLASS_ARTICLE%<%EOSS2016_TO_2018_30% or %DB_GLASS_ARTICLE%=%EOSS2016_TO_2018_41%)
-  group by %DB_GLASS_DESC%,%DB_GLASS_ARTICLE%
+  and           (%DB_GLASS_FILLING%<>"GL00" and %DB_GLASS_FILLING%<>"G000")
+  group by %DB_GLASS_DESC%,%DB_GLASS_FILLING%,%DB_GLASS_ARTICLE%
   having   count(*) > 0
 
 using %REPORTNAME%_B_ASSEMBLY_1_G.%REPORTTYPE%%IF{%REPORTTYPE%=J,,%LANGUAGE%}

@@ -88,6 +88,8 @@ s_colid:=colid+1;
 currentcell:=costsheet.cells[rowid+row_increase][s_colid];
 currentcell.value:="%DSP_COST_SUPPLIER%";
 currentcell.borders.linestyle:=1;
+if trim("%DSP_COST_DESC%")="胶条焊合" then
+    currentcell.value:="";
 
 ;unit
 u_colid:=colid-1;
@@ -96,6 +98,18 @@ u_recent_value:=currentcell.formula;
 if "@%DB_COST_ASSEMBLY%"="" then
 {
     /*project level artikels*/
+    if trim("%DSP_COST_ARTICLE%")="970" then
+    {
+        currentcell.formula:="=Data!HNDRateJC";		/*manual input value default 0*/
+    }
+    else if trim("%DSP_COST_ARTICLE%")="975" then
+    {
+        currentcell.formula:="=Data!HNDRateZB";		/*manual input value default 0*/
+    }
+    else if trim("%DSP_COST_ARTICLE%")="980" then
+    {
+        currentcell.formula:="=Data!HNDRateJS";		/*manual input value default 0*/
+    }
 }
 else
 {
@@ -126,6 +140,10 @@ else
     {
         currentcell.formula:="=Data!HNDRateF";		/*manual input value default 0*/
     }
+    else if trim("%DSP_COST_DESC%")="胶条焊合" then
+    {
+        currentcell.formula:="=Data!HNDRateG";		/*manual input value default 0*/
+    }
 }
 currentcell.borders.linestyle:=1;
 
@@ -137,8 +155,11 @@ currentcell:=costsheet.cells[rowid+row_increase][wps_colid];
 if "@%DB_COST_ASSEMBLY%"<>"" then
 {
     currentcell.formulaR1C1:="="+numtostr(curr_surface);
+    if trim("%DSP_COST_DESC%")="胶条焊合" then
+        currentcell.value:=inttostr(@COST_QUANTITY);
     currentcell:=costsheet.cells[rowid+row_increase][u_colid-3];
     currentcell.value:="㎡";
+    currentcell.HorizontalAlignment:=-4108;
 }
 else
 {
@@ -148,6 +169,26 @@ else
     /*datasheet.range["HNDRate"].formula:='=Indirect("Cost!"&address('+inttostr(rowid)+","+inttostr(colid+7)+"))"+"/Cost!mianji";*/
     datasheet.range["HNDRate"].value:=0;		/*manual input value default 0*/
     currentcell_tmp.formula:="=Data!HNDRate";
+    if trim("%DSP_COST_ARTICLE%")="970" then
+    {
+        datasheet.range["HNDRate"].value:=0;		/*manual input value default 0*/
+        currentcell_tmp.formula:="=Data!HNDRateJC";
+    }
+    else if trim("%DSP_COST_ARTICLE%")="975" then
+    {
+        datasheet.range["HNDRate"].value:=0;		/*manual input value default 0*/
+        currentcell_tmp.formula:="=Data!HNDRateZB";
+    }
+    else if trim("%DSP_COST_ARTICLE%")="980" then
+    {
+        datasheet.range["HNDRate"].value:=0;		/*manual input value default 0*/
+        currentcell_tmp.formula:="=Data!HNDRateJS";
+    }
+    else if trim("%DSP_COST_ARTICLE%")="445" then
+    {
+        datasheet.range["HNDRate"].value:=0;		/*manual input value default 0*/
+        currentcell_tmp.formula:="=Data!HNDRate";
+    }
     currentcell_tmp:=costsheet.cells[rowid+row_increase][wps_colid+2];
     currentcell_tmp.formulaR1C1:="="+RId+CId+LBr+"-2"+RBr+"*"+RId+CId+LBr+"-1"+RBr;
     currentcell_tmp:=costsheet.cells[rowid+row_increase][wps_colid-2];
