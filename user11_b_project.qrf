@@ -1,0 +1,23 @@
+defines
+    no_color=0
+    
+include jopps.qif
+include attrib.qif
+
+defines
+    XLT_TEMPLATE=grtdd
+
+    
+report
+    select  %DB_ATTRIB_ACC%,
+            %DB_ATTRIB_ACCDESC%,
+            %DB_ATTRIB_LENGTH%,
+            sum(%DB_ATTRIB_NO%) as %DB_ATTRIB_NO%
+    from    %TBL_ATTRIB%
+    where   %DB_ATTRIB_SPLIT%=-2
+    and     %DB_ATTRIB_TYPE%=-1
+    and     %DB_ATTRIB_DEPNO% in (35, 36)
+    group by    %DB_ATTRIB_ACC%, %DB_ATTRIB_ACCDESC%, %DB_ATTRIB_LENGTH%
+    order by    %DB_ATTRIB_ACC% DESC
+    
+using %REPORTNAME%_b_project.%REPORTTYPE%%IF{%REPORTTYPE%=J,,%LANGUAGE%}
