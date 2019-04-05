@@ -70,7 +70,8 @@ curr_cell := curr_sheet.cells[_rowid][1];
 curr_cell.formula := "=row()-3";
 
 curr_cell := curr_sheet.cells[_rowid][2];
-curr_cell.value := "%DSP_ATTRIB_ACC%";
+tmp_str := "%DSP_ATTRIB_ACC%";
+curr_cell.value := substr(tmp_str, 2, strlen(tmp_str)-1);
 
 curr_cell := curr_sheet.cells[_rowid][3];
 curr_cell.value := "%DSP_ATTRIB_ACCDESC%";
