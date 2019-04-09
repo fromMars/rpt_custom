@@ -90,7 +90,7 @@ helpsheet.usedrange.borders.linestyle:=1;
 DataSheet.Range["AWRate"].value:=0;
 /* add remarks for profile weight */
 helpsheet.range[helpsheet.cells[s+3][1]][helpsheet.cells[s+3][12]].merge();
-helpsheet.cells[s+3][1].formula:='="备注：型材用量(kg)包含"&Text(Data!AWRate,"0.00%")&"附加重量。"';
+helpsheet.cells[s+3][1].formula:='="备注：型材用量(m)包含"&Text(Data!AWRate,"0.00%")&"附加重量。"';
 helpsheet.cells[s+3][1].font.colorindex:=32;
 helpsheet.cells[s+3][1].font.bold:=False;
 helpsheet.cells[s+3][1].font.size:=10;

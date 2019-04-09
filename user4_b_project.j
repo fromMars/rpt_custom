@@ -151,7 +151,10 @@ else
 
 inside_color:="@%DB_PIECE_INSIDE%";
 outside_color:="@%DB_PIECE_OUTSIDE%";
-/* EOSS2018 no need to reverse, for JoPPS already done internally.
+/*  EOSS2018 no need to reverse, for JoPPS already done internally.
+    20190409 Update:
+        Still need to reverse for fixed titles. 
+        And this time reverses both colors and profiles.*/
 if p_profiles.colour=0 then
 else if p_profiles.colour=1 then
 	inside_color:=outside_color;
@@ -162,7 +165,11 @@ else if p_profiles.colour=3 then
 	tmp_color:=inside_color;
 	inside_color:=outside_color;
 	outside_color:=tmp_color;
-}*/
+	
+	tmp_profile:=inside_profile;
+	inside_profile:=outside_profile;
+	outside_profile:=tmp_profile;
+}
 
 /*m_weight:=p_profiles.weight;*/
 m_weight:=@%DB_PIECE_WEIGHT%;
