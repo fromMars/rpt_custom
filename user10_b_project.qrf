@@ -1,0 +1,32 @@
+defines
+  no_colors=0
+
+include jopps.qif
+include frame.qif
+include acc.qif
+
+defines
+  ESTIMATION_TEMPLATE=accesorylist
+
+field definitions
+
+
+report
+  select 
+    %DB_ACC_CODE%,
+    %DB_ACC_DESC%,
+    %DB_ACC_SUPPLIER%
+  from %TBL_ACC%
+
+using %REPORTNAME%_b_project.h5
+
+
+next
+report
+  select 
+    %DB_ACC_CODE%,
+    %DB_ACC_DESC%,
+    %DB_ACC_SUPPLIER%
+  from %TBL_ACC%
+
+using %REPORTNAME%_b_project.%REPORTTYPE%%IF{%REPORTTYPE%=J,,%LANGUAGE%}
