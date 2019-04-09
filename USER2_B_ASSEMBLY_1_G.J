@@ -105,7 +105,7 @@ else
 	currentcell.formulaR1C1:=tot_formula;*/
     /*currentcell.value:=0;*/
     
-    tot_formula:="="+RId+LBr+inttostr(0)+RBr+CId+Lbr+"1"+RBr+"/(@%DB_GLASS_SURFACE%/@%DB_GLASS_NO%)";
+    tot_formula:="="+RId+LBr+inttostr(0)+RBr+CId+Lbr+"1"+RBr+"/(@%DB_GLASS_SURFACE%/%ASSEMBLYCOUNT%)";
     currentcell.formulaR1C1:=tot_formula;
     /*unit price to be value rather than formula*/
     datasheet.cells[glass_base+glass_pos][9].value:=currentcell.value;
