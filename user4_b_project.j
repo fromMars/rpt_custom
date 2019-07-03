@@ -174,8 +174,9 @@ else if p_profiles.colour=3 then
 	outside_profile:=tmp_profile;
 }
 
-/*m_weight:=p_profiles.weight;*/
-m_weight:=@%DB_PIECE_WEIGHT%;
+m_weight:=p_profiles.weight;
+if m_weight=0 then
+	m_weight:=@%DB_PIECE_WEIGHT%;
 curr_cell:=curr_sheet.cells[rowid][8];
 /*curr_cell.value:=m_weight/p_cnt/p_lth;*/
 curr_cell.value:=m_weight;
