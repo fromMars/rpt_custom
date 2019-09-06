@@ -202,7 +202,7 @@ else
 {
 	curr_sheet.range[curr_sheet.cells[rowid][10]][curr_sheet.cells[rowid+1][11]].merge();
 	if %DSP_PIECE_SERIE% = 17 then
-		curr_cell:=curr_sheet.cells[rowid][10].value:="银白色氧化";
+		curr_cell:=curr_sheet.cells[rowid][10].value:="氧化青光";
 	else
 		curr_cell:=curr_sheet.cells[rowid][10].value:="%DSP_PIECE_SERIE%";
 }
