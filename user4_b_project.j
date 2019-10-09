@@ -223,6 +223,9 @@ else if blok_name="T" then
 
 curr_sheet.range[curr_sheet.cells[init_rowid][12]][curr_sheet.cells[rowid][12]].merge();
 curr_sheet.usedrange.rows[""+inttostr(init_rowid)+":"+inttostr(rowid+1)].borders.linestyle:=1;
+
+used_row_cnt := curr_sheet.usedrange.rows.count;
+curr_sheet.range[curr_sheet.cells[init_rowid][13]][curr_sheet.cells[used_row_cnt][22]].borders.linestyle:=0;
 first_row.columns[4].formula:="=sum(D"+inttostr(init_rowid)+":D"+inttostr(rowid)+")";
 
 p_profiles.free();
