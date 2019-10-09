@@ -177,7 +177,7 @@ else if p_profiles.colour=3 then
 m_weight:=p_profiles.weight;
 if m_weight=0 then
 	m_weight:=@%DB_PIECE_WEIGHT%;
-curr_cell:=curr_sheet.cells[rowid][8];
+curr_cell:=curr_sheet.cells[rowid][23];		/*weight column move from 8 to 23*/
 /*curr_cell.value:=m_weight/p_cnt/p_lth;*/
 curr_cell.value:=m_weight;
 
