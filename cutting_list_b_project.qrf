@@ -1,0 +1,204 @@
+; Zaaglijst
+
+defines
+;needed by JoPPS.QIF
+  NO_COLORS     =0
+
+include JoPPS.QIF
+include Piece.QIF
+include Profile.QIF
+include Annex.QIF
+
+defines
+  C_LOUTPUT_ABS    =0
+  C_LOUTPUT_MAX    =1
+  C_LOUTPUT_MIN    =2
+  C_LOUTPUT_S1     =3
+  C_LOUTPUT_S2     =4
+
+  C_LAYOUT_SHORT       =0
+  C_LAYOUT_NORMAL      =1
+  C_LAYOUT_LONG        =2
+  C_LAYOUT_CLASSIC     =3
+  C_LAYOUT_BATCH       =4
+  C_LAYOUT_GROUP       =5
+
+  DB_PIECE_LOUTPUT =%IF{%CUTTING_LIST_LENGTH%=%C_LOUTPUT_ABS%,%DB_PIECE_LABS%,#
+                    %IF{%CUTTING_LIST_LENGTH%=%C_LOUTPUT_MAX%,%DB_PIECE_LMAX%,#
+                    %IF{%CUTTING_LIST_LENGTH%=%C_LOUTPUT_MIN%,%DB_PIECE_LMIN%,#
+                    %IF{%CUTTING_LIST_LENGTH%=%C_LOUTPUT_S1%,%DB_PIECE_LCUT1%,%DB_PIECE_LCUT2%}}}}
+  DB_PIECE_AB      =%IF{%CUTTING_LIST_LENGTH%=%C_LOUTPUT_S1%,%DB_PIECE_ANGLEB1%,#
+                    %IF{%CUTTING_LIST_LENGTH%=%C_LOUTPUT_S2%,%DB_PIECE_ANGLEB2%,%DB_PIECE_ANGLEB%}}
+  DB_PIECE_AE      =%IF{%CUTTING_LIST_LENGTH%=%C_LOUTPUT_S1%,%DB_PIECE_ANGLEE1%,#
+                    %IF{%CUTTING_LIST_LENGTH%=%C_LOUTPUT_S2%,%DB_PIECE_ANGLEE2%,%DB_PIECE_ANGLEE%}}
+
+fields
+  DSP_PIECE_LOUTPUT=@%DB_PIECE_LOUTPUT% DISPLAY AS %FD_MEASURE%
+  DSP_PIECE_AB     =@%DB_PIECE_AB%      DISPLAY AS %FD_ANGLE%
+  DSP_PIECE_AE     =@%DB_PIECE_AE%      DISPLAY AS %FD_ANGLE%
+  DSP_NUMBER       =%EVAL{@%DB_PIECE_NO%/2}        DISPLAY AS %FD_QUANTITY%
+
+using %FILE_HEADER_PROJECT%
+
+next
+
+using %FILE_BARCODE%
+
+next
+
+report
+  select   min(%DB_PIECE_BATCH%) as %DB_PIECE_BATCH%,
+           sum(%DB_PIECE_NO%) as %DB_PIECE_NO%,
+           %DB_PIECE_SERIE%,
+           min(%DB_PIECE_PROFILEDESC%) as %DB_PIECE_PROFILEDESC%,
+           min(%DB_PIECE_PRODUCTDESC%) as %DB_PIECE_PRODUCTDESC%,
+           min(%DB_PIECE_LABS%) as %DB_PIECE_LABS%,
+           min(%DB_PIECE_LMAX%) as %DB_PIECE_LMAX%,
+           min(%DB_PIECE_LMIN%) as %DB_PIECE_LMIN%,
+           min(%DB_PIECE_LCUT1%) as %DB_PIECE_LCUT1%,
+           min(%DB_PIECE_LCUT2%) as %DB_PIECE_LCUT2%,
+           min(%DB_PIECE_ANGLEB%) as %DB_PIECE_ANGLEB%,
+           min(%DB_PIECE_ANGLEE%) as %DB_PIECE_ANGLEE%,
+           min(%DB_PIECE_ANGLESB%) as %DB_PIECE_ANGLESB%,
+           min(%DB_PIECE_ANGLESE%) as %DB_PIECE_ANGLESE%,
+           min(%DB_PIECE_ANGLEB1%) as %DB_PIECE_ANGLEB1%,
+           min(%DB_PIECE_ANGLEE1%) as %DB_PIECE_ANGLEE1%,
+           min(%DB_PIECE_ANGLEB2%) as %DB_PIECE_ANGLEB2%,
+           min(%DB_PIECE_ANGLEE2%) as %DB_PIECE_ANGLEE2%,
+           min(%DB_PIECE_ARCRADIUS%) as %DB_PIECE_ARCRADIUS%,
+           min(%DB_PIECE_ARCWIDTH%) as %DB_PIECE_ARCWIDTH%,
+           min(%DB_PIECE_ARCHEIGHT%) as %DB_PIECE_ARCHEIGHT%,
+           min(%DB_PIECE_VARIETYDESC%) as %DB_PIECE_VARIETYDESC%,
+           min(%DB_PIECE_ARTICLECODE%) as %DB_PIECE_ARTICLECODE%,
+           min(%DB_PIECE_BTYPE%) as %DB_PIECE_BTYPE%,
+           %DB_PIECE_PRODUCT%,
+           min(%DB_PIECE_PROJECT%) as %DB_PIECE_PROJECT%,
+           min(%DB_PIECE_ASSEMBLY%) as %DB_PIECE_ASSEMBLY%,
+           min(%DB_PIECE_FRAME%) as %DB_PIECE_FRAME%,
+           min(%DB_PIECE_OPENING%) as %DB_PIECE_OPENING%,
+           min(%DB_PIECE_VENTPART%) as %DB_PIECE_VENTPART%,
+           min(%DB_PIECE_SYSTEM%) as %DB_PIECE_SYSTEM%,
+           min(%DB_PIECE_PROFILE%) as %DB_PIECE_PROFILE%,
+           min(%DB_PIECE_RACKID%) as %DB_PIECE_RACKID%,
+           min(%DB_PIECE_RACKNO%) as %DB_PIECE_RACKNO%,
+           min(%DB_PIECE_RACKX%) as %DB_PIECE_RACKX%,
+           min(%DB_PIECE_RACKY%) as %DB_PIECE_RACKY%,
+           min(%DB_PIECE_RACKXI%) as %DB_PIECE_RACKXI%,
+           min(%DB_PIECE_RACKYI%) as %DB_PIECE_RACKYI%,
+           min(%DB_PIECE_RACK%) as %DB_PIECE_RACK%,
+           %DB_PIECE_VARIETY%,
+           min(%DB_PIECE_DEPNO%) as %DB_PIECE_DEPNO%,
+           min(%DB_PIECE_SEQNO%) as %DB_PIECE_SEQNO%,
+           %DB_PIECE_ID%,
+           min(%DB_PIECE_ID_PRJ%) as %DB_PIECE_ID_PRJ%,
+           %DB_PIECE_CFCHAR%,
+           %DB_PIECE_PIECENO%,
+           min(%DB_PIECE_NUMBER%) as %DB_PIECE_NUMBER%,
+           min(%DB_PIECE_PART%) as %DB_PIECE_PART%,
+           %DB_PIECE_POSITION%
+  from     %TBL_PIECE%
+  where    %DB_PIECE_DEPNO% not in %CUTTING_LIST_FILTER%
+  and      %DB_PIECE_OPTION% in %RUNOPTIONS%
+  and      %DB_PIECE_NO% > 0
+  and		%DB_PIECE_SPLIT%<>-2
+  and      %CUTTING_LIST_LAYOUT% <> %C_LAYOUT_GROUP%
+  and      ((%SORTPERBTYPE%=0) or ((%SORTPERBTYPE%<>0) and (%DB_PIECE_BTYPE%=%BTYPE%)))  
+  group by %DB_PIECE_PRODUCT%, %DB_PIECE_VARIETY%, %DB_PIECE_SERIE%,
+           %DB_PIECE_LOUTPUT%, %DB_PIECE_AB%, %DB_PIECE_AE%,
+           %DB_PIECE_CFCHAR%, %DB_PIECE_PIECENO%, %DB_PIECE_ID%,
+           %DB_PIECE_POSITION%
+  having   count(*) > 0
+  order by %DB_PIECE_PRODUCT%, %DB_PIECE_VARIETY%, %DB_PIECE_SERIE%,
+           %DB_PIECE_LOUTPUT% desc, %DB_PIECE_AB%, %DB_PIECE_AE%,
+           %DB_PIECE_CFCHAR%, %DB_PIECE_PIECENO%, %DB_PIECE_ID%,
+           %DB_PIECE_POSITION%
+
+calculate
+  break on %DB_PIECE_PRODUCT%, %DB_PIECE_VARIETY%, %DB_PIECE_SERIE%
+
+using %REPORTNAME%_B_PROJECT.%REPORTTYPE%%LANGUAGE%
+
+;rapport V5: aanpassen voor groeperen glaslatten per paar
+next
+
+report
+  select   min(%DB_PIECE_BATCH%) as %DB_PIECE_BATCH%,
+           sum(%DB_PIECE_NO%) as %DB_PIECE_NO%,
+           %DB_PIECE_SERIE%,
+           min(%DB_PIECE_PROFILEDESC%) as %DB_PIECE_PROFILEDESC%,
+           min(%DB_PIECE_PRODUCTDESC%) as %DB_PIECE_PRODUCTDESC%,
+           min(%DB_PIECE_LABS%) as %DB_PIECE_LABS%,
+           min(%DB_PIECE_LMAX%) as %DB_PIECE_LMAX%,
+           min(%DB_PIECE_LMIN%) as %DB_PIECE_LMIN%,
+           min(%DB_PIECE_LCUT1%) as %DB_PIECE_LCUT1%,
+           min(%DB_PIECE_LCUT2%) as %DB_PIECE_LCUT2%,
+           min(%DB_PIECE_ANGLEB%) as %DB_PIECE_ANGLEB%,
+           min(%DB_PIECE_ANGLEE%) as %DB_PIECE_ANGLEE%,
+           min(%DB_PIECE_ANGLEB1%) as %DB_PIECE_ANGLEB1%,
+           min(%DB_PIECE_ANGLEE1%) as %DB_PIECE_ANGLEE1%,
+           min(%DB_PIECE_ANGLEB2%) as %DB_PIECE_ANGLEB2%,
+           min(%DB_PIECE_ANGLEE2%) as %DB_PIECE_ANGLEE2%,
+           min(%DB_PIECE_ARCRADIUS%) as %DB_PIECE_ARCRADIUS%,
+           min(%DB_PIECE_ARCWIDTH%) as %DB_PIECE_ARCWIDTH%,
+           min(%DB_PIECE_ARCHEIGHT%) as %DB_PIECE_ARCHEIGHT%,
+           min(%DB_PIECE_VARIETYDESC%) as %DB_PIECE_VARIETYDESC%,
+           min(%DB_PIECE_ARTICLECODE%) as %DB_PIECE_ARTICLECODE%,
+           min(%DB_PIECE_BTYPE%) as %DB_PIECE_BTYPE%,
+           %DB_PIECE_PRODUCT%,
+           %DB_PIECE_PROJECT%,
+           %DB_PIECE_ASSEMBLY%,
+           %DB_PIECE_FRAME%,
+	   %DB_PIECE_OPENING%,
+	   %DB_PIECE_VENTPART%,
+	   %DB_PIECE_VENTOPENING%,
+	   %DB_PIECE_EQUAL%,
+           min(%DB_PIECE_SYSTEM%) as %DB_PIECE_SYSTEM%,
+           min(%DB_PIECE_PROFILE%) as %DB_PIECE_PROFILE%,
+           min(%DB_PIECE_RACKID%) as %DB_PIECE_RACKID%,
+           min(%DB_PIECE_RACKNO%) as %DB_PIECE_RACKNO%,
+           min(%DB_PIECE_RACKX%) as %DB_PIECE_RACKX%,
+           min(%DB_PIECE_RACKY%) as %DB_PIECE_RACKY%,
+           min(%DB_PIECE_RACKXI%) as %DB_PIECE_RACKXI%,
+           min(%DB_PIECE_RACKYI%) as %DB_PIECE_RACKYI%,
+           min(%DB_PIECE_RACK%) as %DB_PIECE_RACK%,
+           %DB_PIECE_VARIETY%,
+           min(%DB_PIECE_DEPNO%) as %DB_PIECE_DEPNO%,
+           min(%DB_PIECE_SEQNO%) as %DB_PIECE_SEQNO%,
+           min(%DB_PIECE_ID%) as %DB_PIECE_ID%,
+           min(%DB_PIECE_ID_PRJ%) as %DB_PIECE_ID_PRJ%,
+           min(%DB_PIECE_CFCHAR%) as %DB_PIECE_CFCHAR%,
+           min(%DB_PIECE_NUMBER%) as %DB_PIECE_NUMBER%,
+           min(%DB_PIECE_PIECENO%) as %DB_PIECE_PIECENO%
+  from     %TBL_PIECE%
+  where    %DB_PIECE_DEPNO% not in %CUTTING_LIST_FILTER%
+  and      %DB_PIECE_OPTION% in %RUNOPTIONS%
+  and      %DB_PIECE_NO% > 0
+  and		%DB_PIECE_SPLIT%<>-2
+  and      %CUTTING_LIST_LAYOUT% = %C_LAYOUT_GROUP%
+  and      ((%SORTPERBTYPE%=0) or ((%SORTPERBTYPE%<>0) and (%DB_PIECE_BTYPE%=%BTYPE%)))  
+  group by %DB_PIECE_PROJECT%, %DB_PIECE_ASSEMBLY%,
+           %DB_PIECE_LOUTPUT%, %DB_PIECE_AB%, %DB_PIECE_AE%, %DB_PIECE_FRAME%, %DB_PIECE_OPENING%, %DB_PIECE_VENTPART%, %DB_PIECE_VENTOPENING%, %DB_PIECE_EQUAL%, %DB_PIECE_PRODUCT%, %DB_PIECE_VARIETY%, 
+           %DB_PIECE_SERIE%
+  having   count(*) > 0
+  order by %DB_PIECE_PROJECT%, %DB_PIECE_ASSEMBLY%, %DB_PIECE_LOUTPUT% DESC, %DB_PIECE_FRAME%
+
+calculate
+  break on %DB_PIECE_PRODUCT%, %DB_PIECE_VARIETY%, %DB_PIECE_SERIE%
+
+using %REPORTNAME%_B_PROJECT_V5.%REPORTTYPE%%LANGUAGE%
+
+next
+
+report
+  select   %DB_ANNEX_DESC%,
+           %DB_ANNEX_KIND%
+  from     %TBL_ANNEX%
+  where    %DB_ANNEX_KIND% = %REPORTSLOT%
+  and      %DB_ANNEX_OPTION% in %RUNOPTIONS%
+  group by %DB_ANNEX_DESC%, %DB_ANNEX_KIND%
+  having   count(*) > 0
+
+calculate
+  break on %DB_ANNEX_DESC%
+
+using %FILE_ANNEX%

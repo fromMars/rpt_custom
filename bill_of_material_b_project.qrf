@@ -1,0 +1,110 @@
+; Stuklijst
+
+defines
+;needed by JoPPS.QIF
+  NO_COLORS     =0
+
+include JoPPS.QIF
+include Piece.QIF
+include Annex.QIF
+
+defines
+  C_LOUTPUT_ABS    =0
+  C_LOUTPUT_MAX    =1
+  C_LOUTPUT_MIN    =2
+  C_LOUTPUT_S1     =3
+  C_LOUTPUT_S2     =4
+
+  DB_PIECE_LOUTPUT =%IF{%BILL_OF_MATERIAL_LENGTH%=%C_LOUTPUT_ABS%,%DB_PIECE_LABS%,#
+                    %IF{%BILL_OF_MATERIAL_LENGTH%=%C_LOUTPUT_MAX%,%DB_PIECE_LMAX%,#
+                    %IF{%BILL_OF_MATERIAL_LENGTH%=%C_LOUTPUT_MIN%,%DB_PIECE_LMIN%,#
+                    %IF{%BILL_OF_MATERIAL_LENGTH%=%C_LOUTPUT_S1%,%DB_PIECE_LCUT1%,%DB_PIECE_LCUT2%}}}}
+  DB_PIECE_AB      =%IF{%BILL_OF_MATERIAL_LENGTH%=%C_LOUTPUT_S1%,%DB_PIECE_ANGLEB1%,#
+                    %IF{%BILL_OF_MATERIAL_LENGTH%=%C_LOUTPUT_S2%,%DB_PIECE_ANGLEB2%,%DB_PIECE_ANGLEB%}}
+  DB_PIECE_AE      =%IF{%BILL_OF_MATERIAL_LENGTH%=%C_LOUTPUT_S1%,%DB_PIECE_ANGLEE1%,#
+                    %IF{%BILL_OF_MATERIAL_LENGTH%=%C_LOUTPUT_S2%,%DB_PIECE_ANGLEE2%,%DB_PIECE_ANGLEE%}}
+
+fields
+  DSP_PIECE_LOUTPUT=@%DB_PIECE_LOUTPUT% DISPLAY AS %FD_MEASURE%
+  DSP_PIECE_AB     =@%DB_PIECE_AB%      DISPLAY AS %FD_ANGLE%
+  DSP_PIECE_AE     =@%DB_PIECE_AE%      DISPLAY AS %FD_ANGLE%
+
+using %FILE_HEADER_PROJECT%
+
+next
+
+using %FILE_BARCODE%
+
+next
+
+report
+  select   min(%DB_PIECE_BATCH%) as %DB_PIECE_BATCH%,
+           sum(%DB_PIECE_NO%) as %DB_PIECE_NO%,
+           %DB_PIECE_SERIE%,
+           min(%DB_PIECE_PROFILEDESC%) as %DB_PIECE_PROFILEDESC%,
+           min(%DB_PIECE_LABS%) as %DB_PIECE_LABS%,
+           min(%DB_PIECE_LMAX%) as %DB_PIECE_LMAX%,
+           min(%DB_PIECE_LMIN%) as %DB_PIECE_LMIN%,
+           min(%DB_PIECE_LCUT1%) as %DB_PIECE_LCUT1%,
+           min(%DB_PIECE_LCUT2%) as %DB_PIECE_LCUT2%,
+           min(%DB_PIECE_ANGLEB%) as %DB_PIECE_ANGLEB%,
+           min(%DB_PIECE_ANGLEE%) as %DB_PIECE_ANGLEE%,
+           min(%DB_PIECE_ANGLESB%) as %DB_PIECE_ANGLESB%,
+           min(%DB_PIECE_ANGLESE%) as %DB_PIECE_ANGLESE%,
+           min(%DB_PIECE_ANGLEB1%) as %DB_PIECE_ANGLEB1%,
+           min(%DB_PIECE_ANGLEE1%) as %DB_PIECE_ANGLEE1%,
+           min(%DB_PIECE_ANGLEB2%) as %DB_PIECE_ANGLEB2%,
+           min(%DB_PIECE_ANGLEE2%) as %DB_PIECE_ANGLEE2%,
+           min(%DB_PIECE_ARCRADIUS%) as %DB_PIECE_ARCRADIUS%,
+           min(%DB_PIECE_ARCWIDTH%) as %DB_PIECE_ARCWIDTH%,
+           min(%DB_PIECE_ARCHEIGHT%) as %DB_PIECE_ARCHEIGHT%,
+           min(%DB_PIECE_VARIETYDESC%) as %DB_PIECE_VARIETYDESC%,
+           min(%DB_PIECE_ARTICLECODE%) as %DB_PIECE_ARTICLECODE%,
+           min(%DB_PIECE_BTYPE%) as %DB_PIECE_BTYPE%,
+           %DB_PIECE_PRODUCT%,
+           %DB_PIECE_PROJECT%,
+           %DB_PIECE_ASSEMBLY%,
+           %DB_PIECE_FRAME%,
+           min(%DB_PIECE_OPENING%) as %DB_PIECE_OPENING%,
+           min(%DB_PIECE_VENTPART%) as %DB_PIECE_VENTPART%,
+           min(%DB_PIECE_SYSTEM%) as %DB_PIECE_SYSTEM%,
+           min(%DB_PIECE_PROFILE%) as %DB_PIECE_PROFILE%,
+           min(%DB_PIECE_RACK%) as %DB_PIECE_RACK%,
+           %DB_PIECE_VARIETY%,
+           min(%DB_PIECE_ID%) as %DB_PIECE_ID%,
+           %DB_PIECE_CFCHAR%,
+           %DB_PIECE_PIECENO%,
+           %DB_PIECE_POSITION%
+  from     %TBL_PIECE%
+  where    %DB_PIECE_DEPNO% not in %BILL_OF_MATERIAL_FILTER%
+  and      %DB_PIECE_NO% > 0
+  and		%DB_PIECE_SPLIT%<>-2
+  and      %DB_PIECE_OPTION% in %RUNOPTIONS%
+  and      ((%SORTPERBTYPE%=0) or ((%SORTPERBTYPE%<>0) and (%DB_PIECE_BTYPE%=%BTYPE%)))
+  group by %DB_PIECE_PROJECT%, %DB_PIECE_ASSEMBLY%, %DB_PIECE_FRAME%,
+           %DB_PIECE_PRODUCT%, %DB_PIECE_VARIETY%, %DB_PIECE_SERIE%,
+           %DB_PIECE_SYSTEM%, %DB_PIECE_PROFILE%, %DB_PIECE_CFCHAR%,
+           %DB_PIECE_PIECENO%, %DB_PIECE_LOUTPUT%, %DB_PIECE_AB%, %DB_PIECE_AE%,
+           %DB_PIECE_POSITION%
+  having   count(*) > 0
+
+calculate
+  break on %DB_PIECE_PROJECT%, %DB_PIECE_ASSEMBLY%, %DB_PIECE_FRAME%
+
+using %REPORTNAME%_B_PROJECT.%REPORTTYPE%%LANGUAGE%
+
+next
+
+report
+  select   %DB_ANNEX_DESC%,
+           %DB_ANNEX_KIND%
+  from     %TBL_ANNEX%
+  where    %DB_ANNEX_KIND% = %REPORTSLOT%
+  and      %DB_ANNEX_OPTION% in %RUNOPTIONS%
+  group by %DB_ANNEX_DESC%, %DB_ANNEX_KIND%
+  having   count(*) > 0
+
+calculate
+  break on %DB_ANNEX_DESC%
+
+using %FILE_ANNEX%
