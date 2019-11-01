@@ -53,6 +53,7 @@ report
   and      %DB_PIECE_ASSEMBLY% = "%ASSEMBLY_TEXT%"
   and      %DB_PIECE_ARTICLE% != %C_OPERATIONS%
   and		%DB_PIECE_ARTICLE% not in (0,90,80,85)
+  and		%DB_PIECE_SPLIT%<>-2
   and		%DB_PIECE_PRICE% <> 0
   group by %DB_PIECE_ARTICLE%,%DB_PIECE_LOSSTYPE%
   having   count(*) > 0
