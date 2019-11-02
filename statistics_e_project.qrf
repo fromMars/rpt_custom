@@ -1,0 +1,110 @@
+;Statistiek
+
+defines
+;needed by JoPPS.QIF
+  NO_COLORS = 0
+
+include jopps.qif
+include piece.qif
+include attrib.qif
+include annex.qif
+
+defines
+  CF_FRAMEAREA               =%IF{%STATISTICS_CALCNEW%,%FRAMEAREA%,%FRAMEAREA2%}
+  CF_FRAMEEDGES              =%IF{%STATISTICS_CALCNEW%,%FRAMEEDGES%,%FRAMEEDGES2%}
+  CF_FRAMESIDES              =%IF{%STATISTICS_CALCNEW%,%FRAMESIDES%,%FRAMESIDES2%}
+
+fields
+  DSP_TOTFRAMECNT            =%FRAMECNT%           DISPLAY AS %FD_PIECES%
+  DSP_TOTFRAMEAREA           =%CF_FRAMEAREA%       DISPLAY AS %FD_TOTAREA1%
+  DSP_TOTFRAMEEDGES          =%CF_FRAMEEDGES%      DISPLAY AS %FD_TOTMEASURE1%
+  DSP_TOTFRAMESIDES          =%CF_FRAMESIDES%      DISPLAY AS %FD_TOTMEASURE1%
+  DSP_TOTTOTALWEIGHT         =%TOTALWEIGHT%        DISPLAY AS %FD_WEIGHT%
+  DSP_TOTFRAMEWEIGHT         =%FRAMEWEIGHT%        DISPLAY AS %FD_WEIGHT%
+  DSP_TOTGLASSWEIGHT         =%GLASSWEIGHT%        DISPLAY AS %FD_WEIGHT%
+
+  DSP_PIECE_CFLENGTH_SUM     = @1                  DISPLAY AS %FD_TOTMEASURE1%
+  DSP_PIECE_SURFACE1_SUM     = @2                  DISPLAY AS %FD_TOTAREA0%
+  DSP_PIECE_SURFACE2_SUM     = @3                  DISPLAY AS %FD_TOTAREA0%
+
+  DSP_ATTRIB_CFLENGTH_SUM    = @1                  DISPLAY AS %FD_TOTMEASURE1%
+  DSP_ATTRIB_SURFACE1_SUM    = @2                  DISPLAY AS %FD_TOTAREA0%
+  DSP_ATTRIB_SURFACE2_SUM    = @3                  DISPLAY AS %FD_TOTAREA0%
+
+using %REPORTNAME%_E_PROJECT.%REPORTTYPE%%LANGUAGE%
+
+next
+
+report
+  select   min(%DB_PIECE_BATCH%) as %DB_PIECE_BATCH%,
+           min(%DB_PIECE_PROFILEDESC%) as %DB_PIECE_PROFILEDESC%,
+           %DB_PIECE_PROJECT%,
+           %DB_PIECE_PRODUCT%,
+           %DB_PIECE_VARIETY%,
+           %DB_PIECE_SERIE%,
+           sum(%DB_PIECE_CFLENGTH%) as %DB_PIECE_CFLENGTH%,
+           sum(%DB_PIECE_SURFACE1%) as %DB_PIECE_SURFACE1%,
+           sum(%DB_PIECE_SURFACE2%) as %DB_PIECE_SURFACE2%
+  from     %TBL_PIECE%
+  where    %DB_PIECE_PROJECT%  like '%PROJECT_TEXT%'
+  and      %DB_PIECE_OPTION% in %RUNOPTIONS%
+  and      %DB_PIECE_DEPNO% > 0
+  and      %DB_PIECE_NO% > 0
+  and		%DB_PIECE_SPLIT%<>-2
+  group by %DB_PIECE_PROJECT%, %DB_PIECE_PRODUCT%, %DB_PIECE_VARIETY%, %DB_PIECE_SERIE%
+  having   count(*) > 0
+
+calculate
+  sum(%DB_PIECE_CFLENGTH%), sum(%DB_PIECE_SURFACE1%), sum(%DB_PIECE_SURFACE2%) break on %DB_PIECE_PROJECT%
+
+using %REPORTNAME%_E_PROJECT_1.%REPORTTYPE%%LANGUAGE%
+
+next
+
+report
+  select   min(%DB_ATTRIB_BATCH%) as %DB_ATTRIB_BATCH%,
+           min(%DB_ATTRIB_ACCDESC%) as %DB_ATTRIB_ACCDESC%,
+           min(%DB_ATTRIB_TYPE%) as %DB_ATTRIB_TYPE%,
+           min(%DB_ATTRIB_PROJECT%) as %DB_ATTRIB_PROJECT%,
+           %DB_ATTRIB_ACC%,
+           %DB_ATTRIB_VARIETY%,
+           %DB_ATTRIB_SERIE%,
+           sum(%DB_ATTRIB_CFLENGTH%) as %DB_ATTRIB_CFLENGTH%,
+           sum(%DB_ATTRIB_SURFACE1%) as %DB_ATTRIB_SURFACE1%,
+           sum(%DB_ATTRIB_SURFACE2%) as %DB_ATTRIB_SURFACE2%
+  from     %TBL_ATTRIB%
+  where    %DB_ATTRIB_PROJECT% like '%PROJECT_TEXT%'
+  and      %DB_ATTRIB_OPTION% in %RUNOPTIONS%
+  and      %DB_ATTRIB_DEPNO% > 0
+  and      %DB_ATTRIB_TYPE% = 0
+  group by %DB_ATTRIB_ACC%, %DB_ATTRIB_VARIETY%, %DB_ATTRIB_SERIE%, %DB_ATTRIB_LENGTH%
+  having   count(*) > 0
+
+calculate
+  sum(%DB_ATTRIB_CFLENGTH%), sum(%DB_ATTRIB_SURFACE1%), sum(%DB_ATTRIB_SURFACE2%) break on %DB_ATTRIB_TYPE%
+
+using %REPORTNAME%_E_PROJECT_2.%REPORTTYPE%%LANGUAGE%
+
+next
+
+report
+  select   %DB_ANNEX_PROJECT%,
+           %DB_ANNEX_ASSEMBLY%,
+           %DB_ANNEX_DESC%,
+           %DB_ANNEX_KIND%
+  from     %TBL_ANNEX%
+  where    %DB_ANNEX_ASSEMBLY% = ""
+  and      %DB_ANNEX_KIND% = %REPORTSLOT%
+  and      %DB_ANNEX_OPTION% in %RUNOPTIONS%
+  group by %DB_ANNEX_PROJECT%, %DB_ANNEX_ASSEMBLY%,
+           %DB_ANNEX_DESC%, %DB_ANNEX_KIND%
+  having   count(*) > 0
+
+calculate
+  break on %DB_ANNEX_DESC%
+
+using %FILE_ANNEX%
+
+next
+
+using %REPORTNAME%_E_PROJECT_0.%REPORTTYPE%%LANGUAGE%
