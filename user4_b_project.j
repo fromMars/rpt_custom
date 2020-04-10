@@ -201,8 +201,8 @@ if "@%DB_PIECE_INSIDE%"<>"" && "@%DB_PIECE_OUTSIDE%"<>"" then
 else
 {
 	curr_sheet.range[curr_sheet.cells[rowid][10]][curr_sheet.cells[rowid+1][11]].merge();
-	if %DSP_PIECE_SERIE% = 17 then
-		curr_cell:=curr_sheet.cells[rowid][10].value:="Ñõ»¯Çà¹â";
+	if %DSP_PIECE_SERIE% = 17 || %DSP_PIECE_SERIE% = 14 then
+		curr_cell:=curr_sheet.cells[rowid][10].value:="%DSP_PIECE_VARIETYDESC%";
 	else
 		curr_cell:=curr_sheet.cells[rowid][10].value:="%DSP_PIECE_SERIE%";
 }
