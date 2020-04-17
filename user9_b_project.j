@@ -75,7 +75,7 @@ costsheet.Columns["E"].rows[rowid].value:="%IF{@%DB_ATTRIB_TYPE%=-2,¼þ,m}";
 costsheet.Columns["F"].rows[rowid].value:="%IF{@%DB_ATTRIB_TYPE%=-1,=@%DB_ATTRIB_ITMPRICE%/@%DB_ATTRIB_LENGTH%*(1-@%DB_ATTRIB_REBATE%/100),=@%DB_ATTRIB_ITMPRICE%*(1-@%DB_ATTRIB_REBATE%/100)}";
 /*current_cell.value:="=@%DB_ATTRIB_ITMPRICE%*(1-@%DB_ATTRIB_REBATE%/100)";*/
 ;costsheet.Columns["G"].rows[rowid].select();
-costsheet.Columns["G"].rows[rowid].value:="%IF{@%DB_ATTRIB_TYPE%=-2,%DSP_ATTRIB_NO01%,%IF{@%DB_ATTRIB_SEQNO%=0,%DSP_ATTRIB_LENGTH01%,=@%DB_ATTRIB_NO%*@%DB_ATTRIB_LENGTH%}}";
+costsheet.Columns["G"].rows[rowid].value:="%IF{@%DB_ATTRIB_TYPE%=-2,%DSP_ATTRIB_NO01%,%IF{@%DB_ATTRIB_SEQNO%=0,%DSP_ATTRIB_LENGTH01%,=round(@%DB_PIECE_CFLENGTH%,2)}}";
 ;costsheet.Columns["H"].rows[rowid].select();
 costsheet.Columns["H"].rows[rowid].value:="=Ceiling(%IF{@%DB_ATTRIB_TYPE%=-2,@%DB_ATTRIB_NO%,%IF{@%DB_ATTRIB_TYPE%=-1,@%DB_ATTRIB_NO%,@%DB_ATTRIB_LENGTH%}}/%IF{@%DB_ATTRIB_TYPE%=-2,@%DB_ATTRIB_PACKSIZE%,%IF{@%DB_ATTRIB_TYPE%=-1,1,@%DB_ATTRIB_PACKSIZE%}},1)*%IF{@%DB_ATTRIB_TYPE%=-2,@%DB_ATTRIB_PACKSIZE%,%IF{@%DB_ATTRIB_TYPE%=-1,@%DB_ATTRIB_LENGTH%,@%DB_ATTRIB_PACKSIZE%}}";
 
