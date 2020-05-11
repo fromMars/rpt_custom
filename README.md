@@ -94,3 +94,30 @@ Copied from server and overrided with below files:
 
 Modified "optimization_b_project.h5":
         In line 73, modified colspan="9" to "8"
+
+Translated and overrided U value reports with below files:
+        '''
+            PS C:\JoPPSWin\Rpt\tmp_for_comparison\uvalue_common> dir
+
+
+            目录: C:\JoPPSWin\Rpt\tmp_for_comparison\uvalue_common
+
+
+            Mode                LastWriteTime         Length Name
+            ----                -------------         ------ ----
+            -a----        2007/3/13     14:29            112 uvalues_b_assembly.h5
+            -a----        2020/5/11     17:35           1385 uvalues_b_frame_1.h5
+            -a----        2020/5/11     17:35           1292 uvalues_b_frame_2.h5
+            -a----        2020/5/11     17:35           1307 uvalues_b_frame_3.h5
+            -a----        2020/5/11     17:36            786 uvalues_b_frame_4.h5
+            -a----        2019/1/28     13:30           1804 uvalues_b_frame_drw.h5
+            -a----        2020/5/11     17:37            566 uvalues_b_frame_Sum1.h5
+            -a----        2020/5/11     17:37            566 uvalues_b_frame_Sum2.h5
+            -a----        2020/5/11     17:38            565 uvalues_b_frame_Sum3.h5
+            -a----        2010/12/8     14:28            895 uvalues_e_project_annex.h5
+
+
+            PS C:\JoPPSWin\Rpt\tmp_for_comparison\uvalue_common>
+        '''
+
+

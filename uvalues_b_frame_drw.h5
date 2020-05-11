@@ -5,16 +5,27 @@
 <tr align="left">
   <td bgcolor="%COLOR_ALTBACK%"><h3>
     %IF{%BATCHMODE%,,%IF{%EVAL{%ASSEMBLYCOUNT%>1},<font color="%COLOR_ANNOTATE%">%ASSEMBLYCOUNT%x</font> , %ASSEMBLYCOUNT%x }}
-    %IF{%BATCHMODE%,,<JOPPS id=25000>Group</JOPPS> %ASSEMBLY%, }
+    %IF{%BATCHMODE%,,<JOPPS id=25000>Group</JOPPS> %ASSEMBLY%%IF{%EVAL{trim("%ASSEMBLYDESC%")=""},, &nbsp;%ASSEMBLYDESC%}, }
     <JOPPS id=25001>Part</JOPPS> %IF{%BATCHMODE%,%FORMAT{"BATCHFRAMEORDER:%PROJECT%;%ASSEMBLY%;%FRAME%",[EXTERNAL]},%FRAME%}
     &nbsp;%FRAMEDESC%
   </h3></td>
 </tr>
 </table>
-%IF{%UVALUES_OUTLINES%,#
-<table width=100% border=0>#
+%IF{%UVALUES_OUTLINES%,<table width=50% border=0>#
+%IF{%SH_VIEW_BOTTOM%,<tr valign="top">,}#
+%IF{%EVAL{%SH_VIEW_BOTTOM% && %SH_VIEW_RIGHT%},<td width=33%>&nbsp;</td>,}#
+%IF{%SH_VIEW_BOTTOM%,<td width=33% %IF{%SH_VIEW_RIGHT%,align="center",}><a href="EDITOR:%FRAMEATOM%">%DSP_VIEWBOTTOM%</a></td>,}#
+%IF{%EVAL{%SH_VIEW_BOTTOM% && %SH_VIEW_LEFT%},<td width=33%>&nbsp;</td>,}#
+%IF{%SH_VIEW_BOTTOM%,</tr>,}#
 <tr valign="top">#
-  <td><a href="EDITOR:%FRAMEATOM%">%DSP_DRAWFRAME%%IF{%UVALUES_SCALE%,<br>%DSP_SCALE%,}</a></td>#
+  %IF{%SH_VIEW_RIGHT%,<td width=33% align="right"><a href="EDITOR:%FRAMEATOM%">%DSP_VIEWRIGHT%</a></td>,}#
+  <td width=33% %IF{%SH_VIEW_RIGHT%,align="center",}><a href="EDITOR:%FRAMEATOM%">%DSP_DRAWFRAME%%IF{%UVALUES_SCALE%,<br>%DSP_SCALE%,}</a></td>#
+  %IF{%SH_VIEW_LEFT%,<td width=33% align="left"><a href="EDITOR:%FRAMEATOM%">%DSP_VIEWLEFT%</a></td>,}#
 </tr>#
+%IF{%SH_VIEW_TOP%,<tr valign="top">,}#
+%IF{%EVAL{%SH_VIEW_TOP% && %SH_VIEW_RIGHT%},<td width=33%>&nbsp;</td>,}#
+%IF{%SH_VIEW_TOP%,<td width=33% %IF{%SH_VIEW_RIGHT%,align="center",}><a href="EDITOR:%FRAMEATOM%">%DSP_VIEWTOP%</a></td>,}#
+%IF{%EVAL{%SH_VIEW_TOP% && %SH_VIEW_LEFT%},<td width=33%>&nbsp;</td>,}#
+%IF{%SH_VIEW_TOP%,</tr>,}#
 </table>,}
 </br>

@@ -5,8 +5,8 @@
 <tr>
   <th width=%EVAL{30+(!%SHOW_DETAILS%)*10}% bgcolor="%COLOR_TABLEHEAD%" align="left"><JOPPS id=25007>²£Á§</JOPPS></th>
   %IF{%SHOW_DETAILS%,<th width=10% bgcolor="%COLOR_TABLEHEAD%" align="left"><JOPPS id=25016>À´Ô´</JOPPS></th>,}
-  <th width=20% bgcolor="%COLOR_TABLEHEAD%" align="right"><JOPPS id=25008>Ug (W/m²K)</JOPPS></th>
-  <th width=20% bgcolor="%COLOR_TABLEHEAD%" align="right"><JOPPS id=25009>Ag (m?</JOPPS></th>
+  <th width=20% bgcolor="%COLOR_TABLEHEAD%" align="right"><JOPPS id=25008>Ug (W/m<sup>2</sup>K)</JOPPS></th>
+  <th width=20% bgcolor="%COLOR_TABLEHEAD%" align="right"><JOPPS id=25009>Ag (m<sup>2</sup>)</JOPPS></th>
   <th width=20% bgcolor="%COLOR_TABLEHEAD%" align="right"><JOPPS id=25010>Ag * Ug (W/K)</JOPPS></th>
 </tr>
 
