@@ -10,7 +10,7 @@
 %IF{%STATISTICS_PROFILEINFO%=1,      <th><JOPPS id=21006>总面积</JOPPS></th>,}
 %IF{%STATISTICS_PROFILEINFO%=1,      <th>%DSP_TOTFRAMEAREA%</th>,}
 %IF{%STATISTICS_PROFILEINFO%=1,    </tr><tr valign="top" align="right">,}
-%IF{%STATISTICS_PROFILEINFO%=1,      <th><JOPPS id=21007>三边总长</JOPPS></th>,}
+%IF{%STATISTICS_PROFILEINFO%=1,      <th><JOPPS id=21007>三边总长度</JOPPS></th>,}
 %IF{%STATISTICS_PROFILEINFO%=1,      <th>%DSP_TOTFRAMEEDGES%</th>,}
 %IF{%STATISTICS_PROFILEINFO%=1,    </tr><tr valign="top" align="right">,}
 %IF{%STATISTICS_PROFILEINFO%=1,      <th><JOPPS id=21008>总周长</JOPPS></th>,}
@@ -41,7 +41,7 @@
 %IF{%STATISTICS_PROFILEINFO%=1,<table border=0 width=100% %M_TABLEPARAM%>,}
 %IF{%STATISTICS_PROFILEINFO%=1,<tr valign="bottom" align="left">,}
 %IF{%STATISTICS_PROFILEINFO%=1,  <th width=10% bgcolor=%COLOR_TABLEHEAD% align="right"><JOPPS id=21015>长度</JOPPS></th>,}
-%IF{%STATISTICS_PROFILEINFO%=1,  <th width=15% bgcolor=%COLOR_TABLEHEAD%><JOPPS id=21016>Article</JOPPS></th>,}
+%IF{%STATISTICS_PROFILEINFO%=1,  <th width=15% bgcolor=%COLOR_TABLEHEAD%><JOPPS id=21016>价格块</JOPPS></th>,}
 %IF{%STATISTICS_PROFILEINFO%=1,  <th width=45% bgcolor=%COLOR_TABLEHEAD%><JOPPS id=21017>名称</JOPPS></th>,}
 %IF{%STATISTICS_PROFILEINFO%=1,  <th width=15% bgcolor=%COLOR_TABLEHEAD% align="right"><JOPPS id=21018>表面积1</JOPPS></th>,}
 %IF{%STATISTICS_PROFILEINFO%=1,  <th width=15% bgcolor=%COLOR_TABLEHEAD% align="right"><JOPPS id=21019>表面积2</JOPPS></th>,}
@@ -59,3 +59,4 @@
 <!--%% detail footer ---------------------------------------------------------->
 
 <!--%%------------------------------------------------------------------------->
+

@@ -25,6 +25,7 @@
 <!--%% break header 1-->
 <page>
 %INCLUDE{%FILE_HEADER_PROJECT%}
+%INCLUDE{%FILE_BARCODE%}
 <BR>
 <table width=100% border=%FILLING_LIST_EXCELCOMPAT% cellspacing=2 %M_COLOR_TABLEDATA_NOCOLORS% bordercolor="%COLOR_TITLEBORDER%" cellpadding=5>
 <tr>
@@ -46,14 +47,14 @@
       <td></td>
       <td valign="top" colspan=3>%DSP_TEXT_ZIP% %DSP_TEXT_PLACE%</td>
     </tr><tr valign="top">
-      <td valign="top" align="right">%IF{%PHONE%,<JOPPS id=23017>Phone :</JOPPS>,}</td>
+      <td valign="top" align="right">%IF{%PHONE%,<JOPPS id=23017>电话：</JOPPS>,}</td>
       <td valign="top" colspan=3>%PHONE%</td>
-      <td valign="top" align="right">%IF{@%DB_TEXT_PHONE%,<JOPPS id=23017>Phone :</JOPPS>,}</td>
+      <td valign="top" align="right">%IF{@%DB_TEXT_PHONE%,<JOPPS id=23017>电话：</JOPPS>,}</td>
       <td valign="top" colspan=3>%DSP_TEXT_PHONE%</td>
     </tr><tr valign="top">
-      <td valign="top" align="right">%IF{%FAX%,<JOPPS id=23018>Fax :</JOPPS>,}</td>
+      <td valign="top" align="right">%IF{%FAX%,<JOPPS id=23018>传真：</JOPPS>,}</td>
       <td valign="top" colspan=3>%FAX%</td>
-      <td valign="top" align="right">%IF{@%DB_TEXT_TELEFAX%,<JOPPS id=23018>Fax :</JOPPS>,}</td>
+      <td valign="top" align="right">%IF{@%DB_TEXT_TELEFAX%,<JOPPS id=23018>传真：</JOPPS>,}</td>
       <td valign="top" colspan=3>%DSP_TEXT_TELEFAX%</td>
     </tr>
     </table>
@@ -67,7 +68,7 @@
     <table border=0 width=100% cellpadding=5>
     <tr valign="top">
       <td width=2%>&nbsp;</td>
-      <td valign="top" width=98% colspan=7><JOPPS id=23019>Reference :</JOPPS> %DSP_TEXT_NAME%</td>
+      <td valign="top" width=98% colspan=7><JOPPS id=23019>用于：</JOPPS> %DSP_TEXT_NAME%</td>
     </tr>
     </table>
   </td>
@@ -80,8 +81,8 @@
     <table border=0 width=100% cellpadding=5>
     <tr valign="top">
       <td width=2%>&nbsp;</td>
-      <td valign="top" width=73% colspan=4><b>%IF{%BATCHMODE%,<JOPPS id=23020>Enclosure order * Batch :</JOPPS>,<JOPPS id=23027>Enclosure order * Project :</JOPPS>} %DSP_GLASS_BATCH%</b></td>
-      <td valign="top" width=23% align="right" colspan=2><JOPPS id=23021>Date :</JOPPS> %DATE%</td>
+      <td valign="top" width=73% colspan=4><b>%IF{%BATCHMODE%,<JOPPS id=23020>订单附件 * 批 :</JOPPS>,<JOPPS id=23027>订单附件 * 项目 :</JOPPS>} %DSP_GLASS_BATCH%</b></td>
+      <td valign="top" width=23% align="right" colspan=2><JOPPS id=23021>日期：</JOPPS> %DATE%</td>
       <td width=2%>&nbsp;</td>
     </tr>
     </table>
@@ -91,8 +92,8 @@
 <BR>
 <table border=%FILLING_LIST_EXCELCOMPAT% width=100% %M_TABLEPARAM_NOCOLORS%>
 <tr align="left" valign="top">
-  <td valign="top" width=35% %M_COLOR_TABLEHEAD_NOCOLORS% colspan=3><b><JOPPS id=23022>Reference</JOPPS></b></td>
-  <td valign="top" width=65% %M_COLOR_TABLEHEAD_NOCOLORS% align="center" colspan=5><b><JOPPS id=23023>Sketch</JOPPS></b></td>
+  <td valign="top" width=35% %M_COLOR_TABLEHEAD_NOCOLORS% colspan=3><b><JOPPS id=23022>涉及</JOPPS></b></td>
+  <td valign="top" width=65% %M_COLOR_TABLEHEAD_NOCOLORS% align="center" colspan=5><b><JOPPS id=23023>草图</JOPPS></b></td>
 </tr>
 </table>
 

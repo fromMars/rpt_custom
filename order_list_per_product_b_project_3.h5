@@ -18,7 +18,7 @@
 
 <!--%% detail ----------------------------------------------------------------->
 <tr valign="top">
-  <td valign="top" align="right">%DSP_ATTRIB_NO_AS_LENGTH%</td>
+  <td valign="top" align="right">%M_B_PACK%%DSP_ATTRIB_NO_AS_LENGTH%%M_E_PACK%</td>
   <td valign="top" width=%W_VRTY%%%>%IF{@%DB_ATTRIB_ARTICLECODE%,%DSP_ATTRIB_ARTICLECODE%,%EVAL{trim("%DSP_ATTRIB_ACC%")}.%IF{%ORDER_LIST_PER_PRODUCT_VARIANT%=0,%DSP_ATTRIB_SERIE%,%DSP_ATTRIB_VARIETY%}}</td>
   <td valign="top" width=%W_VDESC%%%>%IF{@%DB_ATTRIB_VARIETYDESC%,%DSP_ATTRIB_VARIETYDESC%,&nbsp;}</td>
   %IF{%DETAIL_LEVEL%=0,,<td valign="top">%IF{@%DB_ATTRIB_ACCDESC%,%DSP_ATTRIB_ACCDESC%,&nbsp;}</td>}
@@ -36,7 +36,7 @@
   <td valign="top" width=%W_CNT%%% %M_COLOR_TABLEHEAD_NOCOLORS% align="right"><b><JOPPS id=10015>长度</JOPPS></b></td>
   <td valign="top" width=%EVAL{%W_VRTY%+%W_VDESC%}% align="center" colspan=2 %M_COLOR_TABLEHEAD_NOCOLORS%><b><JOPPS id=10016>编号</JOPPS></b></td>
   %IF{%DETAIL_LEVEL%=0,,<td valign="top" width=%W_DESC%%% %M_COLOR_TABLEHEAD_NOCOLORS%><b><JOPPS id=10017>名称</JOPPS></b></td>}
-  %IF{%EVAL{(%GLOBAL_PRICE_ACCESS%=%C_ACCPRICE_PACK%)||(%GLOBAL_PRICE_ACCESS%!=%C_ACCPRICE_UNIT%)},<td valign="top" width=%EVAL{%W_COLLI%+%W_PCS%}% %M_COLOR_TABLEHEAD_NOCOLORS% %IF{%GLOBAL_PRICE_ACCESS%!%C_ACCPRICE_PACK%,align="right",align="center" colspan=2}><b>%IF{%GLOBAL_PRICE_ACCESS%!%C_ACCPRICE_PACK%,<JOPPS id=10029>Ordered</JOPPS>,<JOPPS id=10019>Packing</JOPPS>}</b></td>,}
+  %IF{%EVAL{(%GLOBAL_PRICE_ACCESS%=%C_ACCPRICE_PACK%)||(%GLOBAL_PRICE_ACCESS%!=%C_ACCPRICE_UNIT%)},<td valign="top" width=%EVAL{%W_COLLI%+%W_PCS%}% %M_COLOR_TABLEHEAD_NOCOLORS% %IF{%GLOBAL_PRICE_ACCESS%!%C_ACCPRICE_PACK%,align="right",align="center" colspan=2}><b>%IF{%GLOBAL_PRICE_ACCESS%!%C_ACCPRICE_PACK%,<JOPPS id=10029>预定</JOPPS>,<JOPPS id=10019>包装</JOPPS>}</b></td>,}
   %IF{%ORDER_LIST_PER_PRODUCT_PRICE%,<td valign="top" width=%W_PRICE%%% %M_COLOR_TABLEHEAD_NOCOLORS% align="right"><b>%IF{%ORDER_LIST_PER_PRODUCT_REBATE%,<JOPPS id=10025>折扣后价格</JOPPS>,<JOPPS id=10020>价格</JOPPS>}</b></td>,}
 </tr>
 
@@ -51,3 +51,4 @@
 <!--%% detail footer ---------------------------------------------------------->
 
 <!--%%------------------------------------------------------------------------->
+

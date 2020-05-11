@@ -4,8 +4,8 @@
 %EVAL{setparam("W_VRTY","14")}
 %EVAL{setparam("W_VDESC","15")}
 %EVAL{setparam("W_DESC",inttostr(30*(%DETAIL_LEVEL%>0)))}
-%EVAL{setparam("W_COLLI",inttostr(8*(!%ORDER_LIST_PER_SUPPLIER_BESTPRICE%)*(%GLOBAL_PRICE_ACCESS%=%C_ACCPRICE_PACK%)))}
-%EVAL{setparam("W_PCS",inttostr(10*(!%ORDER_LIST_PER_SUPPLIER_BESTPRICE%)*(%GLOBAL_PRICE_ACCESS%!=%C_ACCPRICE_UNIT%)))}
+%EVAL{setparam("W_COLLI",inttostr(8*(%GLOBAL_PRICE_ACCESS%=%C_ACCPRICE_PACK%)))}
+%EVAL{setparam("W_PCS",inttostr(10*(%GLOBAL_PRICE_ACCESS%!=%C_ACCPRICE_UNIT%)))}
 %EVAL{setparam("W_PRICE",inttostr(15*%ORDER_LIST_PER_SUPPLIER_PRICE%))}
 %EVAL{setparam("W_CHANGE",numtostr(100/(%W_CNT%+%W_VRTY%+%W_VDESC%+%W_DESC%+%W_COLLI%+%W_PCS%+%W_PRICE%)))}
 %EVAL{setparam("W_CNT",inttostr(%W_CNT%*%W_CHANGE%))}
@@ -18,19 +18,14 @@
 
 <!--%% detail ----------------------------------------------------------------->
 <tr valign="top">
-  <td valign="top" align="right">%IF{%DSP_ATTRIB_GASKETSTOCK%=1,%DSP_ATTRIB_GASKETNO%,%DSP_ATTRIB_GASKETQTY%}米</td>
+  <td valign="top" align="right">%M_B_PACK%%DSP_ATTRIB_NO_AS_LENGTH%%M_E_PACK%</td>
   <td valign="top" width=%W_VRTY%%%>%IF{@%DB_ATTRIB_ARTICLECODE%,%DSP_ATTRIB_ARTICLECODE%,%EVAL{trim("%DSP_ATTRIB_ACC%")}.%IF{%ORDER_LIST_PER_SUPPLIER_VARIANT%=0,%DSP_ATTRIB_SERIE%,%DSP_ATTRIB_VARIETY%}}</td>
   <td valign="top" width=%W_VDESC%%%>%IF{@%DB_ATTRIB_VARIETYDESC%,%DSP_ATTRIB_VARIETYDESC%,&nbsp;}</td>
-  %IF{%W_DESC%,<td valign="top">%IF{@%DB_ATTRIB_ACCDESC%,%DSP_ATTRIB_ACCDESC%,&nbsp;}</td>,}
-  %IF{%W_COLLI%,<td valign="top" align="right" width=%W_COLLI%%%>%DSP_ATTRIB_GASKETCOLLI%</td>,}
-  %IF{%W_PCS%,<td valign="top" align="right" width=%W_PCS%%%>%IF{%W_COLLI%,%DSP_ATTRIB_PACKLENGTH%,%DSP_ATTRIB_PEAKLENGTH%}</td>,}
-  %IF{%W_PRICE%,<td valign="top" align="right">%DSP_ATTRIB_GASKETPRICE%</td>,}
+  %IF{%DETAIL_LEVEL%=0,,<td valign="top">%IF{@%DB_ATTRIB_ACCDESC%,%DSP_ATTRIB_ACCDESC%,&nbsp;}</td>}
+  %IF{%GLOBAL_PRICE_ACCESS%=%C_ACCPRICE_PACK%,<td valign="top" align="right" width=%W_COLLI%%%>%DSP_ATTRIB_GASKETCOLLI%</td>,}
+  %IF{%GLOBAL_PRICE_ACCESS%!%C_ACCPRICE_UNIT%,<td valign="top" align="right" width=%W_PCS%%%>%IF{%GLOBAL_PRICE_ACCESS%=%C_ACCPRICE_PACK%,%DSP_ATTRIB_PACKLENGTH%,%DSP_ATTRIB_PEAKLENGTH%}</td>,}
+  %IF{%ORDER_LIST_PER_SUPPLIER_PRICE%,<td valign="top" align="right">%DSP_ATTRIB_ORDERPRICE%</td>,}
 </tr>
-%EVAL{setparam("SUBTOTAL_ORDERLIST",numtostr(%SUBTOTAL_ORDERLIST%+#
-        iif(%DSP_ATTRIB_GASKETCALCMODE%=%C_CALCMODE_UNIT%,@%DB_ATTRIB_PRICE_UNIT%,#
-        iif(%DSP_ATTRIB_GASKETCALCMODE%=%C_CALCMODE_GRAD%,@%DB_ATTRIB_PRICE_GRAD%,#
-        iif(%DSP_ATTRIB_GASKETCALCMODE%=%C_CALCMODE_PACK%,@%DB_ATTRIB_PRICE_PACK%,#
-        @%DB_ATTRIB_PRICE%)))))}
 
 <!--%% break header-->
 <BR>
@@ -54,14 +49,14 @@
       <td></td>
       <td valign="top" colspan=3>%DSP_TEXT_ZIP% %DSP_TEXT_PLACE%</td>
     </tr><tr valign="top">
-      <td valign="top" align="right">%IF{%PHONE%,<JOPPS id=9022>Phone :</JOPPS>,}</td>
+      <td valign="top" align="right">%IF{%PHONE%,<JOPPS id=9022>电话：</JOPPS>,}</td>
       <td valign="top" colspan=2>%PHONE%</td>
-      <td valign="top" align="right">%IF{@%DB_TEXT_PHONE%,<JOPPS id=9022>Phone :</JOPPS>,}</td>
+      <td valign="top" align="right">%IF{@%DB_TEXT_PHONE%,<JOPPS id=9022>电话：</JOPPS>,}</td>
       <td valign="top" colspan=3>%DSP_TEXT_PHONE%</td>
     </tr><tr valign="top">
-      <td valign="top" align="right">%IF{%FAX%,<JOPPS id=9023>Fax :</JOPPS>,}</td>
+      <td valign="top" align="right">%IF{%FAX%,<JOPPS id=9023>传真：</JOPPS>,}</td>
       <td valign="top" colspan=2>%FAX%</td>
-      <td valign="top" align="right">%IF{@%DB_TEXT_TELEFAX%,<JOPPS id=9023>Fax :</JOPPS>,}</td>
+      <td valign="top" align="right">%IF{@%DB_TEXT_TELEFAX%,<JOPPS id=9023>传真：</JOPPS>,}</td>
       <td valign="top" colspan=3>%DSP_TEXT_TELEFAX%</td>
     </tr>
     </table>
@@ -75,7 +70,7 @@
     <table border=0 width=100% cellpadding=5>
     <tr valign="top">
       <td width=2%>&nbsp;</td>
-      <td width=98% valign="top" colspan=6><JOPPS id=9024>涉及 :</JOPPS> %DSP_TEXT_NAME%</td>
+      <td width=98% valign="top" colspan=6><JOPPS id=9024>用于：</JOPPS> %DSP_TEXT_NAME%</td>
     </tr>
     </table>
   </td>
@@ -89,7 +84,7 @@
     <tr valign="top">
       <td width=2%>&nbsp;</td>
       <td width=73% valign="top" colspan=3><b>%IF{%BATCHMODE%,<JOPPS id=9025>胶条订单 * 批 :</JOPPS>,<JOPPS id=9042>胶条订单 * 项目 :</JOPPS>} %DSP_ATTRIB_BATCH%</b></td>
-      <td width=23% valign="top" align="right" colspan=2><JOPPS id=9026>Date :</JOPPS> %DATE%</td>
+      <td width=23% valign="top" align="right" colspan=2><JOPPS id=9026>日期：</JOPPS> %DATE%</td>
       <td width=2%>&nbsp;</td>
     </tr>
     </table>
@@ -101,20 +96,20 @@
 <tr align="left" valign="top">
   <td valign="top" width=%W_LEN%%% %M_COLOR_TABLEHEAD_NOCOLORS% align="right"><b><JOPPS id=9027>长度</JOPPS></b></td>
   <td valign="top" width=%EVAL{%W_VRTY%+%W_VDESC%}% align="center" colspan=2 %M_COLOR_TABLEHEAD_NOCOLORS%><b><JOPPS id=9028>编号</JOPPS></b></td>
-  %IF{%W_DESC%,<td valign="top" width=%W_DESC%%% %M_COLOR_TABLEHEAD_NOCOLORS%><b><JOPPS id=9029>名称</JOPPS></b></td>,}
-  %IF{%EVAL{%W_COLLI%||%W_PCS%},<td valign="top" width=%EVAL{%W_COLLI%+%W_PCS%}% %M_COLOR_TABLEHEAD_NOCOLORS% %IF{%W_COLLI%=0,align="right",align="center" colspan=2}><b>%IF{%W_COLLI%=0,<JOPPS id=9039>Ordered</JOPPS>,<JOPPS id=9031>Packing</JOPPS>}</b></td>,}
-  %IF{%W_PRICE%,<td valign="top" width=%W_PRICE%%% %M_COLOR_TABLEHEAD_NOCOLORS% align="right"><b>%IF{%ORDER_LIST_PER_SUPPLIER_REBATE%,<JOPPS id=9035>折扣后价格</JOPPS>,<JOPPS id=9032>价格</JOPPS>}</b></td>,}
+  %IF{%DETAIL_LEVEL%=0,,<td valign="top" width=%W_DESC%%% %M_COLOR_TABLEHEAD_NOCOLORS%><b><JOPPS id=9029>名称</JOPPS></b></td>}
+  %IF{%EVAL{(%GLOBAL_PRICE_ACCESS%=%C_ACCPRICE_PACK%)||(%GLOBAL_PRICE_ACCESS%!=%C_ACCPRICE_UNIT%)},<td valign="top" width=%EVAL{%W_COLLI%+%W_PCS%}% %M_COLOR_TABLEHEAD_NOCOLORS% %IF{%GLOBAL_PRICE_ACCESS%!%C_ACCPRICE_PACK%,align="right",align="center" colspan=2}><b>%IF{%GLOBAL_PRICE_ACCESS%!%C_ACCPRICE_PACK%,<JOPPS id=9039>预定</JOPPS>,<JOPPS id=9031>包装</JOPPS>}</b></td>,}
+  %IF{%ORDER_LIST_PER_SUPPLIER_PRICE%,<td valign="top" width=%W_PRICE%%% %M_COLOR_TABLEHEAD_NOCOLORS% align="right"><b>%IF{%ORDER_LIST_PER_SUPPLIER_REBATE%,<JOPPS id=9035>折扣后价格</JOPPS>,<JOPPS id=9032>价格</JOPPS>}</b></td>,}
 </tr>
-%EVAL{setparam("SUBTOTAL_ORDERLIST","0")}
 
 <!--%% break footer-->
-%IF{%W_PRICE%,<tr valign="top">,}
-  %IF{%W_PRICE%,<td valign="top" align="right" colspan=%EVAL{3+(%W_DESC%>0)+(%W_COLLI%>0)+(%W_PCS%>0)}>&nbsp;</td>,}
-  %IF{%W_PRICE%,<td valign="top" align="right"><b>%DSP_ATTRIB_PRICE_SUBTOTAL%</b></td>,}
-%IF{%W_PRICE%,</tr>,}
+%IF{%ORDER_LIST_PER_SUPPLIER_PRICE%,<tr valign="top">,}
+  %IF{%ORDER_LIST_PER_SUPPLIER_PRICE%,<td valign="top" align="right" colspan=%EVAL{3+(%DETAIL_LEVEL%>0)+(%GLOBAL_PRICE_ACCESS%=%C_ACCPRICE_PACK%)+(%GLOBAL_PRICE_ACCESS%!=%C_ACCPRICE_UNIT%)}>&nbsp;</td>,}
+  %IF{%ORDER_LIST_PER_SUPPLIER_PRICE%,<td valign="top" align="right"><b>%DSP_ATTRIB_PRICE_SUM%</b></td>,}
+%IF{%ORDER_LIST_PER_SUPPLIER_PRICE%,</tr>,}
 </table>
 %IF{%EVAL{%DETAILCNT%+1 = %TOTRECCNT%},,<page>}
 
 <!--%% detail footer ---------------------------------------------------------->
 
 <!--%%------------------------------------------------------------------------->
+

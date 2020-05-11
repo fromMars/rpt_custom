@@ -10,7 +10,7 @@
 %IF{%STATISTICS_PROFILEINFO%=0,      <th><JOPPS id=21006>总面积</JOPPS></th>,}
 %IF{%STATISTICS_PROFILEINFO%=0,      <th>%DSP_TOTFRAMEAREA%</th>,}
 %IF{%STATISTICS_PROFILEINFO%=0,    </tr><tr valign="top" align="right">,}
-%IF{%STATISTICS_PROFILEINFO%=0,      <th><JOPPS id=21007>三边总长</JOPPS></th>,}
+%IF{%STATISTICS_PROFILEINFO%=0,      <th><JOPPS id=21007>三边总长度</JOPPS></th>,}
 %IF{%STATISTICS_PROFILEINFO%=0,      <th>%DSP_TOTFRAMEEDGES%</th>,}
 %IF{%STATISTICS_PROFILEINFO%=0,    </tr><tr valign="top" align="right">,}
 %IF{%STATISTICS_PROFILEINFO%=0,      <th><JOPPS id=21008>总周长</JOPPS></th>,}
@@ -34,3 +34,4 @@
 <!--%% detail footer ---------------------------------------------------------->
 
 <!--%%------------------------------------------------------------------------->
+

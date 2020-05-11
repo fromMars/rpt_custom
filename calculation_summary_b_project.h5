@@ -1,0 +1,59 @@
+<!--calculation_summary_b_project_X-->
+<!--Calculatie overzicht: Toeslagen/Extras/Handelingen------------------------->
+<br>
+<table border=0 width=100% %M_TABLEPARAM%>
+<tr valign="top">
+  <th align="left" colspan=5 bgcolor="%COLOR_TABLEHEAD%"><JOPPS id=15063>Charges/Extras/Handling</JOPPS></th>
+</tr><tr valign="bottom" align="left">
+  <th bgcolor="%COLOR_TABLEHEAD%" align="right"><JOPPS id=15044>数量</JOPPS></th>
+  <th bgcolor="%COLOR_TABLEHEAD%"><JOPPS id=15045>名称</JOPPS></th>
+  <th bgcolor="%COLOR_TABLEHEAD%"><JOPPS id=15058>块</JOPPS></th>
+  <th bgcolor="%COLOR_TABLEHEAD%" align="right">%IF{%CALCULATION_SUMMARY_REBATE%,<JOPPS id=15052>折扣后价格</JOPPS>,<JOPPS id=15024>价格</JOPPS>}</th>
+  <th bgcolor="%COLOR_TABLEHEAD%" align="right"><JOPPS id=15062>Time</JOPPS></th>
+</tr>
+
+<!--%% detail ----------------------------------------------------------------->
+<tr valign="top" align="left">
+  <td width=10% align="right">%IF{%SH_CHARGE_COUNT%,%DSP_CHARGE_COUNT%,#
+                              %IF{%SH_CHARGE_LENGTH_M%,%DSP_CHARGE_LENGTH_M%,#
+                              %IF{%SH_CHARGE_LENGTH_MM%,%DSP_CHARGE_LENGTH_MM%,#
+                              %IF{%SH_CHARGE_AREA_M2%,%DSP_CHARGE_SURFACE_M2%,#
+                              %IF{%SH_CHARGE_AREA_DM2%,%DSP_CHARGE_SURFACE_DM2%,#
+                              %IF{%SH_CHARGE_WEIGHT%,%DSP_CHARGE_WEIGHT%,#
+                              %IF{%SH_CHARGE_VOLUME%,%DSP_CHARGE_VOLUME%,%DSP_CHARGE_NO%}}}}}}}</td>
+  <td width=65%>%IF{@%DB_CHARGE_DESC%,%DSP_CHARGE_DESC%,&nbsp;}</td>
+  <td width=6%>%DSP_CHARGE_ARTICLE%</td>
+  <td width=12% align="right">%IF{%DETAIL_TRACE%=0,%DSP_CHARGE_PRICE%,%IF{@%DB_CHARGE_DATALINK%,%LIST{%DSP_CHARGE_DATALINK%,%DSP_CHARGE_PRICE%},%DSP_CHARGE_PRICE%}}</td>
+  <td width=9% align="right">%IF{@%DB_CHARGE_TIME%,%DSP_CHARGE_TIME%,&nbsp;}</td>
+</tr>
+
+<!--%% break header 1 -->
+
+<!--%% break footer 1 -->
+<tr valign="top" align="left">
+  <th bgcolor="%COLOR_TABLEHEAD%" align="right">&nbsp;</th>
+  <th bgcolor="%COLOR_TABLEHEAD%" colspan=2><JOPPS id=15048>总计</JOPPS></th>
+  <th bgcolor="%COLOR_TABLEHEAD%" align="right">%DSP_CHARGE_PRICE_SUM%</th>
+  <th bgcolor="%COLOR_TABLEHEAD%" align="right">%IF{@%DB_CHARGE_TIME_SUM%,%DSP_CHARGE_TIME_SUM%,&nbsp;}</th>
+</tr>
+
+<!--%% break header 2 -->
+
+<!--%% break footer 2 -->
+<tr valign="top" align="left">
+  <th bgcolor="%COLOR_TABLEHEAD%" align="right">%IF{%SH_CHARGE_COUNT_SUM%,%DSP_CHARGE_COUNT_SUM%,#
+                                                %IF{%SH_CHARGE_LENGTH_M_SUM%,%DSP_CHARGE_LENGTH_M_SUM%,#
+                                                %IF{%SH_CHARGE_LENGTH_MM_SUM%,%DSP_CHARGE_LENGTH_MM_SUM%,#
+                                                %IF{%SH_CHARGE_AREA_M2_SUM%,%DSP_CHARGE_AREA_M2_SUM%,#
+                                                %IF{%SH_CHARGE_AREA_DM2_SUM%,%DSP_CHARGE_AREA_DM2_SUM%,#
+                                                %IF{%SH_CHARGE_WEIGHT_SUM%,%DSP_CHARGE_WEIGHT_SUM%,#
+                                                %IF{%SH_CHARGE_VOLUME_SUM%,%DSP_CHARGE_VOLUME_SUM%,%DSP_CHARGE_NO_SUM%}}}}}}}</th>
+  <th bgcolor="%COLOR_TABLEHEAD%" colspan=2><JOPPS id=15064>Sub-Total</JOPPS></th>
+  <th bgcolor="%COLOR_TABLEHEAD%" align="right">%DSP_CHARGE_PRICE_SUM%</th>
+  <th bgcolor="%COLOR_TABLEHEAD%" align="right">%IF{@%DB_CHARGE_TIME_SUM%,%DSP_CHARGE_TIME_SUM%,&nbsp;}</th>
+</tr>
+
+<!--%% detail footer ---------------------------------------------------------->
+</table>
+
+<!--%%------------------------------------------------------------------------->

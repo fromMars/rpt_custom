@@ -1,14 +1,14 @@
 <!--calculation_summary_b_project_0-->
-<!--Calculatie overzicht: Algemeen--------------------------------------------->
+<!--Calculatie overzicht: Kaders/Veugels--------------------------------------->
 <br>
 <table border=0 width=100% %M_TABLEPARAM%>
 <tr valign="top">
-  <th align="left" colspan=6 bgcolor="%COLOR_TABLEHEAD%"><JOPPS id=15057>Frames/Vents</JOPPS></th>
+  <th align="left" colspan=6 bgcolor="%COLOR_TABLEHEAD%"><JOPPS id=15057>框/扇</JOPPS></th>
 </tr><tr valign="bottom" align="left">
-  <th bgcolor="%COLOR_TABLEHEAD%" align="right"><JOPPS id=15044>Qty</JOPPS></th>
-  <th bgcolor="%COLOR_TABLEHEAD%"><JOPPS id=15045>Description</JOPPS></th>
-  <th bgcolor="%COLOR_TABLEHEAD%"><JOPPS id=15058>Block</JOPPS></th>
-  <th bgcolor="%COLOR_TABLEHEAD%" align="right">%IF{%CALCULATION_SUMMARY_REBATE%,<JOPPS id=15052>Price with discount</JOPPS>,<JOPPS id=15024>Price</JOPPS>}</th>
+  <th bgcolor="%COLOR_TABLEHEAD%" align="right"><JOPPS id=15044>数量</JOPPS></th>
+  <th bgcolor="%COLOR_TABLEHEAD%"><JOPPS id=15045>名称</JOPPS></th>
+  <th bgcolor="%COLOR_TABLEHEAD%"><JOPPS id=15058>块</JOPPS></th>
+  <th bgcolor="%COLOR_TABLEHEAD%" align="right">%IF{%CALCULATION_SUMMARY_REBATE%,<JOPPS id=15052>折扣后价格</JOPPS>,<JOPPS id=15024>价格</JOPPS>}</th>
   <th bgcolor="%COLOR_TABLEHEAD%" align="right">%DSP_TIME1_DESC%</th>
   <th bgcolor="%COLOR_TABLEHEAD%" align="right">%DSP_TIME2_DESC%</th>
 </tr>
@@ -16,9 +16,9 @@
 <!--%% detail ----------------------------------------------------------------->
 <tr valign="top" align="left">
   <td width=10% align="right">%DSP_PART_NO%</td>
-  <td width=56%>%DSP_PART_DESC%</td>
+  <td width=56%>%IF{@%DB_PART_DESC%,%DSP_PART_DESC%,&nbsp;}</td>
   <td width=6%>%DSP_PART_ARTICLE%</td>
-  <td width=12% align="right">%IF{@%DB_PART_DATALINK%,%LIST{%DSP_PART_DATALINK%,%DSP_PART_PRICE%},%DSP_PART_PRICE%}</td>
+  <td width=12% align="right">%IF{%DETAIL_TRACE%=0,%DSP_CHARGE_PRICE%,%IF{@%DB_PART_DATALINK%,%LIST{%DSP_PART_DATALINK%,%DSP_PART_PRICE%},%DSP_PART_PRICE%}}</td>
   <td width=9% align="right">%IF{@%DB_PART_TIME1%,%DSP_PART_TIME1%,&nbsp;}</td>
   <td width=9% align="right">%IF{@%DB_PART_TIME2%,%DSP_PART_TIME2%,&nbsp;}</td>
 </tr>
@@ -28,7 +28,7 @@
 <!--%% break footer 1 -->
 <tr valign="top" align="left">
   <th bgcolor="%COLOR_TABLEHEAD%" align="right">%DSP_PART_NO_SUM%</th>
-  <th bgcolor="%COLOR_TABLEHEAD%" colspan=2><JOPPS id=15048>Total</JOPPS></th>
+  <th bgcolor="%COLOR_TABLEHEAD%" colspan=2><JOPPS id=15048>总计</JOPPS></th>
   <th bgcolor="%COLOR_TABLEHEAD%" align="right">%DSP_PART_PRICE_SUM%</th>
   <th bgcolor="%COLOR_TABLEHEAD%" align="right">%IF{@%DB_PART_TIME1_SUM%,%DSP_PART_TIME1_SUM%,&nbsp;}</th>
   <th bgcolor="%COLOR_TABLEHEAD%" align="right">%IF{@%DB_PART_TIME2_SUM%,%DSP_PART_TIME2_SUM%,&nbsp;}</th>

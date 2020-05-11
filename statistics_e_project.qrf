@@ -50,7 +50,6 @@ report
   and      %DB_PIECE_OPTION% in %RUNOPTIONS%
   and      %DB_PIECE_DEPNO% > 0
   and      %DB_PIECE_NO% > 0
-  and		%DB_PIECE_SPLIT%<>-2
   group by %DB_PIECE_PROJECT%, %DB_PIECE_PRODUCT%, %DB_PIECE_VARIETY%, %DB_PIECE_SERIE%
   having   count(*) > 0
 

@@ -34,7 +34,7 @@
   %EVAL{setparam("VAR_SPECIAL", iif((@%DB_GLASS_WIDTH%=0) || (@%DB_GLASS_HEIGHT%=0), "1", "%VAR_SPECIAL%"))}
   %IF{%EVAL{@%DB_GLASS_WIDTH% && @%DB_GLASS_HEIGHT%},<td width=%W_WDTH%%% align="right">%DSP_GLASS_WIDTH%</td>,}
   %IF{%EVAL{@%DB_GLASS_WIDTH% && @%DB_GLASS_HEIGHT%},<td width=%W_HGHT%%% align="right">%DSP_GLASS_HEIGHT%</td>,}
-  %IF{%EVAL{(@%DB_GLASS_WIDTH%=0) || (@%DB_GLASS_HEIGHT%=0)},<td width=%EVAL{%W_WDTH%+%W_HGHT%}% align="center" colspan=2><JOPPS id=23014>(see enclosure)</JOPPS></td>,}
+  %IF{%EVAL{(@%DB_GLASS_WIDTH%=0) || (@%DB_GLASS_HEIGHT%=0)},<td width=%EVAL{%W_WDTH%+%W_HGHT%}% align="center" colspan=2><JOPPS id=23014>(见附图)</JOPPS></td>,}
   <td width=%W_REF%%%>
     %IF{ %BATCHMODE%,%EVAL{trim("%DSP_GLASS_PROJECT%")}*,}#
     %IF{ %EVAL{( %SHOW_DETAIL%=%C_REF_DETAILED%) || ( %SHOW_DETAIL%=%C_REF_FILLINGCODE%)},#
@@ -55,6 +55,7 @@
 <!-- Begin break header 1 glass_order_b_project_1 -->
 %IF{%DETAILCNT%,<page>,}
 %INCLUDE{%FILE_HEADER_PROJECT%}
+%INCLUDE{%FILE_BARCODE%}
 <BR>
 <table width=100% border=%FILLING_LIST_EXCELCOMPAT% cellspacing=2 %M_COLOR_TABLEDATA_NOCOLORS% bordercolor="%COLOR_TITLEBORDER%" cellpadding=5>
 <tr>
@@ -76,14 +77,14 @@
       <td></td>
       <td valign="top" colspan=3>%DSP_TEXT_ZIP% %DSP_TEXT_PLACE%</td>
     </tr><tr valign="top">
-      <td valign="top" align="right">%IF{%PHONE%,<JOPPS id=23001>Phone :</JOPPS>,}</td>
+      <td valign="top" align="right">%IF{%PHONE%,<JOPPS id=23001>电话：</JOPPS>,}</td>
       <td valign="top" colspan=3>%PHONE%</td>
-      <td valign="top" align="right">%IF{@%DB_TEXT_PHONE%,<JOPPS id=23001>Phone :</JOPPS>,}</td>
+      <td valign="top" align="right">%IF{@%DB_TEXT_PHONE%,<JOPPS id=23001>电话：</JOPPS>,}</td>
       <td valign="top" colspan=3>%DSP_TEXT_PHONE%</td>
     </tr><tr valign="top">
-      <td valign="top" align="right">%IF{%FAX%,<JOPPS id=23002>Fax :</JOPPS>,}</td>
+      <td valign="top" align="right">%IF{%FAX%,<JOPPS id=23002>传真：</JOPPS>,}</td>
       <td valign="top" colspan=3>%FAX%</td>
-      <td valign="top" align="right">%IF{@%DB_TEXT_TELEFAX%,<JOPPS id=23002>Fax :</JOPPS>,}</td>
+      <td valign="top" align="right">%IF{@%DB_TEXT_TELEFAX%,<JOPPS id=23002>传真：</JOPPS>,}</td>
       <td valign="top" colspan=3>%DSP_TEXT_TELEFAX%</td>
     </tr>
     </table>
@@ -97,7 +98,7 @@
     <table border=0 width=100% cellpadding=5>
     <tr valign="top">
       <td width=2%>&nbsp;</td>
-      <td valign="top" width=98% colspan=7><JOPPS id=23003>Reference :</JOPPS> %DSP_TEXT_NAME%</td>
+      <td valign="top" width=98% colspan=7><JOPPS id=23003>用于：</JOPPS> %DSP_TEXT_NAME%</td>
     </tr>
     </table>
   </td>
@@ -111,7 +112,7 @@
     <tr valign="top">
       <td width=2%>&nbsp;</td>
       <td valign="top" width=73% colspan=4><b>%IF{%BATCHMODE%,<JOPPS id=23004>订单 * 批 :</JOPPS>,<JOPPS id=23026>订单 * 项目 :</JOPPS>} %DSP_GLASS_BATCH%</b></td>
-      <td valign="top" width=23% align="right" colspan=2><JOPPS id=23005>Date :</JOPPS> %DATE%</td>
+      <td valign="top" width=23% align="right" colspan=2><JOPPS id=23005>日期：</JOPPS> %DATE%</td>
       <td width=2%>&nbsp;</td>
     </tr>
     </table>
@@ -153,11 +154,11 @@
 <table border=0 width=100%>
 <tr>
   <td width=75% colspan=6></td>
-  <td width=25% colspan=2><JOPPS id=23015>Yours faithfully,</JOPPS></td>
+  <td width=25% colspan=2><JOPPS id=23015>您忠实的,</JOPPS></td>
 </tr>
 </table>
 <BR><BR>
-%IF{%VAR_SPECIAL%,<p><JOPPS id=23016>Enclosure: special forms.</JOPPS></p>,}
+%IF{%VAR_SPECIAL%,<p><JOPPS id=23016>附件：特殊模壳</JOPPS></p>,}
 <!-- end break footer 1- glass_order_b_project_1 -->
 
 <!--%% break header 2-->
@@ -185,3 +186,4 @@
 <!--%% detail footer ---------------------------------------------------------->
 
 <!--%%------------------------------------------------------------------------->
+

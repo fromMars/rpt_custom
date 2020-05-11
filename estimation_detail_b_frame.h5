@@ -1,5 +1,5 @@
 <!--estimation_detail_b_frame-->
-<!--Estimatie footer----------------------------------------------------------->
+<!--Estimatie detail----------------------------------------------------------->
 
 <!--%% detail ----------------------------------------------------------------->
 <tr valign="top" align="left">
@@ -9,6 +9,7 @@
   <td align="right">%DSP_COST_PRICE%</td>
   <td align="right">%IF{%ESTIMATION_DETAIL_PRICES%,%DSP_COST_CFSCRAP%,%DSP_COST_CFGROSS%}</td>
   <td align="right">%IF{%ESTIMATION_DETAIL_PRICES%,%DSP_COST_CFTRADE%,%DSP_COST_CFNETTO%}</td>
+  <td align="right">%IF{%ESTIMATION_DETAIL_PRICES%,%DSP_COST_CFBRAND%,%DSP_COST_CFQUOTA%}</td>
   <td align="right">%IF{%ESTIMATION_DETAIL_PRICES%,%DSP_COST_CFCOLOR%,%DSP_COST_CFRATIO%}</td>
   <td align="right">%IF{%ESTIMATION_DETAIL_PRICES%,%DSP_COST_CFEXTRA%,%DSP_COST_CFCOST%}</td>
   <td align="right">%IF{@%DB_COST_CFMARGIN%,%DSP_COST_CFMARGIN%,&nbsp;}</td>
@@ -20,11 +21,11 @@
 <BR>
 <table border=0 width=100% %M_TABLEPARAM%>
 <tr valign="bottom" align="left">
-  <th bgcolor=%COLOR_TABLEHEAD% colspan=10>
+  <th bgcolor=%COLOR_TABLEHEAD% colspan=11>
     %IF{%ESTIMATION_DETAIL_OUTLINES%,<table border=0 width=100%>,}
     %IF{%ESTIMATION_DETAIL_OUTLINES%,<tr valign="top" align="left">,}
       %IF{%ESTIMATION_DETAIL_OUTLINES%,<th width=80%>,}
-        <JOPPS id=12001>报价*用于 :</JOPPS> # 
+        <JOPPS id=12001>报价*用于 :</JOPPS> #
         %IF{%EVAL{%ASSEMBLYCOUNT%>1},<font color="%COLOR_ANNOTATE%">%ASSEMBLYCOUNT%x</font> , %ASSEMBLYCOUNT%x }#
         %DSP_COST_ID% #
         %IF{%GLOBAL_LOSS%=%C_FIXED_LOSS%,<JOPPS id=12011>(固定损耗)</JOPPS>,#
@@ -34,10 +35,24 @@
     %IF{%ESTIMATION_DETAIL_OUTLINES%,</tr>,}
     %IF{%ESTIMATION_DETAIL_OUTLINES%,</table>,}
     %IF{%ESTIMATION_DETAIL_OUTLINES%,<table border=0 width=100%>,}
+    %IF{%ESTIMATION_DETAIL_OUTLINES%,%IF{%SH_VIEW_BOTTOM%,<tr valign="center">,},}#
+    %IF{%ESTIMATION_DETAIL_OUTLINES%,%IF{%SH_VIEW_BOTTOM%,<td align="center" width=80%>%IF{%ESTIMATION_DETAIL_DETAILS%,%DSP_INFOFRAME%,&nbsp;}</td>,},}#
+    %IF{%ESTIMATION_DETAIL_OUTLINES%,%IF{%EVAL{%SH_VIEW_BOTTOM% && %SH_VIEW_RIGHT%},<td width=13%>&nbsp;</td>,},}#
+    %IF{%ESTIMATION_DETAIL_OUTLINES%,%IF{%SH_VIEW_BOTTOM%,<td width=13% %IF{%SH_VIEW_RIGHT%,align="center",}><a href="EDITOR:%FRAMEATOM%">%DSP_VIEWBOTTOM%</a></td>,},}#
+    %IF{%ESTIMATION_DETAIL_OUTLINES%,%IF{%EVAL{%SH_VIEW_BOTTOM% && %SH_VIEW_LEFT%},<td width=13%>&nbsp;</td>,},}#
+    %IF{%ESTIMATION_DETAIL_OUTLINES%,%IF{%SH_VIEW_BOTTOM%,</tr>,},}#
     %IF{%ESTIMATION_DETAIL_OUTLINES%,<tr valign="center">,}
-      %IF{%ESTIMATION_DETAIL_OUTLINES%,<td align="center" width=80%>%IF{%ESTIMATION_DETAIL_DETAILS%,%DSP_INFOFRAME%,&nbsp;}</td>,}
-      %IF{%ESTIMATION_DETAIL_OUTLINES%,<td align="center" width=20%><a href="EDITOR:%FRAMEATOM%">%DSP_DRAWCOSTFRAME%%IF{%ESTIMATION_DETAIL_SCALE%,<br>%DSP_SCALE%,}</a></td>,}
+      %IF{%ESTIMATION_DETAIL_OUTLINES%,%IF{%SH_VIEW_BOTTOM%,<td align="center" width=80%>&nbsp;</td>,<td align="center" width=80%>%IF{%ESTIMATION_DETAIL_DETAILS%,%DSP_INFOFRAME%,&nbsp;}</td>},}#
+      %IF{%ESTIMATION_DETAIL_OUTLINES%,%IF{%SH_VIEW_RIGHT%,<td width=13% align="right"><a href="EDITOR:%FRAMEATOM%">%DSP_VIEWRIGHT%</a></td>,},}#
+      %IF{%ESTIMATION_DETAIL_OUTLINES%,<td align="center" width=13% %IF{%SH_VIEW_RIGHT%,align="center",}><a href="EDITOR:%FRAMEATOM%">%DSP_DRAWCOSTFRAME%%IF{%ESTIMATION_DETAIL_SCALE%,<br>%DSP_SCALE%,}</a></td>,}#
+      %IF{%ESTIMATION_DETAIL_OUTLINES%,%IF{%SH_VIEW_LEFT%,<td width=13% align="left"><a href="EDITOR:%FRAMEATOM%">%DSP_VIEWLEFT%</a></td>,},}#
     %IF{%ESTIMATION_DETAIL_OUTLINES%,</tr>,}
+    %IF{%ESTIMATION_DETAIL_OUTLINES%,%IF{%SH_VIEW_TOP%,<tr valign="center">,},}#
+    %IF{%ESTIMATION_DETAIL_OUTLINES%,%IF{%SH_VIEW_BOTTOM%,<td align="center" width=80%>&nbsp;</td>,<td align="center" width=80%>&nbsp;</td>},}#
+    %IF{%ESTIMATION_DETAIL_OUTLINES%,%IF{%EVAL{%SH_VIEW_TOP% && %SH_VIEW_RIGHT%},<td width=13%>&nbsp;</td>,},}#
+    %IF{%ESTIMATION_DETAIL_OUTLINES%,%IF{%SH_VIEW_TOP%,<td width=13% %IF{%SH_VIEW_RIGHT%,align="center",}><a href="EDITOR:%FRAMEATOM%">%DSP_VIEWTOP%</a></td>,},}#
+    %IF{%ESTIMATION_DETAIL_OUTLINES%,%IF{%EVAL{%SH_VIEW_TOP% && %SH_VIEW_LEFT%},<td width=13%>&nbsp;</td>,},}#
+    %IF{%ESTIMATION_DETAIL_OUTLINES%,%IF{%SH_VIEW_TOP%,</tr>,},}#
     %IF{%ESTIMATION_DETAIL_OUTLINES%,</table>,}
   </th>
 </tr><tr valign="bottom" align="left">
@@ -46,6 +61,7 @@
   <th width=10% bgcolor=%COLOR_TABLEHEAD% align="right"><JOPPS id=12004>基础价</JOPPS></th>
   <th width=10% bgcolor=%COLOR_TABLEHEAD% align="right"><JOPPS id=12005>损耗</JOPPS></th>
   <th width=10% bgcolor=%COLOR_TABLEHEAD% align="right"><JOPPS id=12006>折扣</JOPPS></th>
+  <th width=10% bgcolor=%COLOR_TABLEHEAD% align="right"><JOPPS id=12020>Co雈f. system</JOPPS></th>
   <th width=10% bgcolor=%COLOR_TABLEHEAD% align="right"><JOPPS id=12007>颜色系数</JOPPS></th>
   <th width=10% bgcolor=%COLOR_TABLEHEAD% align="right"><JOPPS id=12019>管理费</JOPPS></th>
   <th width=10% bgcolor=%COLOR_TABLEHEAD% align="right"><JOPPS id=12008>利润</JOPPS></th>
@@ -60,6 +76,7 @@
   <th bgcolor=%COLOR_TABLEHEAD% align="right">%DSP_COST_PRICE_SUM%</th>
   <th bgcolor=%COLOR_TABLEHEAD% align="right">%IF{%ESTIMATION_DETAIL_PRICES%,%DSP_COST_SCRAP_SUM%,%DSP_COST_GROSS_SUM%}</th>
   <th bgcolor=%COLOR_TABLEHEAD% align="right">%IF{%ESTIMATION_DETAIL_PRICES%,%DSP_COST_TRADE_SUM%,%DSP_COST_NETTO_SUM%}</th>
+  <th bgcolor=%COLOR_TABLEHEAD% align="right">%IF{%ESTIMATION_DETAIL_PRICES%,%DSP_COST_BRAND_SUM%,%DSP_COST_QUOTA_SUM%}</th>
   <th bgcolor=%COLOR_TABLEHEAD% align="right">%IF{%ESTIMATION_DETAIL_PRICES%,%DSP_COST_COLOR_SUM%,%DSP_COST_RATIO_SUM%}</th>
   <th bgcolor=%COLOR_TABLEHEAD% align="right">%IF{%ESTIMATION_DETAIL_PRICES%,%DSP_COST_EXTRA_SUM%,%DSP_COST_COST_SUM%}</th>
   <th bgcolor=%COLOR_TABLEHEAD% align="right">%IF{@8,%DSP_COST_MARGIN_SUM%,&nbsp;}</th>
@@ -71,3 +88,4 @@
 <!--%% detail footer ---------------------------------------------------------->
 
 <!--%%------------------------------------------------------------------------->
+

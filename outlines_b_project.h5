@@ -4,3 +4,4 @@
 <table width="100%" %M_TABLEPARAM% border=0>
 <tr>
   <th colspan="%OUTLINES_COLUMNS%" align="left" bgcolor="%COLOR_TABLEHEAD%"><JOPPS id=1001>¹¤³ÌÃû³Æ:</JOPPS> %IF{%HEADER_ENABLED%,,%IF{%BATCHMODE%,%BATCH%,%PROJECT% %PROJECTDESC%}}</th>
+

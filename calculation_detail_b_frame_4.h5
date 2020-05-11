@@ -1,15 +1,17 @@
-<!--calculation_detail_b_frame_5-->
+<!--calculation_detail_b_frame_4-->
 <!--Calculatie detail: Glas---------------------------------------------------->
 <br>
 <table border=0 width=100% %M_TABLEPARAM%>
 <tr valign="top">
-  <th align="left" colspan=%EVAL{6+(%DETAIL_TRACE%>0)} bgcolor="%COLOR_TABLEHEAD%"><JOPPS id=14036>玻璃</JOPPS></th>
+  <th align="left" colspan=%EVAL{7+(%DETAIL_LEVEL%>0)+(%DETAIL_TRACE%>0)} bgcolor="%COLOR_TABLEHEAD%"><JOPPS id=14036>玻璃</JOPPS></th>
 </tr><tr valign="bottom" align="left">
   <th bgcolor="%COLOR_TABLEHEAD%" align="right"><JOPPS id=14037>数量</JOPPS></th>
-  <th bgcolor="%COLOR_TABLEHEAD%"><JOPPS id=14038>名称</JOPPS></th>
+  <th bgcolor="%COLOR_TABLEHEAD%"><JOPPS id=14061>Glazing</JOPPS></th>
+  %IF{%DETAIL_LEVEL%=0,,<th bgcolor="%COLOR_TABLEHEAD%"><JOPPS id=14038>名称</JOPPS></th>}
   %IF{%DETAIL_TRACE%=0,,<th bgcolor="%COLOR_TABLEHEAD%"><JOPPS id=14005>链接</JOPPS></th>}
   <th bgcolor="%COLOR_TABLEHEAD%"><JOPPS id=14039>块</JOPPS></th>
   <th bgcolor="%COLOR_TABLEHEAD%" align="right">%IF{%CALCULATION_DETAIL_REBATE%,<JOPPS id=14054>折扣后价格</JOPPS>,<JOPPS id=14040>价格</JOPPS>}</th>
+  <th bgcolor="%COLOR_TABLEHEAD%" align="right"><JOPPS id=14064>Time</JOPPS></th>
   <th bgcolor="%COLOR_TABLEHEAD%" align="right">%DSP_TIME1_DESC%</th>
   <th bgcolor="%COLOR_TABLEHEAD%" align="right">%DSP_TIME2_DESC%</th>
 </tr>
@@ -17,10 +19,12 @@
 <!--%% detail ----------------------------------------------------------------->
 <tr valign="top" align="left"%IF{%CALCULATION_DETAIL_MARKER_GLASS%=1,%IF{@%DB_GLASS_RGB%="#000000",, bgcolor="%DSP_GLASS_RGB%"},}>
   <td width=10% align="right">%DSP_GLASS_NO%</td>
-  <td width=54%>%DSP_GLASS_DESC%</td>
+  <td width=14%>%DSP_GLASS_FILLING%</td>
+  %IF{%DETAIL_LEVEL%=0,,<td width=40%>%IF{@%DB_GLASS_DESC%,%DSP_GLASS_DESC%,&nbsp;}</td>}
   %IF{%DETAIL_TRACE%=0,,<td width=10%>%IF{@%DB_GLASS_LINK%,%LIST{%DSP_GLASS_LINK%},&nbsp;}</td>}
   <td width=6%>%DSP_GLASS_ARTICLE%</td>
-  <td width=12% align="right">%DSP_GLASS_CFPRICE%</td>
+  <td width=12% align="right">%IF{@%DB_GLASS_DATALINK%,%LIST{%DSP_GLASS_DATALINK%,%DSP_GLASS_CFPRICE%},%DSP_GLASS_CFPRICE%}</td>
+  <td width=9% align="right">%IF{@%DB_GLASS_JOBTIME%,%DSP_GLASS_JOBTIME%,&nbsp;}</td>
   <td width=9% align="right">%IF{@%DB_GLASS_TIME1%,%DSP_GLASS_TIME1%,&nbsp;}</td>
   <td width=9% align="right">%IF{@%DB_GLASS_TIME2%,%DSP_GLASS_TIME2%,&nbsp;}</td>
 </tr>
@@ -30,8 +34,9 @@
 <!--%% break footer 1 -->
 <tr valign="top" align="left">
   <th bgcolor="%COLOR_TABLEHEAD%" align="right">%DSP_GLASS_NO_SUM%</th>
-  <th bgcolor="%COLOR_TABLEHEAD%" colspan=%EVAL{2+(%DETAIL_TRACE%>0)}>%EVAL{trim("%DSP_GLASS_PROJECT_BR%")+"*"+trim("%DSP_GLASS_ASSEMBLY_BR%")+"*"+trim("%DSP_GLASS_FRAME_BR%")}</th>
+  <th bgcolor="%COLOR_TABLEHEAD%" colspan=%EVAL{2+(%DETAIL_LEVEL%>0)+(%DETAIL_TRACE%>0)}>%EVAL{trim("%DSP_GLASS_PROJECT_BR%")+"*"+trim("%DSP_GLASS_ASSEMBLY_BR%")+"*"+trim("%DSP_GLASS_FRAME_BR%")}</th>
   <th bgcolor="%COLOR_TABLEHEAD%" align="right">%DSP_GLASS_CFPRICE_SUM%</th>
+  <th bgcolor="%COLOR_TABLEHEAD%" align="right">%IF{@%DB_GLASS_JOBTIME_SUM%,%DSP_GLASS_JOBTIME_SUM%,&nbsp;}</th>
   <th bgcolor="%COLOR_TABLEHEAD%" align="right">%IF{@%DB_GLASS_TIME1_SUM%,%DSP_GLASS_TIME1_SUM%,&nbsp;}</th>
   <th bgcolor="%COLOR_TABLEHEAD%" align="right">%IF{@%DB_GLASS_TIME2_SUM%,%DSP_GLASS_TIME2_SUM%,&nbsp;}</th>
 </tr>
@@ -41,8 +46,9 @@
 <!--%% break footer 2 -->
 <tr valign="top" align="left">
   <th bgcolor="%COLOR_TABLEHEAD%" align="right">%DSP_GLASS_NO_SUM%</th>
-  <th bgcolor="%COLOR_TABLEHEAD%" colspan=%EVAL{2+(%DETAIL_TRACE%>0)}>%EVAL{trim("%DSP_GLASS_PROJECT_BR%")+"*"+trim("%DSP_GLASS_ASSEMBLY_BR%")+"*"+trim("%DSP_GLASS_FRAME_BR%")} / <JOPPS id=14042>price block</JOPPS> %DSP_GLASS_ARTICLE_BR%</th>
+  <th bgcolor="%COLOR_TABLEHEAD%" colspan=%EVAL{2+(%DETAIL_LEVEL%>0)+(%DETAIL_TRACE%>0)}>%EVAL{trim("%DSP_GLASS_PROJECT_BR%")+"*"+trim("%DSP_GLASS_ASSEMBLY_BR%")+"*"+trim("%DSP_GLASS_FRAME_BR%")} / <JOPPS id=14042>价格块</JOPPS> %DSP_GLASS_ARTICLE_BR%</th>
   <th bgcolor="%COLOR_TABLEHEAD%" align="right">%DSP_GLASS_CFPRICE_SUM%</th>
+  <th bgcolor="%COLOR_TABLEHEAD%" align="right">%IF{@%DB_GLASS_JOBTIME_SUM%,%DSP_GLASS_JOBTIME_SUM%,&nbsp;}</th>
   <th bgcolor="%COLOR_TABLEHEAD%" align="right">%IF{@%DB_GLASS_TIME1_SUM%,%DSP_GLASS_TIME1_SUM%,&nbsp;}</th>
   <th bgcolor="%COLOR_TABLEHEAD%" align="right">%IF{@%DB_GLASS_TIME2_SUM%,%DSP_GLASS_TIME2_SUM%,&nbsp;}</th>
 </tr>

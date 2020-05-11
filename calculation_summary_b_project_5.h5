@@ -3,24 +3,28 @@
 <br>
 <table border=0 width=100% %M_TABLEPARAM%>
 <tr valign="top">
-  <th align="left" colspan=%EVAL{6+(%DETAIL_TRACE%>0)} bgcolor="%COLOR_TABLEHEAD%"><JOPPS id=15036>玻璃</JOPPS></th>
+  <th align="left" colspan=%EVAL{7+(%DETAIL_LEVEL%>0)+(%DETAIL_TRACE%>0)} bgcolor="%COLOR_TABLEHEAD%"><JOPPS id=15036>玻璃</JOPPS></th>
 </tr><tr valign="bottom" align="left">
   <th bgcolor="%COLOR_TABLEHEAD%" align="right"><JOPPS id=15037>数量</JOPPS></th>
-  <th bgcolor="%COLOR_TABLEHEAD%"><JOPPS id=15038>名称</JOPPS></th>
+  <th bgcolor="%COLOR_TABLEHEAD%"><JOPPS id=15059>Glazing</JOPPS></th>
+  %IF{%DETAIL_LEVEL%=0,,<th bgcolor="%COLOR_TABLEHEAD%"><JOPPS id=15038>名称</JOPPS></th>}
   %IF{%DETAIL_TRACE%=0,,<th bgcolor="%COLOR_TABLEHEAD%"><JOPPS id=15031>链接</JOPPS></th>}
   <th bgcolor="%COLOR_TABLEHEAD%"><JOPPS id=15039>块</JOPPS></th>
   <th bgcolor="%COLOR_TABLEHEAD%" align="right">%IF{%CALCULATION_SUMMARY_REBATE%,<JOPPS id=15054>折扣后价格</JOPPS>,<JOPPS id=15040>价格</JOPPS>}</th>
-  <th bgcolor="%COLOR_TABLEHEAD%" align="right">%DSP_time1_DESC%</th>
-  <th bgcolor="%COLOR_TABLEHEAD%" align="right">%DSP_time2_DESC%</th>
+  <th bgcolor="%COLOR_TABLEHEAD%" align="right"><JOPPS id=15062>Time</JOPPS></th>
+  <th bgcolor="%COLOR_TABLEHEAD%" align="right">%DSP_TIME1_DESC%</th>
+  <th bgcolor="%COLOR_TABLEHEAD%" align="right">%DSP_TIME2_DESC%</th>
 </tr>
 
 <!--%% detail ----------------------------------------------------------------->
 <tr valign="top" align="left">
   <td width=10% align="right">%DSP_GLASS_NO%</td>
-  <td width=54%>%DSP_GLASS_DESC%</td>
+  <td width=14%>%DSP_GLASS_FILLING%</td>
+  %IF{%DETAIL_LEVEL%=0,,<td width=40%>%IF{@%DB_GLASS_DESC%,%DSP_GLASS_DESC%,&nbsp;}</td>}
   %IF{%DETAIL_TRACE%=0,,<td width=10%>%IF{@%DB_GLASS_LINK%,%LIST{%DSP_GLASS_LINK%},&nbsp;}</td>}
   <td width=6%>%DSP_GLASS_ARTICLE%</td>
-  <td width=12% align="right">%DSP_GLASS_CFPRICE%</td>
+  <td width=12% align="right">%IF{@%DB_GLASS_DATALINK%,%LIST{%DSP_GLASS_DATALINK%,%DSP_GLASS_CFPRICE%},%DSP_GLASS_CFPRICE%}</td>
+  <td width=9% align="right">%IF{@%DB_GLASS_JOBTIME%,%DSP_GLASS_JOBTIME%,&nbsp;}</td>
   <td width=9% align="right">%IF{@%DB_GLASS_TIME1%,%DSP_GLASS_TIME1%,&nbsp;}</td>
   <td width=9% align="right">%IF{@%DB_GLASS_TIME2%,%DSP_GLASS_TIME2%,&nbsp;}</td>
 </tr>
@@ -30,8 +34,9 @@
 <!--%% break footer 1 -->
 <tr valign="top" align="left">
   <th bgcolor="%COLOR_TABLEHEAD%" align="right">%DSP_GLASS_NO_SUM%</th>
-  <th bgcolor="%COLOR_TABLEHEAD%" colspan=%EVAL{2+(%DETAIL_TRACE%>0)}><JOPPS id=15041>总计</JOPPS></th>
+  <th bgcolor="%COLOR_TABLEHEAD%" colspan=%EVAL{2+(%DETAIL_LEVEL%>0)+(%DETAIL_TRACE%>0)}><JOPPS id=15041>总计</JOPPS></th>
   <th bgcolor="%COLOR_TABLEHEAD%" align="right">%DSP_GLASS_CFPRICE_SUM%</th>
+  <th bgcolor="%COLOR_TABLEHEAD%" align="right">%IF{@%DB_GLASS_JOBTIME_SUM%,%DSP_GLASS_JOBTIME_SUM%,&nbsp;}</th>
   <th bgcolor="%COLOR_TABLEHEAD%" align="right">%IF{@%DB_GLASS_TIME1_SUM%,%DSP_GLASS_TIME1_SUM%,&nbsp;}</th>
   <th bgcolor="%COLOR_TABLEHEAD%" align="right">%IF{@%DB_GLASS_TIME2_SUM%,%DSP_GLASS_TIME2_SUM%,&nbsp;}</th>
 </tr>
@@ -41,8 +46,9 @@
 <!--%% break footer 2 -->
 <tr valign="top" align="left">
   <th bgcolor="%COLOR_TABLEHEAD%" align="right">%DSP_GLASS_NO_SUM%</th>
-  <th bgcolor="%COLOR_TABLEHEAD%" colspan=%EVAL{2+(%DETAIL_TRACE%>0)}><JOPPS id=15042>价格块</JOPPS> %DSP_GLASS_ARTICLE_BR%</th>
+  <th bgcolor="%COLOR_TABLEHEAD%" colspan=%EVAL{2+(%DETAIL_LEVEL%>0)+(%DETAIL_TRACE%>0)}><JOPPS id=15042>价格块</JOPPS> %DSP_GLASS_ARTICLE_BR%</th>
   <th bgcolor="%COLOR_TABLEHEAD%" align="right">%DSP_GLASS_CFPRICE_SUM%</th>
+  <th bgcolor="%COLOR_TABLEHEAD%" align="right">%IF{@%DB_GLASS_JOBTIME_SUM%,%DSP_GLASS_JOBTIME_SUM%,&nbsp;}</th>
   <th bgcolor="%COLOR_TABLEHEAD%" align="right">%IF{@%DB_GLASS_TIME1_SUM%,%DSP_GLASS_TIME1_SUM%,&nbsp;}</th>
   <th bgcolor="%COLOR_TABLEHEAD%" align="right">%IF{@%DB_GLASS_TIME2_SUM%,%DSP_GLASS_TIME2_SUM%,&nbsp;}</th>
 </tr>

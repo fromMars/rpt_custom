@@ -31,12 +31,14 @@
   <td valign="top" align="right">%DSP_EXTRA_WIDTH%</td>
   <td valign="top" align="right">%DSP_EXTRA_HEIGHT%</td>
   %IF{%SHOW_UNIT%,<td valign="top" align="right">%IF{@%DB_EXTRA_LENGTH%,%DSP_EXTRA_LENGTH%,}%IF{@%DB_EXTRA_SURFACE%,%DSP_EXTRA_SURFACE%,}</td>,}
-  <td valign="top">%IF{%BATCHMODE%,%EVAL{trim("%DSP_EXTRA_PROJECT%")}*,}%DSP_EXTRA_REFERENCE%</td>
+  <td valign="top">%IF{%BATCHMODE%,%EVAL{trim("%DSP_EXTRA_PROJECT%")}*,}%IF{@%DB_EXTRA_REFERENCE%,%DSP_EXTRA_REFERENCE%,&nbsp;}</td>
   %IF{%SHOW_PRICE%,<td valign="top" align="right">%DSP_EXTRA_PRICE%</td>,}
 </tr>
 
 <!--%% break header 1-->
 %IF{%DETAILCNT%,<page>,}
+%INCLUDE{%FILE_HEADER_PROJECT%}
+%INCLUDE{%FILE_BARCODE%}
 <BR>
 <table width=100% border=%FINISHING_LIST_EXCELCOMPAT% cellspacing=2 %M_COLOR_TABLEDATA_NOCOLORS% bordercolor="%COLOR_TITLEBORDER%" cellpadding=5>
 <tr>
@@ -58,14 +60,14 @@
       <td></td>
       <td valign="top" colspan=2>%DSP_TEXT_ZIP% %DSP_TEXT_PLACE%</td>
     </tr><tr valign="top">
-      <td valign="top" align="right">%IF{%PHONE%,<JOPPS id=6001>Phone :</JOPPS>,}</td>
+      <td valign="top" align="right">%IF{%PHONE%,<JOPPS id=6001>电话：</JOPPS>,}</td>
       <td valign="top" colspan=2>%PHONE%</td>
-      <td valign="top" align="right">%IF{@%DB_TEXT_PHONE%,<JOPPS id=6001>Phone :</JOPPS>,}</td>
+      <td valign="top" align="right">%IF{@%DB_TEXT_PHONE%,<JOPPS id=6001>电话：</JOPPS>,}</td>
       <td valign="top" colspan=2>%DSP_TEXT_PHONE%</td>
     </tr><tr valign="top">
-      <td valign="top" align="right">%IF{%FAX%,<JOPPS id=6002>Fax :</JOPPS>,}</td>
+      <td valign="top" align="right">%IF{%FAX%,<JOPPS id=6002>传真：</JOPPS>,}</td>
       <td valign="top" colspan=2>%FAX%</td>
-      <td valign="top" align="right">%IF{@%DB_TEXT_TELEFAX%,<JOPPS id=6002>Fax :</JOPPS>,}</td>
+      <td valign="top" align="right">%IF{@%DB_TEXT_TELEFAX%,<JOPPS id=6002>传真：</JOPPS>,}</td>
       <td valign="top" colspan=2>%DSP_TEXT_TELEFAX%</td>
     </tr>
     </table>
@@ -79,7 +81,7 @@
     <table border=0 width=100% cellpadding=5>
     <tr valign="top">
       <td width=2%>&nbsp;</td>
-      <td valign="top" width=98% colspan=5><JOPPS id=6003>Reference :</JOPPS> %DSP_TEXT_NAME%</td>
+      <td valign="top" width=98% colspan=5><JOPPS id=6003>用于：</JOPPS> %DSP_TEXT_NAME%</td>
     </tr>
     </table>
   </td>
@@ -93,7 +95,7 @@
     <tr valign="top">
       <td width=2%>&nbsp;</td>
       <td valign="top" width=73% colspan=2><b>%IF{%BATCHMODE%,<JOPPS id=6004>订单 * 批 :</JOPPS>,<JOPPS id=6015>订单 * 项目 :</JOPPS>} %DSP_EXTRA_BATCH%</b></td>
-      <td valign="top" width=23% align="right" colspan=2><JOPPS id=6005>Date :</JOPPS> %DATE%</td>
+      <td valign="top" width=23% align="right" colspan=2><JOPPS id=6005>日期：</JOPPS> %DATE%</td>
       <td width=2%>&nbsp;</td>
     </tr>
     </table>
@@ -109,7 +111,7 @@
   %IF{%SHOW_VARIETY%,<td valign="top" %IF{%DETAIL_LEVEL%=0,,colspan=2} width=%EVAL{%W_VRTY%+%W_VDESC%}% %M_COLOR_TABLEHEAD_NOCOLORS% align="center"><b><JOPPS id=6014>编号</JOPPS></b></td>,}
   <td valign="top" width=%W_WDTH%%% %M_COLOR_TABLEHEAD_NOCOLORS% align="right"><b><JOPPS id=6008>宽度</JOPPS></b></td>
   <td valign="top" width=%W_HGHT%%% %M_COLOR_TABLEHEAD_NOCOLORS% align="right"><b><JOPPS id=6009>高度</JOPPS></b></td>
-  %IF{%SHOW_UNIT%,<td valign="top" width=%W_UNIT%%% %M_COLOR_TABLEHEAD_NOCOLORS% align="right"><b><JOPPS id=6016>Unit</JOPPS></b></td>,}
+  %IF{%SHOW_UNIT%,<td valign="top" width=%W_UNIT%%% %M_COLOR_TABLEHEAD_NOCOLORS% align="right"><b><JOPPS id=6016>单位</JOPPS></b></td>,}
   <td valign="top" width=%W_REF%%% %M_COLOR_TABLEHEAD_NOCOLORS%><b><JOPPS id=6010>涉及</JOPPS></b></td>
   %IF{%SHOW_PRICE%,<td valign="top" width=%W_PRICE%%% %M_COLOR_TABLEHEAD_NOCOLORS% align="right"><b>%IF{%FINISHING_LIST_REBATE%,<JOPPS id=6013>折扣后价格</JOPPS>,<JOPPS id=6011>价格</JOPPS>}</b></td>,}
 </tr>
@@ -125,7 +127,7 @@
 <table border=0 width=100%>
 <tr>
   <td width=75% colspan=4></td>
-  <td width=25% colspan=2><JOPPS id=6012>With kind regards,</JOPPS></td>
+  <td width=25% colspan=2><JOPPS id=6012>此致敬礼</JOPPS></td>
 </tr>
 </table>
 <BR><BR><BR>
@@ -138,3 +140,4 @@
 <!--%% detail footer ---------------------------------------------------------->
 
 <!--%%------------------------------------------------------------------------->
+

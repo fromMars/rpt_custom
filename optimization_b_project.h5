@@ -38,8 +38,8 @@
     %IF{%OPTIMIZATION_LENGTH%=%C_LOUTPUT_ABS%,<JOPPS id=11008>锯切长度 l.</JOPPS>,#
     %IF{%OPTIMIZATION_LENGTH%=%C_LOUTPUT_MAX%,<JOPPS id=11003>长度</JOPPS>,#
     %IF{%OPTIMIZATION_LENGTH%=%C_LOUTPUT_MIN%,<JOPPS id=11009>内角长度 l.</JOPPS>,#
-    %IF{%OPTIMIZATION_LENGTH%=%C_LOUTPUT_S1%,<JOPPS id=11014>Side 1</JOPPS>,#
-                                             <JOPPS id=11015>Side 2</JOPPS>}}}}
+    %IF{%OPTIMIZATION_LENGTH%=%C_LOUTPUT_S1%,<JOPPS id=11014>边1</JOPPS>,#
+                                             <JOPPS id=11015>边2</JOPPS>}}}}
   </th>
   <th bgcolor="%COLOR_TABLEHEAD%" width=10% align="right"><JOPPS id=11004>角度 1</JOPPS></th>
   <th bgcolor="%COLOR_TABLEHEAD%" width=10% align="right"><JOPPS id=11005>角度 2</JOPPS></th>
@@ -70,7 +70,7 @@
     </table>
   </td>
 %IF{%OPTIMIZATION_BARINFO_ENABLED%,</tr><tr>,}
-%IF{%OPTIMIZATION_BARINFO_ENABLED%,  <td colspan="8"><table><tr><td>%DSP_BARINFO%</td></tr></table></td>,}
+%IF{%OPTIMIZATION_BARINFO_ENABLED%,  <td colspan=8><table><tr><td>%DSP_BARINFO%</td></tr></table></td>,}
 </tr>
 
 <!--%% break footer 2 -->
@@ -79,3 +79,4 @@
 </font>
 
 <!--%%------------------------------------------------------------------------->
+

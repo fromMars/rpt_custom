@@ -4,5 +4,6 @@
 <table width=100% %M_TABLEPARAM% border=0>
 <tr>
   <th colspan=%STATISTICS_COLUMNS% align="left" bgcolor="%COLOR_TABLEHEAD%">
-    <JOPPS id=21001>Statistics</JOPPS> %IF{%HEADER_ENABLED%,,%IF{%BATCHMODE%,%BATCH%,%PROJECT% %PROJECTDESC%}}
+    <JOPPS id=21001>Í³¼Æ</JOPPS> %IF{%HEADER_ENABLED%,,%IF{%BATCHMODE%,%BATCH%,%PROJECT% %PROJECTDESC%}}
   </th>
+

@@ -7,7 +7,7 @@
     <table border=0 width=100% cellpadding=5>
     <tr valign="top">
       <td valign="top" width=75% colspan=3>&nbsp;&nbsp;<b>%IF{%BATCHMODE%,<JOPPS id=10022>订单 * 批(多工程) :</JOPPS>,<JOPPS id=10030>订单 * 工程 :</JOPPS>} %BATCH%</b></td>
-      <td valign="top" width=25% align="right" colspan=%EVAL{4+(%DETAIL_LEVEL%>0)+(%GLOBAL_PRICE_PROFILE%!=%C_PROFPRICE_UNIT%)+%ORDER_LIST_PER_PRODUCT_PRICE%-3}><JOPPS id=9005>Date :</JOPPS> %DATE%&nbsp;&nbsp;</td>
+      <td valign="top" width=25% align="right" colspan=%EVAL{4+(%DETAIL_LEVEL%>0)+(%GLOBAL_PRICE_PROFILE%!=%C_PROFPRICE_UNIT%)+%ORDER_LIST_PER_PRODUCT_PRICE%-3}><JOPPS id=9005>日期：</JOPPS> %DATE%&nbsp;&nbsp;</td>
     </tr>
     </table>
   </td>

@@ -5,16 +5,30 @@
     <table border=0 width=100%>
     <tr valign="top">
       <th align="left">
-       
+        %IF{%EVAL{%ASSEMBLYCOUNT%>1},<font color="%COLOR_ANNOTATE%">%ASSEMBLYCOUNT%x</font> , %ASSEMBLYCOUNT%x }
         <JOPPS id=1002>´°ºÅ:</JOPPS> %IF{%BATCHMODE%,%PROJECT%*,}%ASSEMBLY% %IF{%OUTLINES_FRAMEDESC%, %ASSEMBLYFRAMEDESC%, %ASSEMBLYDESC%}
-&nbsp;ÊýÁ¿: %ASSEMBLYCOUNT%
       </th>
-    </tr><tr valign="top">
-      <th><a href="EDITOR:%ASSEMBLYATOM%">%DSP_DRAWOUTLINESASSEMBLY%%IF{%OUTLINES_SCALE%,<br>%DSP_SCALE%,}</a></th>
-    %IF{%EVAL{%OUTLINES_COLUMNS% > %OUTLINES_POSITION%},</tr><tr valign="top">,}
-      %IF{%OUTLINES_DETAILS%,<td valign="top" width=%EVAL{if(%OUTLINES_COLUMNS% > %OUTLINES_POSITION%,"100","90")}%>%DSP_INFOASSEMBLY%</td>,}
     </tr>
+    %IF{%SH_VIEW_BOTTOM%,<tr valign="top">,}#
+    %IF{%EVAL{%SH_VIEW_BOTTOM% && %SH_VIEW_RIGHT%},<td width=33%>&nbsp;</td>,}#
+    %IF{%SH_VIEW_BOTTOM%,<th %IF{%SH_VIEW_RIGHT%,align="center",}><a href="EDITOR:%ASSEMBLYATOM%">%DSP_VIEWBOTTOM%</a></th>,}#
+    %IF{%EVAL{%SH_VIEW_BOTTOM% && %SH_VIEW_LEFT%},<td width=33%>&nbsp;</td>,}#
+    %IF{%SH_VIEW_BOTTOM%,</tr>,}#
+	<tr valign="top">
+      %IF{%SH_VIEW_RIGHT%,<td width=33% align="right"><a href="EDITOR:%ASSEMBLYATOM%">%DSP_VIEWRIGHT%</a></td>,}#
+      <th %IF{%SH_VIEW_RIGHT%,align="center",}><a href="EDITOR:%ASSEMBLYATOM%">%DSP_DRAWOUTLINESASSEMBLY%%IF{%OUTLINES_SCALE%,<br>%DSP_SCALE%,}</a></th>
+      %IF{%SH_VIEW_LEFT%,<td width=33% align="left"><a href="EDITOR:%ASSEMBLYATOM%">%DSP_VIEWLEFT%</a></td>,}#
+      %IF{%EVAL{%OUTLINES_DETAILS% && (%OUTLINES_COLUMNS%=%OUTLINES_POSITION%)},<td valign="top" width=%EVAL{if(%OUTLINES_COLUMNS%>%OUTLINES_POSITION%,"100","90")}%>%DSP_INFOASSEMBLY%</td>,}
+    </tr>
+    %IF{%SH_VIEW_TOP%,<tr valign="top">,}#
+    %IF{%EVAL{%SH_VIEW_TOP% && %SH_VIEW_RIGHT%},<td width=33%>&nbsp;</td>,}#
+    %IF{%SH_VIEW_TOP%,<th %IF{%SH_VIEW_RIGHT%,align="center",}><a href="EDITOR:%ASSEMBLYATOM%">%DSP_VIEWTOP%</a></th>,}#
+    %IF{%EVAL{%SH_VIEW_TOP% && %SH_VIEW_LEFT%},<td width=33%>&nbsp;</td>,}#
+    %IF{%SH_VIEW_TOP%,</tr>,}#
+    %IF{%EVAL{%OUTLINES_DETAILS% && (%OUTLINES_COLUMNS%>%OUTLINES_POSITION%)},</tr><tr valign="top">,}
+    %IF{%EVAL{%OUTLINES_DETAILS% && (%OUTLINES_COLUMNS%>%OUTLINES_POSITION%)},<td valign="top" width=%EVAL{if(%OUTLINES_COLUMNS%>%OUTLINES_POSITION%,"100","90")}%>%DSP_INFOASSEMBLY%</td>,}
     </table>
   %IF{%ANNEX_ENABLED%,,</td>}
   %IF{%EVAL{(%ASSEMBLYTOT% > 0) && (%ASSEMBLYCNT% = %ASSEMBLYTOT%-1) && (%ASSEMBLYTOT% \\ %OUTLINES_COLUMNS% != 0)},<td colspan="%EVAL{%OUTLINES_COLUMNS% - %ASSEMBLYCNT%\\%OUTLINES_COLUMNS% - 1}" width="%EVAL{(%OUTLINES_COLUMNS% - %ASSEMBLYCNT%\\%OUTLINES_COLUMNS% - 1)*(100 // %OUTLINES_COLUMNS%)}%%">&nbsp;</td>,}
+
 

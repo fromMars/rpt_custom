@@ -1,9 +1,9 @@
-<!--calculation_detail_b_frame_4-->
+<!--calculation_detail_b_frame_3-->
 <!--Calculatie detail: Rubbers------------------------------------------------->
 <br>
 <table border=0 width=100% %M_TABLEPARAM%>
 <tr valign="top">
-  <th align="left" colspan=%EVAL{6+(%DETAIL_LEVEL%>0)+(%DETAIL_TRACE%>0)} bgcolor="%COLOR_TABLEHEAD%"><JOPPS id=14027>胶条</JOPPS></th>
+  <th align="left" colspan=%EVAL{7+(%DETAIL_LEVEL%>0)+(%DETAIL_TRACE%>0)} bgcolor="%COLOR_TABLEHEAD%"><JOPPS id=14027>胶条</JOPPS></th>
 </tr><tr valign="bottom" align="left">
   <th bgcolor="%COLOR_TABLEHEAD%" align="right"><JOPPS id=14028>长度</JOPPS></th>
   <th bgcolor="%COLOR_TABLEHEAD%"><JOPPS id=14029>编号</JOPPS></th>
@@ -11,6 +11,7 @@
   %IF{%DETAIL_TRACE%=0,,<th bgcolor="%COLOR_TABLEHEAD%"><JOPPS id=14031>链接</JOPPS></th>}
   <th bgcolor="%COLOR_TABLEHEAD%"><JOPPS id=14032>块</JOPPS></th>
   <th bgcolor="%COLOR_TABLEHEAD%" align="right">%IF{%CALCULATION_DETAIL_REBATE%,<JOPPS id=14053>折扣后价格</JOPPS>,<JOPPS id=14033>价格</JOPPS>}</th>
+  <th bgcolor="%COLOR_TABLEHEAD%" align="right"><JOPPS id=14064>Time</JOPPS></th>
   <th bgcolor="%COLOR_TABLEHEAD%" align="right">%DSP_TIME1_DESC%</th>
   <th bgcolor="%COLOR_TABLEHEAD%" align="right">%DSP_TIME2_DESC%</th>
 </tr>
@@ -22,7 +23,8 @@
   %IF{%DETAIL_LEVEL%=0,,<td width=30%>%IF{@%DB_ATTRIB_ACCDESC%,%DSP_ATTRIB_ACCDESC%,&nbsp;}</td>}
   %IF{%DETAIL_TRACE%=0,,<td width=10%>%IF{@%DB_ATTRIB_LINK%,%LIST{%DSP_ATTRIB_LINK%},&nbsp;}</td>}
   <td width=6%>%DSP_ATTRIB_ARTICLE%</td>
-  <td width=12% align="right">%DSP_ATTRIB_CFPRICE%</td>
+  <td width=12% align="right">%IF{@%DB_ATTRIB_DATALINK%,%LIST{%DSP_ATTRIB_DATALINK%,%DSP_ATTRIB_CFPRICE%},%DSP_ATTRIB_CFPRICE%}</td>
+  <td width=9% align="right">%IF{@%DB_ATTRIB_JOBTIME%,%DSP_ATTRIB_JOBTIME%,&nbsp;}</td>
   <td width=9% align="right">%IF{@%DB_ATTRIB_TIME1%,%DSP_ATTRIB_TIME1%,&nbsp;}</td>
   <td width=9% align="right">%IF{@%DB_ATTRIB_TIME2%,%DSP_ATTRIB_TIME2%,&nbsp;}</td>
 </tr>
@@ -34,6 +36,7 @@
   <th bgcolor="%COLOR_TABLEHEAD%" align="right">%DSP_ATTRIB_CFLENGTH_SUM%</th>
   <th bgcolor="%COLOR_TABLEHEAD%" colspan=%EVAL{2+(%DETAIL_LEVEL%>0)+(%DETAIL_TRACE%>0)}>%EVAL{trim("%DSP_ATTRIB_PROJECT_BR%")+"*"+trim("%DSP_ATTRIB_ASSEMBLY_BR%")+"*"+trim("%DSP_ATTRIB_FRAME_BR%")}</th>
   <th bgcolor="%COLOR_TABLEHEAD%" align="right">%DSP_ATTRIB_CFPRICE_SUM%</th>
+  <th bgcolor="%COLOR_TABLEHEAD%" align="right">%IF{@%DB_ATTRIB_JOBTIME_SUM%,%DSP_ATTRIB_JOBTIME_SUM%,&nbsp;}</th>
   <th bgcolor="%COLOR_TABLEHEAD%" align="right">%IF{@%DB_ATTRIB_TIME1_SUM%,%DSP_ATTRIB_TIME1_SUM%,&nbsp;}</th>
   <th bgcolor="%COLOR_TABLEHEAD%" align="right">%IF{@%DB_ATTRIB_TIME2_SUM%,%DSP_ATTRIB_TIME2_SUM%,&nbsp;}</th>
 </tr>
@@ -43,8 +46,9 @@
 <!--%% break footer 2 -->
 <tr valign="top" align="left">
   <th bgcolor="%COLOR_TABLEHEAD%" align="right">%DSP_ATTRIB_CFLENGTH_SUM%</th>
-  <th bgcolor="%COLOR_TABLEHEAD%" colspan=%EVAL{2+(%DETAIL_LEVEL%>0)+(%DETAIL_TRACE%>0)}>%EVAL{trim("%DSP_ATTRIB_PROJECT_BR%")+"*"+trim("%DSP_ATTRIB_ASSEMBLY_BR%")+"*"+trim("%DSP_ATTRIB_FRAME_BR%")} / <JOPPS id=14035>price block</JOPPS> %DSP_ATTRIB_ARTICLE_BR%</th>
+  <th bgcolor="%COLOR_TABLEHEAD%" colspan=%EVAL{2+(%DETAIL_LEVEL%>0)+(%DETAIL_TRACE%>0)}>%EVAL{trim("%DSP_ATTRIB_PROJECT_BR%")+"*"+trim("%DSP_ATTRIB_ASSEMBLY_BR%")+"*"+trim("%DSP_ATTRIB_FRAME_BR%")} / <JOPPS id=14035>价格块</JOPPS> %DSP_ATTRIB_ARTICLE_BR%</th>
   <th bgcolor="%COLOR_TABLEHEAD%" align="right">%DSP_ATTRIB_CFPRICE_SUM%</th>
+  <th bgcolor="%COLOR_TABLEHEAD%" align="right">%IF{@%DB_ATTRIB_JOBTIME_SUM%,%DSP_ATTRIB_JOBTIME_SUM%,&nbsp;}</th>
   <th bgcolor="%COLOR_TABLEHEAD%" align="right">%IF{@%DB_ATTRIB_TIME1_SUM%,%DSP_ATTRIB_TIME1_SUM%,&nbsp;}</th>
   <th bgcolor="%COLOR_TABLEHEAD%" align="right">%IF{@%DB_ATTRIB_TIME2_SUM%,%DSP_ATTRIB_TIME2_SUM%,&nbsp;}</th>
 </tr>
