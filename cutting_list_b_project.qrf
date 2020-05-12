@@ -100,6 +100,7 @@ report
   where    %DB_PIECE_DEPNO% not in %CUTTING_LIST_FILTER%
   and      %DB_PIECE_OPTION% in %RUNOPTIONS%
   and      %DB_PIECE_NO% > 0
+  and      %DB_PIECE_SPLIT%<>-2
   and      %CUTTING_LIST_LAYOUT% <> %C_LAYOUT_GROUP%
   and      ((%SORTPERBTYPE%=0) or ((%SORTPERBTYPE%<>0) and (%DB_PIECE_BTYPE%=%BTYPE%)))  
   group by %DB_PIECE_PRODUCT%, %DB_PIECE_VARIETY%, %DB_PIECE_SERIE%,
@@ -172,6 +173,7 @@ report
   where    %DB_PIECE_DEPNO% not in %CUTTING_LIST_FILTER%
   and      %DB_PIECE_OPTION% in %RUNOPTIONS%
   and      %DB_PIECE_NO% > 0
+  and      %DB_PIECE_SPLIT%<>-2
   and      %CUTTING_LIST_LAYOUT% = %C_LAYOUT_GROUP%
   and      ((%SORTPERBTYPE%=0) or ((%SORTPERBTYPE%<>0) and (%DB_PIECE_BTYPE%=%BTYPE%)))  
   group by %DB_PIECE_PROJECT%, %DB_PIECE_ASSEMBLY%,

@@ -126,6 +126,7 @@ report
   and      %DB_PIECE_FRAME%    like '%FRAME_TEXT%'
   and      %DB_PIECE_DEPNO% not in %FRAME_PER_PAGE_FILTER_PIECE%
   and      %DB_PIECE_NO% > 0
+  and      %DB_PIECE_SPLIT%<>-2
   group by %DB_PIECE_PROJECT%, %DB_PIECE_ASSEMBLY%, %DB_PIECE_FRAME%,
            %DB_PIECE_PRODUCT%, %DB_PIECE_VARIETY%, %DB_PIECE_SERIE%, 
            %DB_PIECE_SYSTEM%, %DB_PIECE_PROFILE%, %DB_PIECE_CFCHAR%,

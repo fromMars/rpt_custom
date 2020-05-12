@@ -78,6 +78,7 @@ report
   from     %TBL_PIECE%
   where    %DB_PIECE_DEPNO% not in %BILL_OF_MATERIAL_FILTER%
   and      %DB_PIECE_NO% > 0
+  and      %DB_PIECE_SPLIT%<>-2
   and      %DB_PIECE_OPTION% in %RUNOPTIONS%
   and      ((%SORTPERBTYPE%=0) or ((%SORTPERBTYPE%<>0) and (%DB_PIECE_BTYPE%=%BTYPE%)))
   group by %DB_PIECE_PROJECT%, %DB_PIECE_ASSEMBLY%, %DB_PIECE_FRAME%,
