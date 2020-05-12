@@ -125,6 +125,7 @@ report
   and      %DB_PIECE_ASSEMBLY% like '%ASSEMBLY_TEXT%'
   and      %DB_PIECE_DEPNO% not in %ASSEMBLY_PER_PAGE_FILTER_PIECE%
   and      %DB_PIECE_NO% > 0
+  and      %DB_PIECE_SPLIT%<>-2
   and      ((%SORTPERBTYPE%=0) or ((%SORTPERBTYPE%<>0) and (%DB_PIECE_BTYPE%=%BTYPE%)))
   group by %DB_PIECE_PROJECT%, %DB_PIECE_ASSEMBLY%, %DB_PIECE_FRAME%,
            %DB_PIECE_PRODUCT%, %DB_PIECE_VARIETY%, %DB_PIECE_SERIE%,
