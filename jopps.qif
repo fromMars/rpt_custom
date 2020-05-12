@@ -7,20 +7,20 @@ defines
   FM_COEF        =
   FM_TIME        =
   FM_WEIGHT      =kg
-  FM_VOLUME      =%IF{%REPORTTYPE%=J,m3,m<SUP>3</SUP>}
+  FM_VOLUME      =%IF{%REPORTTYPE%=J,,m<SUP>3</SUP>}
   PERCENT        =%
   FM_PROCENT     =%IF{%REPORTTYPE%=J,,&#037;}
   FM_ANGLE       =%IF{%REPORTTYPE%=J,,бу}
   FM_EMOD        =%IF{%REPORTTYPE%=J,N/mm2,N/mm<SUP>2</SUP>}
   FM_MEASURE1    =m
   FM_MEASURE     =mm
-  FM_AREA0       =%IF{%REPORTTYPE%=J,dm2,dm<SUP>2</SUP>}
-  FM_AREA1       =%IF{%REPORTTYPE%=J,m2,m<SUP>2</SUP>}
-  FM_MOMENT      =%IF{%REPORTTYPE%=J,cm4,cm<SUP>4</SUP>}
-  FM_UVALUE      =%IF{%REPORTTYPE%=J,W/m2K,W/m<SUP>2</SUP>K}
+  FM_AREA0       =%IF{%REPORTTYPE%=J,,dm<SUP>2</SUP>}
+  FM_AREA1       =%IF{%REPORTTYPE%=J,,m<SUP>2</SUP>}
+  FM_MOMENT      =%IF{%REPORTTYPE%=J,,cm<SUP>4</SUP>}
+  FM_UVALUE      =%IF{%REPORTTYPE%=J,,W/m<SUP>2</SUP>K}
   FM_PSIVALUE    =W/mK
   FM_UMEASURE    =W/K
-  FM_USURFACE    =%IF{%REPORTTYPE%=J,m2,m<SUP>2</SUP>}
+  FM_USURFACE    =%IF{%REPORTTYPE%=J,,m<SUP>2</SUP>}
   FM_UPERIMETER  =m
   FM_SOUND       =dB
 
