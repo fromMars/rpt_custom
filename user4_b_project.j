@@ -68,6 +68,7 @@ p_profiles:=profiles.create();
 p_products:=products.create();
 
 blok_name:="";
+isExists:=false; /*判断中间型材是否存在*/
 
 ;-------------------------------------------------------------------------------
 %%detail
@@ -101,7 +102,7 @@ curr_cell.value:=trim("%DSP_PIECE_PRODUCTDESC%");
 curr_cell:=curr_sheet.cells[rowid][3];
 if "@%DB_PIECE_ARTICLECODE%"<>"" then
     if substr("@%DB_PIECE_ARTICLECODE%",0,3)="002" then
-	curr_cell.value:="%DSP_PIECE_PRODUCT%";
+	      curr_cell.value:="%DSP_PIECE_PRODUCT%";
         /*curr_cell.value:=substr("@%DB_PIECE_ARTICLECODE%",0,7);*/
     else
         curr_cell.value:="@%DB_PIECE_ARTICLECODE%";
@@ -128,6 +129,7 @@ p_profiles.code.system:="@%DB_PIECE_SYSTEM%";
 p_profiles.code.profile:="@%DB_PIECE_PROFILE%";
 
 inside_profile:="";
+central_profile:="";
 outside_profile:="";
 
 if !p_profiles.find() then
@@ -143,10 +145,20 @@ else
         seperated_cnt:=0;
         while seperated_cnt<5 do
         {
-            if p_products.items[seperated_cnt].colour=2 then
-                inside_profile:=trim(p_products.items[seperated_cnt].product);
+            
+            tempstr := trim(p_products.items[seperated_cnt].product);
+            if tempstr <> "" && strpos("_",tempstr) = 1 then 
+                tempstr := strdeletel(tempstr,1);
+
+            if strpos("C",tempstr) > 0 then
+            {        
+                isExists := true;
+                central_profile:= tempstr;
+            }
+            else if p_products.items[seperated_cnt].colour=2 then
+                inside_profile:=tempstr;
             else if p_products.items[seperated_cnt].colour=1 then
-                outside_profile:=trim(p_products.items[seperated_cnt].product);
+                outside_profile:= tempstr;
             seperated_cnt:=seperated_cnt+1;
         }
     }
@@ -177,30 +189,33 @@ else if p_profiles.colour=3 then
 m_weight:=p_profiles.weight;
 if m_weight=0 then
 	m_weight:=@%DB_PIECE_WEIGHT%;
-curr_cell:=curr_sheet.cells[rowid][23];		/*weight column move from 8 to 23*/
+curr_cell:=curr_sheet.cells[rowid][24];		/*weight column move from 8 to 23*/
 /*curr_cell.value:=m_weight/p_cnt/p_lth;*/
 curr_cell.value:=m_weight;
 
 if "@%DB_PIECE_INSIDE%"<>"" && "@%DB_PIECE_OUTSIDE%"<>"" then
-{
-    if strpos("_",inside_profile)=1 then
-        inside_profile:=strdeletel(inside_profile,1);
-    if strpos("_",outside_profile)=1 then
-        outside_profile:=strdeletel(outside_profile,1);
-    
+{    
 	curr_cell:=curr_sheet.cells[rowid][10];
 	curr_cell.value:=inside_profile;
 	curr_cell:=curr_sheet.cells[rowid+1][10];
 	curr_cell.value:=inside_color;
 	
-	curr_cell:=curr_sheet.cells[rowid][11];
+	curr_cell:=curr_sheet.cells[rowid][12];
 	curr_cell.value:=outside_profile;
-	curr_cell:=curr_sheet.cells[rowid+1][11];
+	curr_cell:=curr_sheet.cells[rowid+1][12];
 	curr_cell.value:=outside_color;
+
+  if central_profile <> "" then
+  {
+    curr_cell:=curr_sheet.cells[rowid][11];
+    curr_cell.value:=central_profile;
+    curr_cell:=curr_sheet.cells[rowid+1][11];
+    curr_cell.value:=outside_color;
+  }
 }
 else
 {
-	curr_sheet.range[curr_sheet.cells[rowid][10]][curr_sheet.cells[rowid+1][11]].merge();
+	curr_sheet.range[curr_sheet.cells[rowid][10]][curr_sheet.cells[rowid+1][12]].merge();
 	if %DSP_PIECE_SERIE% = 17 || %DSP_PIECE_SERIE% = 14 then
 		curr_cell:=curr_sheet.cells[rowid][10].value:="%DSP_PIECE_VARIETYDESC%";
 	else
@@ -213,21 +228,23 @@ else
 
 outputmsg(blok_name);
 if blok_name="A" then
-	curr_sheet.cells[init_rowid][12].value:="泰诺风隔热条"+chr(10)+"超高精级";
+	curr_sheet.cells[init_rowid][13].value:="泰诺风隔热条"+chr(10)+"超高精级";
 else if blok_name="B" then
-	curr_sheet.cells[init_rowid][12].value:="易菲特隔热条"+chr(10)+"超高精级";
+	curr_sheet.cells[init_rowid][13].value:="易菲特隔热条"+chr(10)+"超高精级";
 else if blok_name="C" then
-	curr_sheet.cells[init_rowid][12].value:="优泰隔热条"+chr(10)+"超高精级";
+	curr_sheet.cells[init_rowid][13].value:="优泰隔热条"+chr(10)+"超高精级";
 else if blok_name="T" then
-	curr_sheet.cells[init_rowid][12].value:="隔热条"+chr(10)+"超高精级";
+	curr_sheet.cells[init_rowid][13].value:="隔热条"+chr(10)+"超高精级";
 
-curr_sheet.range[curr_sheet.cells[init_rowid][12]][curr_sheet.cells[rowid][12]].merge();
+curr_sheet.range[curr_sheet.cells[init_rowid][13]][curr_sheet.cells[rowid][13]].merge();
 curr_sheet.usedrange.rows[""+inttostr(init_rowid)+":"+inttostr(rowid+1)].borders.linestyle:=1;
 
 used_row_cnt := curr_sheet.usedrange.rows.count;
-curr_sheet.range[curr_sheet.cells[init_rowid][13]][curr_sheet.cells[used_row_cnt][22]].borders.linestyle:=0;
+curr_sheet.range[curr_sheet.cells[init_rowid][14]][curr_sheet.cells[used_row_cnt][23]].borders.linestyle:=0;
 first_row.columns[4].formula:="=sum(D"+inttostr(init_rowid)+":D"+inttostr(rowid)+")";
 
 p_profiles.free();
 p_products.free();
 
+if !isExists then
+    curr_sheet.range["K:K"].delete;
