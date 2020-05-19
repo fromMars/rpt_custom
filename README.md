@@ -121,3 +121,5 @@ Translated and overrided U value reports with below files:
         '''
 
 
+2020.5.19
+    Add middle seperated profile to "xcdd.xlt"
